@@ -10,7 +10,8 @@ class Board extends Component {
 												return( 
 													<BoardRow key={idx}
 																	rowid={idx} 
-																	squares={squares} /> 
+																	squares={squares}
+																	onClick={(i) => this.props.onClick(i) } /> 
 													);
 									});	
 		return (<div>{ board }</div>);

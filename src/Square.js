@@ -10,7 +10,13 @@ class Square extends Component {
 				classes += ' square-black';
 			}
 		}
-		return ( <div class={classes} rowid={this.props.rowid} colid={this.props.colid} /> );
+		return ( 
+						<div 
+								className={classes} 
+								rowid={this.props.rowid} 
+								colid={this.props.colid} 
+								onClick={(i) => this.props.onClick(this.props.rowid * 8 + this.props.colid) }/> 
+						);
 	}
 }
 
