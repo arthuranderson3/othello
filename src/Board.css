@@ -21,10 +21,12 @@
 }
 
 .square-white:before {
+  color: white;
 	content: 'W';
 }
 
 .square-black:before {
+  color:  black;
 	content: 'B';
 }
 

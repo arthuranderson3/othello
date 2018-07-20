@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 class Square extends Component {
+
 	render() {
 		let classes = 'square';
+
 		if( this.props.value ) {
 			if( this.props.value === 'W') {
 				classes += ' square-white';
@@ -10,6 +12,7 @@ class Square extends Component {
 				classes += ' square-black';
 			}
 		}
+
 		return ( 
 						<div 
 								className={classes} 
