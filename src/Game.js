@@ -2,19 +2,21 @@ import React, { Component } from "react";
 import './Game.css';
 import Board from './Board';
 
+
 class Game extends Component {
+
 	constructor( props ) {
 		super( props );
 
 		this.state = { history: [ {
-			squares: [ null, null, null, null, null, null, null, null 
-								, null, null, null, null, null, null, null, null 
-								, null, null, null, null, null, null, null, null 
-								, null, null, null, 'W', 'B', null, null, null 
-								, null, null, null, 'B', 'W', null, null, null 
-								, null, null, null, null, null, null, null, null 
-								, null, null, null, null, null, null, null, null 
-								, null, null, null, null, null, null, null, null 
+			squares: [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+								, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+								, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+								, undefined, undefined, undefined, this.props.W, this.props.B, undefined, undefined, undefined 
+								, undefined, undefined, undefined, this.props.B, this.props.W, undefined, undefined, undefined 
+								, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+								, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+								, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
 								] } ]
 			, isWhiteNext: true
 			};
@@ -22,7 +24,7 @@ class Game extends Component {
 
 	render() {
 		const history = this.state.history;
-		const status = "Current Player: " + ( this.state.isWhiteNext ? 'W' : 'B' );
+		const status = "Current Player: " + this.get_CurrentPlayer();
 		return (
 			<div>
 			<div className='game-board'>
@@ -33,11 +35,15 @@ class Game extends Component {
 		);
 	}
 
+	get_CurrentPlayer() {
+		return ( this.state.isWhiteNext ? this.props.W : this.props.B );
+	}
+
 	handleClick( i ) {
 
 		const history = this.state.history;
 		const squares = history[ history.length - 1 ].squares.slice();
-		const curPlayer = (this.state.isWhiteNext ? 'W': 'B');
+		const curPlayer = this.get_CurrentPlayer();
 
 		const move = { idx: i, squares: squares, player: curPlayer };
 		if( this.isValidMove( move ) ) {
@@ -51,29 +57,29 @@ class Game extends Component {
 	}
 
 	toRow( i ) {
-		return Math.floor(i / 8);
+		return Math.floor(i / this.props.MAX_HEIGHT);
 	}
 
 	toCol( i ) {
-		return i % 8;
+		return i % this.props.MAX_WIDTH;
 	}
 
 	toIdx( obj ) {
 		if( obj ) { 
-			return obj.row * 8 + obj.col;
+			return obj.row * this.props.MAX_HEIGHT + obj.col;
 		}
 		return -1;
 	}
 
 	toOppositePlayer( player ) {
-		return player === 'W' ? 'B' : 'W';
+		return player === this.props.W ? this.props.B : this.props.W;
 	}
 
 	createRowCol( row, col ) {
-		if( row > -1 && row < 8 && col > -1 && col < 8 ) {
+		if( row > -1 && row < this.props.MAX_HEIGHT && col > -1 && col < this.props.MAX_HEIGHT ) {
 			return { row: row, col: col };
 		}
-		return null;
+		return undefined;
 	}
 
 	toNorth( i ) {
@@ -151,6 +157,13 @@ class Game extends Component {
 		move.squares[move.idx] = move.player;
 	}
 
+};
+
+Game.defaultProps = {
+	B: 'B'
+	, W: 'W'
+	, BOARD_WIDTH: 8
+	, BOARD_HEIGHT: 8
 };
 
 export default Game;
