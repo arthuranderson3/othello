@@ -93,7 +93,7 @@ class Game extends Component {
 	toNorthEast( i ) {
 		return this.toIdx( 
 							this.createRowCol( 
-								this.toRow(i) -1, 
+								this.toRow(i) - 1, 
 								this.toCol(i) + 1 ) );
 	}
 
