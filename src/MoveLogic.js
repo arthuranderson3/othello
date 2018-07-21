@@ -14,14 +14,15 @@ class MoveLogic {
 * in this class in order to use them from button clicks.
 *
 *************************************************************/
-		this.is_Valid_Move = this.is_Valid_Move.bind(this);
-		this.validate_Direction = this.validate_Direction.bind(this);
-		this.update_Squares = this.update_Squares.bind(this);
-		this.to_Row = this.to_Row.bind(this);
-		this.to_Col = this.to_Col.bind(this);
-		this.to_Idx = this.to_Idx.bind(this);
-		this.to_Opposite_Player = this.to_Opposite_Player.bind(this);
-		this.create_Row_Col = this.create_Row_Col.bind(this);
+		this.isValidMove = this.isValidMove.bind(this);
+		this.validateDirection = this.validateDirection.bind(this);
+		this.updateSquares = this.updateSquares.bind(this);
+		this.findMovesInDirection = this.findMovesInDirection.bind(this);
+		this.toRow = this.toRow.bind(this);
+		this.toCol = this.toCol.bind(this);
+		this.toIdx = this.toIdx.bind(this);
+		this.toOppositePlayer = this.toOppositePlayer.bind(this);
+		this.createRowCol = this.createRowCol.bind(this);
 		this.toNorth = this.toNorth.bind(this);
 		this.toNorthEast = this.toNorthEast.bind(this);
 		this.toNorthWest = this.toNorthWest.bind(this);
@@ -40,34 +41,34 @@ class MoveLogic {
 * REF: can refactor this into seperate async checks and join at end
 *
 *************************************************************/
-	is_Valid_Move() {
+	isValidMove() {
 		// we have an open square?
 		if( this.squares[this.idx] ) return false;
 
 		let validMove = false;
 		// we are adjacent to opposing player with player's square enclosing the line.
-		if( this.validate_Direction( this.toNorth ) ) {
+		if( this.validateDirection( this.toNorth ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validate_Direction( this.toNorthEast ) ) {
+		if( !validMove && this.validateDirection( this.toNorthEast ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validate_Direction( this.toNorthWest ) ) {
+		if( !validMove && this.validateDirection( this.toNorthWest ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validate_Direction( this.toEast ) ) {
+		if( !validMove && this.validateDirection( this.toEast ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validate_Direction( this.toWest ) ) {
+		if( !validMove && this.validateDirection( this.toWest ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validate_Direction( this.toSouth ) ) {
+		if( !validMove && this.validateDirection( this.toSouth ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validate_Direction( this.toSouthEast ) ) {
+		if( !validMove && this.validateDirection( this.toSouthEast ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validate_Direction( this.toSouthWest ) ) {
+		if( !validMove && this.validateDirection( this.toSouthWest ) ) {
 			validMove = true;
 		}
 
@@ -82,13 +83,13 @@ class MoveLogic {
 *
 *************************************************************/
 
-	validate_Direction( direction ) {
+	validateDirection( direction ) {
 		/*
 		* if the adjacent tile is the opposite player keep going
 		*    if this direction also ends with same player return true.
 		*/
 		let next_idx = direction( this.idx );
-		const opp_player = this.to_Opposite_Player( this.player );
+		const opp_player = this.toOppositePlayer( this.player );
 		let adjacent_is_opposite = false;
 		let path_enclosed_with_same_player = false;
 		do{ 
@@ -133,8 +134,74 @@ class MoveLogic {
 * then update them all at the end.
 *
 *************************************************************/
-	update_Squares() {
-		this.squares[this.idx] = this.player;
+	updateSquares() {
+		const self = this;
+		let movement = [ self.idx ];
+
+		movement = _.concat( movement, this.findMovesInDirection( this.toNorth ) );
+		movement = _.concat( movement, this.findMovesInDirection( this.toNorthEast ) );
+		movement = _.concat( movement, this.findMovesInDirection( this.toNorthWest ) );
+		movement = _.concat( movement, this.findMovesInDirection( this.toEast ) );
+		movement = _.concat( movement, this.findMovesInDirection( this.toSouth ) );
+		movement = _.concat( movement, this.findMovesInDirection( this.toSouthEast ) );
+		movement = _.concat( movement, this.findMovesInDirection( this.toSouthWest ) );
+		movement = _.concat( movement, this.findMovesInDirection( this.toWest ) );
+
+		_.each( movement, ( i ) => {
+			console.info( "each " + i + ' :> ' + self.player);
+			self.squares[i] = self.player;
+		});
+
+		return self.squares.slice();
+	}
+
+	findMovesInDirection( direction ) {
+		/*
+		* if the adjacent tile is the opposite player keep going
+		*    if this direction also ends with same player return true.
+		*/
+		let potentialMoves = [];
+		let next_idx = direction( this.idx );
+		const opp_player = this.toOppositePlayer( this.player );
+		let adjacent_is_opposite = false;
+		let path_enclosed_with_same_player = false;
+		do{ 
+			if( next_idx > -1 ) {
+				
+				let adj_player = this.squares[next_idx];
+
+				/* 
+				* are we next to or ending with an undefined square? 
+				*/
+				if( _.isUndefined(adj_player) ) {
+					return [];
+				}
+				
+				/* 
+				* are we adjacent to the same piece we are? 
+				*/
+				if( !adjacent_is_opposite && adj_player === this.player ) {
+					return [];
+				}
+
+				/*
+				*  are we adjacent to the opposing player
+				*/
+				if( adj_player === opp_player ) {
+					adjacent_is_opposite = true;
+					console.info( "push: ", next_idx );
+					potentialMoves.push( next_idx );
+					/*
+					* now iterate this direction and return false if no same player
+					*/
+					next_idx = direction( next_idx);
+				} else if( adjacent_is_opposite && this.player === adj_player ) {
+					console.info( "potential: " + potentialMoves );
+					return potentialMoves.slice();
+				} 
+			}
+		} while( next_idx > -1 && next_idx < 64 );
+
 	}
 /*************************************************************
 *
@@ -142,7 +209,7 @@ class MoveLogic {
 *
 *************************************************************/
 
-	to_Row( i ) {
+	toRow( i ) {
 		return Math.floor(i / 8);
 	}
 
@@ -151,7 +218,7 @@ class MoveLogic {
 * transform index into column
 *
 *************************************************************/
-	to_Col( i ) {
+	toCol( i ) {
 		return i % 8;
 	}
 
@@ -160,7 +227,7 @@ class MoveLogic {
 * from { row, col } into index
 *
 *************************************************************/
-	to_Idx( obj ) {
+	toIdx( obj ) {
 		if( !_.isUndefined(obj) ) { 
 			return obj.row * 8 + obj.col;
 		}
@@ -172,7 +239,7 @@ class MoveLogic {
 * from player W into B and visa versa
 *
 *************************************************************/
-	to_Opposite_Player( player ) {
+	toOppositePlayer( player ) {
 		return player === 'W' ? 'B' : 'W';
 	}
 
@@ -181,7 +248,7 @@ class MoveLogic {
 * create { row, col }
 *
 *************************************************************/
-	create_Row_Col( row, col ) {
+	createRowCol( row, col ) {
 		if( row > -1 && row < 8 && col > -1 && col < 8 ) {
 			return { row: row, col: col };
 		}
@@ -194,10 +261,10 @@ class MoveLogic {
 *
 *************************************************************/
 	toNorth( i ) {
-		return this.to_Idx( 
-							this.create_Row_Col( 
-								this.to_Row( i ) - 1, 
-								this.to_Col( i ) ) );
+		return this.toIdx( 
+							this.createRowCol( 
+								this.toRow( i ) - 1, 
+								this.toCol( i ) ) );
 	}
 
 /*************************************************************
@@ -206,10 +273,10 @@ class MoveLogic {
 *
 *************************************************************/
 	toNorthWest( i ) {
-		return this.to_Idx( 
-							this.create_Row_Col( 
-								this.to_Row(i) - 1, 
-								this.to_Col(i) - 1 ) );
+		return this.toIdx( 
+							this.createRowCol( 
+								this.toRow(i) - 1, 
+								this.toCol(i) - 1 ) );
 	}
 
 /*************************************************************
@@ -218,10 +285,10 @@ class MoveLogic {
 *
 *************************************************************/
 	toNorthEast( i ) {
-		return this.to_Idx( 
-							this.create_Row_Col( 
-								this.to_Row(i) - 1, 
-								this.to_Col(i) + 1 ) );
+		return this.toIdx( 
+							this.createRowCol( 
+								this.toRow(i) - 1, 
+								this.toCol(i) + 1 ) );
 	}
 
 /*************************************************************
@@ -230,10 +297,10 @@ class MoveLogic {
 *
 *************************************************************/
 	toWest( i ) {
-		return this.to_Idx( 
-							this.create_Row_Col( 
-								this.to_Row(i), 
-								this.to_Col(i) - 1 ) );
+		return this.toIdx( 
+							this.createRowCol( 
+								this.toRow(i), 
+								this.toCol(i) - 1 ) );
 	}
 
 /*************************************************************
@@ -242,10 +309,10 @@ class MoveLogic {
 *
 *************************************************************/
 	toEast( i ) {
-		return this.to_Idx( 
-							this.create_Row_Col( 
-								this.to_Row(i), 
-								this.to_Col(i) + 1 ) );
+		return this.toIdx( 
+							this.createRowCol( 
+								this.toRow(i), 
+								this.toCol(i) + 1 ) );
 	}
 
 /*************************************************************
@@ -254,10 +321,10 @@ class MoveLogic {
 *
 *************************************************************/
 	toSouthWest( i ) {
-		return this.to_Idx( 
-							this.create_Row_Col( 
-								this.to_Row(i) + 1, 
-								this.to_Col(i) - 1 ) );
+		return this.toIdx( 
+							this.createRowCol( 
+								this.toRow(i) + 1, 
+								this.toCol(i) - 1 ) );
 	}
 
 /*************************************************************
@@ -266,10 +333,10 @@ class MoveLogic {
 *
 *************************************************************/
 	toSouth( i ) {
-		return this.to_Idx( 
-							this.create_Row_Col( 
-								this.to_Row(i) + 1, 
-								this.to_Col(i) ) );
+		return this.toIdx( 
+							this.createRowCol( 
+								this.toRow(i) + 1, 
+								this.toCol(i) ) );
 	}
 
 /*************************************************************
@@ -278,10 +345,10 @@ class MoveLogic {
 *
 *************************************************************/
 	toSouthEast(i) {
-		return this.to_Idx( 
-							this.create_Row_Col( 
-								this.to_Row(i) + 1, 
-								this.to_Col(i) + 1 ) );
+		return this.toIdx( 
+							this.createRowCol( 
+								this.toRow(i) + 1, 
+								this.toCol(i) + 1 ) );
 	}
 
 }

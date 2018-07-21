@@ -47,11 +47,11 @@ class Game extends Component {
 		const curPlayer = this.get_CurrentPlayer();
 
 		const bl = new MoveLogic( { idx: i, squares: squares, player: curPlayer } );
-		if( bl.is_Valid_Move() ) {
-			console.info( "Valid Move");
-			bl.update_Squares();
+		if( bl.isValidMove() ) {
+			const updatedSquares = bl.updateSquares();
+			console.info( updatedSquares );
 			this.setState( { 
-												history: history.concat( {squares: bl.squares} )
+												history: history.concat( {squares: updatedSquares} )
 												, isWhiteNext: !this.state.isWhiteNext 
 											}
 									);
