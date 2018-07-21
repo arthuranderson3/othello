@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import './Game.css';
 import Board from './Board';
+import MoveLogic from './MoveLogic';
 
 
 class Game extends Component {
@@ -28,7 +29,7 @@ class Game extends Component {
 		return (
 			<div>
 			<div className='game-board'>
-				<Board squares={history[history.length - 1].squares} onClick={ (i) => this.handleClick(i) }/>
+				<Board squares={history[history.length - 1].squares} onClick={ (i) => this.handle_Click(i) }/>
 			</div>
 			<div className='game-info'>{status}</div>
 			</div>
@@ -39,122 +40,22 @@ class Game extends Component {
 		return ( this.state.isWhiteNext ? this.props.W : this.props.B );
 	}
 
-	handleClick( i ) {
+	handle_Click( i ) {
 
 		const history = this.state.history;
 		const squares = history[ history.length - 1 ].squares.slice();
 		const curPlayer = this.get_CurrentPlayer();
 
-		const move = { idx: i, squares: squares, player: curPlayer };
-		if( this.isValidMove( move ) ) {
-			this.updateSquares( move );
+		const bl = new MoveLogic( { idx: i, squares: squares, player: curPlayer } );
+		if( bl.is_Valid_Move() ) {
+			console.info( "Valid Move");
+			bl.update_Squares();
 			this.setState( { 
-												history: history.concat( {squares: move.squares} )
+												history: history.concat( {squares: bl.squares} )
 												, isWhiteNext: !this.state.isWhiteNext 
 											}
 									);
 		}
-	}
-
-	toRow( i ) {
-		return Math.floor(i / this.props.MAX_HEIGHT);
-	}
-
-	toCol( i ) {
-		return i % this.props.MAX_WIDTH;
-	}
-
-	toIdx( obj ) {
-		if( obj ) { 
-			return obj.row * this.props.MAX_HEIGHT + obj.col;
-		}
-		return -1;
-	}
-
-	toOppositePlayer( player ) {
-		return player === this.props.W ? this.props.B : this.props.W;
-	}
-
-	createRowCol( row, col ) {
-		if( row > -1 && row < this.props.MAX_HEIGHT && col > -1 && col < this.props.MAX_HEIGHT ) {
-			return { row: row, col: col };
-		}
-		return undefined;
-	}
-
-	toNorth( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow( i ) - 1, 
-								this.toCol( i ) ) );
-	}
-
-	toNorthWest( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i) - 1, 
-								this.toCol(i) - 1 ) );
-	}
-
-	toNorthEast( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i) - 1, 
-								this.toCol(i) + 1 ) );
-	}
-
-	toWest( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i), 
-								this.toCol(i) - 1 ) );
-	}
-
-	toEast( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i), 
-								this.toCol(i) + 1 ) );
-	}
-
-	toSouthWest( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i) + 1, 
-								this.toCol(i) - 1 ) );
-	}
-
-	toSouth( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i) + 1, 
-								this.toCol(i) ) );
-	}
-
-	toSouthEast(i) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i) + 1, 
-								this.toCol(i) + 1 ) );
-	}
-
-	validateDirection( move, direction ) {
-		//
-		// if the adjacent tile is the opposite player keep going
-		//    if this direction also ends with same player return true.
-	}
-
-	isValidMove( move ) {
-		// we have an open square?
-		if( move.squares[move.idx] ) return false;
-
-		// we are adjacent to opposing player with player's square enclosing the line.
-
-		return true;
-	}
-
-	updateSquares( move ) {
-		move.squares[move.idx] = move.player;
 	}
 
 };
@@ -162,8 +63,7 @@ class Game extends Component {
 Game.defaultProps = {
 	B: 'B'
 	, W: 'W'
-	, BOARD_WIDTH: 8
-	, BOARD_HEIGHT: 8
+	, BOARD_MAX: 8
 };
 
 export default Game;
