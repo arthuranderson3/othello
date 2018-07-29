@@ -1,12 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
+import BoardNavigation from './BoardNavigation';
 
 class MoveLogic {
 
-	constructor( props ) {
-		this.idx = props.idx;
-		this.squares = props.squares.slice();
-		this.player = props.player;
+	constructor( ) {
 
 /*************************************************************
 *
@@ -14,24 +12,23 @@ class MoveLogic {
 * in this class in order to use them from button clicks.
 *
 *************************************************************/
+		this.hasMove = this.hasMove.bind(this);
 		this.isValidMove = this.isValidMove.bind(this);
 		this.validateDirection = this.validateDirection.bind(this);
 		this.updateSquares = this.updateSquares.bind(this);
 		this.findMovesInDirection = this.findMovesInDirection.bind(this);
-		this.toRow = this.toRow.bind(this);
-		this.toCol = this.toCol.bind(this);
-		this.toIdx = this.toIdx.bind(this);
 		this.toOppositePlayer = this.toOppositePlayer.bind(this);
-		this.createRowCol = this.createRowCol.bind(this);
-		this.toNorth = this.toNorth.bind(this);
-		this.toNorthEast = this.toNorthEast.bind(this);
-		this.toNorthWest = this.toNorthWest.bind(this);
-		this.toEast = this.toEast.bind(this);
-		this.toWest = this.toWest.bind(this);
-		this.toSouth = this.toSouth.bind(this);
-		this.toSouthEast = this.toSouthEast.bind(this);
-		this.toSouthWest = this.toSouthWest.bind(this);
 
+	}
+
+	hasMove( props ) {
+		// gather all potential movement squares.
+		const board_map = _.map( props.squares, ( val, idx ) => { return { idx: idx, square: val }; } );
+		console.info( { board_map: board_map } );
+		// const board = _.reduce( props.squares, ( result, val, idx ) => { result[idx] = val; return result;}, {} );
+		// console.info( { board: board });
+		return _.some( board_map, ( obj ) => { 
+			return this.isValidMove( { idx: obj.idx, squares: props.squares, player: props.player }); } );
 	}
 
 /*************************************************************
@@ -41,34 +38,34 @@ class MoveLogic {
 * REF: can refactor this into seperate async checks and join at end
 *
 *************************************************************/
-	isValidMove() {
+	isValidMove( props ) {
 		// we have an open square?
-		if( this.squares[this.idx] ) return false;
-
+		if( props.squares[props.idx] ) return false;
+		const bn = new BoardNavigation();
 		let validMove = false;
 		// we are adjacent to opposing player with player's square enclosing the line.
-		if( this.validateDirection( this.toNorth ) ) {
+		if( this.validateDirection( bn.top, props ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validateDirection( this.toNorthEast ) ) {
+		if( !validMove && this.validateDirection( bn.topRight, props ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validateDirection( this.toNorthWest ) ) {
+		if( !validMove && this.validateDirection( bn.topLeft, props ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validateDirection( this.toEast ) ) {
+		if( !validMove && this.validateDirection( bn.right, props ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validateDirection( this.toWest ) ) {
+		if( !validMove && this.validateDirection( bn.left, props ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validateDirection( this.toSouth ) ) {
+		if( !validMove && this.validateDirection( bn.bottom, props ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validateDirection( this.toSouthEast ) ) {
+		if( !validMove && this.validateDirection( bn.bottomRight, props ) ) {
 			validMove = true;
 		}
-		if( !validMove && this.validateDirection( this.toSouthWest ) ) {
+		if( !validMove && this.validateDirection( bn.bottomLeft, props ) ) {
 			validMove = true;
 		}
 
@@ -83,19 +80,19 @@ class MoveLogic {
 *
 *************************************************************/
 
-	validateDirection( direction ) {
+	validateDirection( direction, props ) {
 		/*
 		* if the adjacent tile is the opposite player keep going
 		*    if this direction also ends with same player return true.
 		*/
-		let next_idx = direction( this.idx );
-		const opp_player = this.toOppositePlayer( this.player );
+		let next_idx = direction( props.idx );
+		const opp_player = this.toOppositePlayer( props.player );
 		let adjacent_is_opposite = false;
 		let path_enclosed_with_same_player = false;
 		do{ 
 			if( next_idx > -1 ) {
 				
-				let adj_player = this.squares[next_idx];
+				let adj_player = props.squares[next_idx];
 
 				/* 
 				* are we next to or ending with an undefined square? 
@@ -107,7 +104,7 @@ class MoveLogic {
 				/* 
 				* are we adjacent to the same piece we are? 
 				*/
-				if( !adjacent_is_opposite && adj_player === this.player ) {
+				if( !adjacent_is_opposite && adj_player === props.player ) {
 					return false;
 				}
 
@@ -120,7 +117,7 @@ class MoveLogic {
 					* now iterate this direction and return false if no same player
 					*/
 					next_idx = direction( next_idx);
-				} else if( adjacent_is_opposite && this.player === adj_player ) {
+				} else if( adjacent_is_opposite && props.player === adj_player ) {
 					return true;
 				} 
 			}
@@ -134,41 +131,39 @@ class MoveLogic {
 * then update them all at the end.
 *
 *************************************************************/
-	updateSquares() {
-		const self = this;
-		let movement = [ self.idx ];
-
-		movement = _.concat( movement, this.findMovesInDirection( this.toNorth ) );
-		movement = _.concat( movement, this.findMovesInDirection( this.toNorthEast ) );
-		movement = _.concat( movement, this.findMovesInDirection( this.toNorthWest ) );
-		movement = _.concat( movement, this.findMovesInDirection( this.toEast ) );
-		movement = _.concat( movement, this.findMovesInDirection( this.toSouth ) );
-		movement = _.concat( movement, this.findMovesInDirection( this.toSouthEast ) );
-		movement = _.concat( movement, this.findMovesInDirection( this.toSouthWest ) );
-		movement = _.concat( movement, this.findMovesInDirection( this.toWest ) );
+	updateSquares( props ) {
+		let movement = [ props.idx ];
+		const bn = new BoardNavigation();
+		movement = _.concat( movement, this.findMovesInDirection( bn.top, props ) );
+		movement = _.concat( movement, this.findMovesInDirection( bn.topRight, props ) );
+		movement = _.concat( movement, this.findMovesInDirection( bn.topLeft, props ) );
+		movement = _.concat( movement, this.findMovesInDirection( bn.right, props ) );
+		movement = _.concat( movement, this.findMovesInDirection( bn.bottom, props ) );
+		movement = _.concat( movement, this.findMovesInDirection( bn.bottomRight, props ) );
+		movement = _.concat( movement, this.findMovesInDirection( bn.bottomLeft, props ) );
+		movement = _.concat( movement, this.findMovesInDirection( bn.left, props ) );
 
 		_.each( movement, ( i ) => {
-			console.info( "each " + i + ' :> ' + self.player);
-			self.squares[i] = self.player;
+			props.squares[i] = props.player;
 		});
 
-		return self.squares.slice();
+		return props.squares.slice();
 	}
 
-	findMovesInDirection( direction ) {
+	findMovesInDirection( direction, props ) {
 		/*
 		* if the adjacent tile is the opposite player keep going
 		*    if this direction also ends with same player return true.
 		*/
 		let potentialMoves = [];
-		let next_idx = direction( this.idx );
-		const opp_player = this.toOppositePlayer( this.player );
+		let next_idx = direction( props.idx );
+		const opp_player = this.toOppositePlayer( props.player );
 		let adjacent_is_opposite = false;
 		let path_enclosed_with_same_player = false;
 		do{ 
 			if( next_idx > -1 ) {
 				
-				let adj_player = this.squares[next_idx];
+				let adj_player = props.squares[next_idx];
 
 				/* 
 				* are we next to or ending with an undefined square? 
@@ -180,7 +175,7 @@ class MoveLogic {
 				/* 
 				* are we adjacent to the same piece we are? 
 				*/
-				if( !adjacent_is_opposite && adj_player === this.player ) {
+				if( !adjacent_is_opposite && adj_player === props.player ) {
 					return [];
 				}
 
@@ -189,49 +184,17 @@ class MoveLogic {
 				*/
 				if( adj_player === opp_player ) {
 					adjacent_is_opposite = true;
-					console.info( "push: ", next_idx );
 					potentialMoves.push( next_idx );
 					/*
 					* now iterate this direction and return false if no same player
 					*/
 					next_idx = direction( next_idx);
-				} else if( adjacent_is_opposite && this.player === adj_player ) {
-					console.info( "potential: " + potentialMoves );
+				} else if( adjacent_is_opposite && props.player === adj_player ) {
 					return potentialMoves.slice();
 				} 
 			}
 		} while( next_idx > -1 && next_idx < 64 );
 
-	}
-/*************************************************************
-*
-* transform index into row
-*
-*************************************************************/
-
-	toRow( i ) {
-		return Math.floor(i / 8);
-	}
-
-/*************************************************************
-*
-* transform index into column
-*
-*************************************************************/
-	toCol( i ) {
-		return i % 8;
-	}
-
-/*************************************************************
-*
-* from { row, col } into index
-*
-*************************************************************/
-	toIdx( obj ) {
-		if( !_.isUndefined(obj) ) { 
-			return obj.row * 8 + obj.col;
-		}
-		return -1;
 	}
 
 /*************************************************************
@@ -243,113 +206,6 @@ class MoveLogic {
 		return player === 'W' ? 'B' : 'W';
 	}
 
-/*************************************************************
-*
-* create { row, col }
-*
-*************************************************************/
-	createRowCol( row, col ) {
-		if( row > -1 && row < 8 && col > -1 && col < 8 ) {
-			return { row: row, col: col };
-		}
-		return undefined;
-	}
-
-/*************************************************************
-*
-* move in the north direction
-*
-*************************************************************/
-	toNorth( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow( i ) - 1, 
-								this.toCol( i ) ) );
-	}
-
-/*************************************************************
-*
-* move in the northwest direction
-*
-*************************************************************/
-	toNorthWest( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i) - 1, 
-								this.toCol(i) - 1 ) );
-	}
-
-/*************************************************************
-*
-* move in the northeast direction
-*
-*************************************************************/
-	toNorthEast( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i) - 1, 
-								this.toCol(i) + 1 ) );
-	}
-
-/*************************************************************
-*
-* move in the west direction
-*
-*************************************************************/
-	toWest( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i), 
-								this.toCol(i) - 1 ) );
-	}
-
-/*************************************************************
-*
-* move in the east direction
-*
-*************************************************************/
-	toEast( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i), 
-								this.toCol(i) + 1 ) );
-	}
-
-/*************************************************************
-*
-* move in the southwest direction
-*
-*************************************************************/
-	toSouthWest( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i) + 1, 
-								this.toCol(i) - 1 ) );
-	}
-
-/*************************************************************
-*
-* move in the south direction
-*
-*************************************************************/
-	toSouth( i ) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i) + 1, 
-								this.toCol(i) ) );
-	}
-
-/*************************************************************
-*
-* move in the southeast direction
-*
-*************************************************************/
-	toSouthEast(i) {
-		return this.toIdx( 
-							this.createRowCol( 
-								this.toRow(i) + 1, 
-								this.toCol(i) + 1 ) );
-	}
 
 }
 

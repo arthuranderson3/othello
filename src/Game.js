@@ -43,18 +43,23 @@ class Game extends Component {
 	handle_Click( i ) {
 
 		const history = this.state.history;
-		const squares = history[ history.length - 1 ].squares.slice();
-		const curPlayer = this.get_CurrentPlayer();
+		const props = {
+			idx: i,
+			squares: history[ history.length - 1].squares.slice(),
+			player: this.get_CurrentPlayer()
+		}
 
-		const bl = new MoveLogic( { idx: i, squares: squares, player: curPlayer } );
-		if( bl.isValidMove() ) {
-			const updatedSquares = bl.updateSquares();
+		const moveLogic = new MoveLogic();
+		if( ! moveLogic.hasMove( props ) ) {
+			return;
+		}
+		if( moveLogic.isValidMove( props ) ) {
+			const updatedSquares = moveLogic.updateSquares( props );
+
 			console.info( updatedSquares );
-			this.setState( { 
-												history: history.concat( {squares: updatedSquares} )
-												, isWhiteNext: !this.state.isWhiteNext 
-											}
-									);
+			
+			this.setState( { history: history.concat( {squares: updatedSquares} )
+												, isWhiteNext: !this.state.isWhiteNext } );
 		}
 	}
 
@@ -63,7 +68,6 @@ class Game extends Component {
 Game.defaultProps = {
 	B: 'B'
 	, W: 'W'
-	, BOARD_MAX: 8
 };
 
 export default Game;

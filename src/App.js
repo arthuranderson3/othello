@@ -11,7 +11,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to Othello</h1>
         </header>
-        <Game/>
+        <div className="container" >
+          <Game/>
+        </div>
       </div>
     );
   }
