@@ -24,6 +24,9 @@ class BoardNavigation {
 *************************************************************/
 
 	toRow( i ) {
+		if( i < 0 || i > 63 ) {
+			return undefined;
+		}
 		return Math.floor(i / 8);
 	}
 
@@ -33,6 +36,9 @@ class BoardNavigation {
 *
 *************************************************************/
 	toCol( i ) {
+		if( i < 0 || i > 63 ) {
+			return undefined;
+		}
 		return i % 8;
 	}
 
@@ -42,10 +48,10 @@ class BoardNavigation {
 *
 *************************************************************/
 	toIdx( obj ) {
-		if( !_.isUndefined(obj) ) { 
+		if( !_.isUndefined(obj) && !_.isUndefined(obj.row) && !_.isUndefined(obj.col) ) { 
 			return obj.row * 8 + obj.col;
 		}
-		return -1;
+		return undefined;
 	}
 
 /*************************************************************

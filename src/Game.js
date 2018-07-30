@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Game.css';
+import GameBoardPieces from "./GameBoardPieces";
 import Board from './Board';
 import MoveLogic from './MoveLogic';
 
@@ -10,15 +11,7 @@ class Game extends Component {
 		super( props );
 
 		this.state = { history: [ {
-			squares: [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-								, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-								, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-								, undefined, undefined, undefined, this.props.W, this.props.B, undefined, undefined, undefined 
-								, undefined, undefined, undefined, this.props.B, this.props.W, undefined, undefined, undefined 
-								, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-								, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-								, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-								] } ]
+			squares: GameBoardPieces.initialBoard() } ]
 			, isWhiteNext: true
 			};
 	}
@@ -26,6 +19,7 @@ class Game extends Component {
 	render() {
 		const history = this.state.history;
 		const status = "Current Player: " + this.get_CurrentPlayer();
+		console.info( status );
 		return (
 			<div>
 			<div className='game-board'>
@@ -37,7 +31,7 @@ class Game extends Component {
 	}
 
 	get_CurrentPlayer() {
-		return ( this.state.isWhiteNext ? this.props.W : this.props.B );
+		return ( this.state.isWhiteNext ? 'W' : 'B' );
 	}
 
 	handle_Click( i ) {
@@ -48,6 +42,7 @@ class Game extends Component {
 			squares: history[ history.length - 1].squares.slice(),
 			player: this.get_CurrentPlayer()
 		}
+		console.info( props );
 
 		const moveLogic = new MoveLogic();
 		if( ! moveLogic.hasMove( props ) ) {
@@ -63,11 +58,6 @@ class Game extends Component {
 		}
 	}
 
-};
-
-Game.defaultProps = {
-	B: 'B'
-	, W: 'W'
 };
 
 export default Game;

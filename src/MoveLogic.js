@@ -24,10 +24,9 @@ class MoveLogic {
 	hasMove( props ) {
 		// gather all potential movement squares.
 		const board_map = _.map( props.squares, ( val, idx ) => { return { idx: idx, square: val }; } );
-		console.info( { board_map: board_map } );
-		// const board = _.reduce( props.squares, ( result, val, idx ) => { result[idx] = val; return result;}, {} );
-		// console.info( { board: board });
-		return _.some( board_map, ( obj ) => { 
+		const potential_moves = _.filter( board_map, ( board_piece ) => { return _.isUndefined(board_piece.square); } );
+		console.info( { potential_moves: potential_moves } );
+		return _.some( potential_moves, ( obj ) => { 
 			return this.isValidMove( { idx: obj.idx, squares: props.squares, player: props.player }); } );
 	}
 
@@ -43,7 +42,10 @@ class MoveLogic {
 		if( props.squares[props.idx] ) return false;
 		const bn = new BoardNavigation();
 		let validMove = false;
+		//
 		// we are adjacent to opposing player with player's square enclosing the line.
+		// Keep track of validMove to speed up whether or not this is a valid move.
+		//
 		if( this.validateDirection( bn.top, props ) ) {
 			validMove = true;
 		}
