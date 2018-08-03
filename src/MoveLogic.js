@@ -3,7 +3,7 @@ import _ from 'lodash';
 import BoardNavigation from './BoardNavigation';
 import GameBoardPieces from './GameBoardPieces';
 
-class MoveLogic {
+export default class MoveLogic {
 
 	constructor( ) {
 
@@ -19,14 +19,12 @@ class MoveLogic {
 		this.updateSquares = this.updateSquares.bind(this);
 		this.findMovesInDirection = this.findMovesInDirection.bind(this);
 		this.toOppositePlayer = this.toOppositePlayer.bind(this);
-
 	}
 
 	hasMove( pieces ) {
 		// gather all potential movement squares.
 		const board_map = _.map( pieces.squares, ( val, idx ) => { return { idx: idx, square: val }; } );
 		const potential_moves = _.filter( board_map, ( board_piece ) => { return _.isUndefined(board_piece.square); } );
-		console.info( { potential_moves: potential_moves } );
 		return _.some( potential_moves, ( obj ) => { 
 			return this.isValidMove( { idx: obj.idx, squares: pieces.squares, player: pieces.player }); } );
 	}
@@ -40,39 +38,44 @@ class MoveLogic {
 *************************************************************/
 	isValidMove( pieces ) {
 		// we have an open square?
-		if( pieces.squares[pieces.idx] ) return false;
-		const bn = new BoardNavigation();
-		let validMove = false;
-		//
-		// we are adjacent to opposing player with player's square enclosing the line.
-		// Keep track of validMove to speed up whether or not this is a valid move.
-		//
-		if( this.validateDirection( bn.top, pieces ) ) {
-			validMove = true;
-		}
-		if( !validMove && this.validateDirection( bn.topRight, pieces ) ) {
-			validMove = true;
-		}
-		if( !validMove && this.validateDirection( bn.topLeft, pieces ) ) {
-			validMove = true;
-		}
-		if( !validMove && this.validateDirection( bn.right, pieces ) ) {
-			validMove = true;
-		}
-		if( !validMove && this.validateDirection( bn.left, pieces ) ) {
-			validMove = true;
-		}
-		if( !validMove && this.validateDirection( bn.bottom, pieces ) ) {
-			validMove = true;
-		}
-		if( !validMove && this.validateDirection( bn.bottomRight, pieces ) ) {
-			validMove = true;
-		}
-		if( !validMove && this.validateDirection( bn.bottomLeft, pieces ) ) {
-			validMove = true;
+		if( _.isUndefined( pieces.squares[pieces.idx] ) ){
+
+			const bn = new BoardNavigation();
+			let validMove = false;
+			//
+			// we are adjacent to opposing player with player's square enclosing the line.
+			// Keep track of validMove to speed up whether or not this is a valid move.
+			//
+			if( this.validateDirection( bn.top, pieces ) ) {
+				validMove = true;
+			}
+			if( !validMove && this.validateDirection( bn.topRight, pieces ) ) {
+				validMove = true;
+			}
+			if( !validMove && this.validateDirection( bn.topLeft, pieces ) ) {
+				validMove = true;
+			}
+			if( !validMove && this.validateDirection( bn.right, pieces ) ) {
+				validMove = true;
+			}
+			if( !validMove && this.validateDirection( bn.left, pieces ) ) {
+				validMove = true;
+			}
+			if( !validMove && this.validateDirection( bn.bottom, pieces ) ) {
+				validMove = true;
+			}
+			if( !validMove && this.validateDirection( bn.bottomRight, pieces ) ) {
+				validMove = true;
+			}
+			if( !validMove && this.validateDirection( bn.bottomLeft, pieces ) ) {
+				validMove = true;
+			}
+
+			return validMove;
+		} else {
+			return false;
 		}
 
-		return validMove;
 	}
 
 /*************************************************************
@@ -200,17 +203,7 @@ class MoveLogic {
 
 	}
 
-/*************************************************************
-*
-* from player W into B and visa versa
-*
-*************************************************************/
 	toOppositePlayer( player ) {
 		return player === 'W' ? 'B' : 'W';
 	}
-
-
 }
-
-
-export default MoveLogic;

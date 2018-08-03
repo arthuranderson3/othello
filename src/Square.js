@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Square extends Component {
+export default class Square extends Component {
 
 	render() {
 		let classes = 'square';
@@ -22,5 +22,3 @@ class Square extends Component {
 						);
 	}
 }
-
-export default Square;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Square from './Square';
 
-class BoardRow extends Component {
+export default class BoardRow extends Component {
 	render() {
 
 		const rowid = this.props.rowid;
@@ -20,5 +20,3 @@ class BoardRow extends Component {
 							</div> );
 	}
 };
-
-export default BoardRow;

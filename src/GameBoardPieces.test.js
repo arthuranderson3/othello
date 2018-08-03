@@ -1,29 +1,25 @@
 import GameBoardPieces from './GameBoardPieces';
 import _ from 'lodash';
 
-describe('GameBoardPieces test suite', () => {
+describe('GameBoardPieces fs.WriteStream(path, options); suite', () => {
 	
-	test('#player ', () => {
+	it('#player ', () => {
 		const pieces = new GameBoardPieces();
 		expect( pieces.player ).toBe('W');
 	});
 	
-	test('#idx ', () => {
+	it('#idx ', () => {
 		const pieces = new GameBoardPieces();
 		expect( pieces.idx ).toBeUndefined();
 	});
 	
-	test('#squares ', () => {
+	it('#squares ', () => {
 		const pieces = new GameBoardPieces();
 		expect( pieces.squares.length ).toBe(64);
 	});
 
-	test('#toOppositePlayer ', () => {
-		const pieces = new GameBoardPieces();
-		expect( pieces.toOppositePlayer() ).toBe('B');
-	});
 
-	test('#clone ', () => {
+	it('#clone ', () => {
 		const pieces = new GameBoardPieces();
 		const cloned = pieces.clone();
 		expect( cloned.player ).toBe('W');
@@ -32,7 +28,7 @@ describe('GameBoardPieces test suite', () => {
 
 	});
 
-	test('#ctor props', () => {
+	it('#ctor props', () => {
 		const props = {
 			player: 'B',
 			idx: 27,
@@ -51,12 +47,4 @@ describe('GameBoardPieces test suite', () => {
 		expect( pieces.idx ).toBe( 27 );
 	});
 
-	test( '#makeAMove', () => {
-		const pieces = new GameBoardPieces();
-		const move = pieces.makeAMove(27);
-		expect( move.player ).toBe(pieces.toOppositePlayer() );
-		expect( move.idx ).toBe( 27 );
-		expect( move.squares.length ).toBe( 64 );
-		expect( _.isEqual( move.squares, pieces.squares ) ).toBe( true );
-	})
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-class BoardNavigation {
+export default class BoardNavigation {
 
 	constructor() {
 		this.toRow = this.toRow.bind(this);
@@ -163,5 +163,3 @@ class BoardNavigation {
 	}
 
 }
-
-export default BoardNavigation;

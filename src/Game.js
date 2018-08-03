@@ -5,7 +5,7 @@ import Board from './Board';
 import MoveLogic from './MoveLogic';
 import GameState from './GameState';
 
-class Game extends Component {
+export default class Game extends Component {
 
 	constructor( props ) {
 		super( props );
@@ -49,5 +49,3 @@ class Game extends Component {
 	}
 
 };
-
-export default Game;

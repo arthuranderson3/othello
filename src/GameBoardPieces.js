@@ -28,25 +28,11 @@ export default class GameBoardPieces {
 			this.idx = props.idx;
 		}
 
-		this.toOppositePlayer = this.toOppositePlayer.bind(this);
 		this.clone = this.clone.bind(this);
-		this.makeAMove = this.makeAMove.bind(this);
-	}
-
-/*************************************************************
-*
-* from player W into B and visa versa
-*
-*************************************************************/
-	toOppositePlayer() {
-		return this.player === 'W' ? 'B' : 'W';
 	}
 
 	clone() {
 		return new GameBoardPieces( this );
 	}
 
-	makeAMove( idx ) {
-		return new GameBoardPieces( { idx: idx, player: this.toOppositePlayer(), squares: this.squares } );
-	}
 }
