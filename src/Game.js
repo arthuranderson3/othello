@@ -3,56 +3,46 @@ import './Game.css';
 import GameBoardPieces from "./GameBoardPieces";
 import Board from './Board';
 import MoveLogic from './MoveLogic';
-
+import GameState from './GameState';
 
 class Game extends Component {
 
 	constructor( props ) {
 		super( props );
 
-		this.state = { history: [ {
-			squares: GameBoardPieces.initialBoard() } ]
-			, isWhiteNext: true
-			};
+		this.state = new GameState( props );
+		this.checkMove = this.checkMove.bind(this);
 	}
 
 	render() {
-		const history = this.state.history;
-		const status = "Current Player: " + this.get_CurrentPlayer();
-		console.info( status );
+		const gameBoardPieces = this.state.getLastBoard();
+		const status = "Current Player: " + gameBoardPieces.player;
 		return (
 			<div>
 			<div className='game-board'>
-				<Board squares={history[history.length - 1].squares} onClick={ (i) => this.handle_Click(i) }/>
+				<Board squares={gameBoardPieces.squares} onClick={ (i) => this.handle_Click(i) }/>
 			</div>
 			<div className='game-info'>{status}</div>
 			</div>
 		);
 	}
 
-	get_CurrentPlayer() {
-		return ( this.state.isWhiteNext ? 'W' : 'B' );
-	}
 
 	handle_Click( i ) {
+		this.checkMove(i);
+	}
 
-		const history = this.state.history;
-		const props = {
-			idx: i,
-			squares: history[ history.length - 1].squares.slice(),
-			player: this.get_CurrentPlayer()
-		}
-		console.info( props );
+	checkMove( idx ) {
+		const gameBoardPieces = this.state.getLastBoard();
+		gameBoardPieces.idx = idx;
 
 		const moveLogic = new MoveLogic();
-		if( ! moveLogic.hasMove( props ) ) {
+		if( ! moveLogic.hasMove( gameBoardPieces ) ) {
 			return;
 		}
-		if( moveLogic.isValidMove( props ) ) {
-			const updatedSquares = moveLogic.updateSquares( props );
+		if( moveLogic.isValidMove( gameBoardPieces ) ) {
+			const updatedSquares = moveLogic.updateSquares( gameBoardPieces );
 
-			console.info( updatedSquares );
-			
 			this.setState( { history: history.concat( {squares: updatedSquares} )
 												, isWhiteNext: !this.state.isWhiteNext } );
 		}

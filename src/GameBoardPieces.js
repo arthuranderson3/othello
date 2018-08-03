@@ -1,23 +1,36 @@
 import React from 'react';
+import _ from 'lodash';
 
 export default class GameBoardPieces {
 	constructor( props ) {
-		this.squares = props.squares.slice();
-		this.player = props.player;
-		this.currentMoveChoice = props.currentMoveChoice;
-		this.toOppositePlayer = this.toOppositePlayer.bind(this);
-	}
+		if( _.isUndefined( props ) || _.isUndefined( props.squares ) ) {
+			this.squares = [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+				, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+				, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+				, undefined, undefined, undefined,       'W',       'B', undefined, undefined, undefined 
+				, undefined, undefined, undefined,       'B',       'W', undefined, undefined, undefined 
+				, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+				, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+				, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined ];
+		} else {
+			this.squares = props.squares.slice();
+		}
 
-	static initialBoard() {
-		return [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-					, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-					, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-					, undefined, undefined, undefined,       'W',       'B', undefined, undefined, undefined 
-					, undefined, undefined, undefined,       'B',       'W', undefined, undefined, undefined 
-					, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-					, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-					, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-					];
+		if( _.isUndefined( props ) || _.isUndefined( props.player ) ) {
+			this.player = 'W';
+		} else {
+			this.player = props.player;
+		}
+
+		if( _.isUndefined( props ) || _.isUndefined( props.idx ) ) {
+			this.idx = undefined;
+		} else {
+			this.idx = props.idx;
+		}
+
+		this.toOppositePlayer = this.toOppositePlayer.bind(this);
+		this.clone = this.clone.bind(this);
+		this.makeAMove = this.makeAMove.bind(this);
 	}
 
 /*************************************************************
@@ -25,12 +38,15 @@ export default class GameBoardPieces {
 * from player W into B and visa versa
 *
 *************************************************************/
-	toOppositePlayer( player ) {
-		return player === 'W' ? 'B' : 'W';
+	toOppositePlayer() {
+		return this.player === 'W' ? 'B' : 'W';
 	}
 
-	getPlayer() {
-		return this.player;
+	clone() {
+		return new GameBoardPieces( this );
 	}
 
+	makeAMove( idx ) {
+		return new GameBoardPieces( { idx: idx, player: this.toOppositePlayer(), squares: this.squares } );
+	}
 }
