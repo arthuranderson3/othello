@@ -1,8 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 import BoardNavigation from './BoardNavigation';
-import GameBoardPieces from './GameBoardPieces';
-import GameState from './GameState';
 
 export default class MoveLogic {
 
@@ -125,7 +123,6 @@ export default class MoveLogic {
 		let next_idx = direction( pieces.idx );
 		const opp_player = this.toOppositePlayer( pieces.player );
 		let adjacent_is_opposite = false;
-		let path_enclosed_with_same_player = false;
 		do{ 
 			if( next_idx > -1 ) {
 				
@@ -197,7 +194,6 @@ export default class MoveLogic {
 		let next_idx = direction( pieces.idx );
 		const opp_player = this.toOppositePlayer( pieces.player );
 		let adjacent_is_opposite = false;
-		let path_enclosed_with_same_player = false;
 		do{ 
 			if( next_idx > -1 ) {
 				

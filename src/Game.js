@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Game.css';
-import GameBoardPieces from "./GameBoardPieces";
 import Board from './Board';
 import MoveLogic from './MoveLogic';
 import GameState from './GameState';
