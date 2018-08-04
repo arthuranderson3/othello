@@ -18,3 +18,20 @@ Game Registry
 Player History
 Game History
 Chat / Whiteboard
+
+Object Decomposition
+
+Game
+	* Game State
+	* Move Logic
+	* Game Stats
+	* Game Board
+
+Game State
+ 	* Game Board Pieces
+
+Move Logic
+	* Board Navigation
+	* Game Board Pieces
+
+Game Board

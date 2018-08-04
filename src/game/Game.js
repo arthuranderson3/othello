@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Game.css';
-import Board from './Board';
+import GameBoard from './GameBoard';
 import MoveLogic from './MoveLogic';
 import GameState from './GameState';
 
@@ -18,7 +18,7 @@ export default class Game extends Component {
 		return (
 			<div>
 			<div className='game-board'>
-				<Board squares={gameBoardPieces.squares} onClick={ (i) => this.handle_Click(i) }/>
+				<GameBoard squares={gameBoardPieces.squares} onClick={ (i) => this.handle_Click(i) }/>
 			</div>
 			<div className='game-info'>{status}</div>
 			</div>

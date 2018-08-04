@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import BoardRow from './BoardRow';
-import './Board.css';
+import './GameBoard.css';
 
-export default class Board extends Component {
+export default class GameBoard extends Component {
 	render() { 
 		const rowSquares = _.chunk( this.props.squares, 8 );
 		const board = rowSquares.map( ( squares, idx ) => {
