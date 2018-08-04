@@ -1,9 +1,10 @@
 import MoveLogic from './MoveLogic';
 import BoardNavigation from './BoardNavigation';
 import GameBoardPieces from './GameBoardPieces';
+import GameState from './GameState';
 
 describe('MoveLogic Test Suite', () => {
-	it("isValidMove#true", () => {
+	it('isValidMove#true', () => {
 
 		const pieces = new GameBoardPieces();
 		pieces.idx = 29;
@@ -12,7 +13,7 @@ describe('MoveLogic Test Suite', () => {
 
 	});
 
-	it("isValidMove#false", () => {
+	it('isValidMove#false', () => {
 
 		const pieces = new GameBoardPieces();
 		pieces.idx = 15;
@@ -21,7 +22,7 @@ describe('MoveLogic Test Suite', () => {
 
 	});
 
-	it("validateDirection#true", () => {
+	it('validateDirection#true', () => {
 
 		const pieces = new GameBoardPieces();
 		pieces.idx = 29;
@@ -30,7 +31,7 @@ describe('MoveLogic Test Suite', () => {
 		expect( ml.validateDirection( bn.left, pieces ) ).toBe(true);
 	});
 
-	it("validateDirection#false", () => {
+	it('validateDirection#false', () => {
 
 		const pieces = new GameBoardPieces();
 		pieces.idx = 29;
@@ -39,13 +40,13 @@ describe('MoveLogic Test Suite', () => {
 		expect( ml.validateDirection( bn.right, pieces ) ).toBe(false);
 	});
 
-	it("hasMove", () => {
+	it('hasMove', () => {
 		const pieces = new GameBoardPieces();
 		const ml = new MoveLogic();
 		expect( ml.hasMove( pieces ) ).toBe( true );
 	});
 
-	it("findMovesInDirection", () => {
+	it('findMovesInDirection', () => {
 		const pieces = new GameBoardPieces();
 		pieces.idx = 29;
 		const nav = new BoardNavigation();
@@ -53,23 +54,33 @@ describe('MoveLogic Test Suite', () => {
 		expect( ml.findMovesInDirection( nav.left, pieces) ).toEqual( expect.arrayContaining([28]) );
 	});
 
-	it("updateSquares", () => {
+	it('updateSquares', () => {
 		const pieces = new GameBoardPieces();
 		pieces.idx = 29;
 		const nav = new BoardNavigation();
 		const ml = new MoveLogic();
-		const squares = ml.updateSquares(pieces);
-		expect( squares[27] ).toBe('W');
-		expect( squares[28] ).toBe('W');
-		expect( squares[29] ).toBe('W');
-		expect( squares[35] ).toBe('B');
-		expect( squares[36] ).toBe('W');
+		ml.updateSquares(pieces);
+		expect( pieces.squares[27] ).toBe('W');
+		expect( pieces.squares[28] ).toBe('W');
+		expect( pieces.squares[29] ).toBe('W');
+		expect( pieces.squares[35] ).toBe('B');
+		expect( pieces.squares[36] ).toBe('W');
 
 	});
 
-	it("toOppositePlayer", () => {
+	it('toOppositePlayer', () => {
 		const ml = new MoveLogic();
 		expect( ml.toOppositePlayer( 'W' ) ).toBe( 'B' );
 	});
 
+	it( 'checkMove#success', ( done ) => {
+		const state = new GameState();
+		const ml = new MoveLogic();
+		ml.checkMove( 29, state )
+			.then( (state) => { 
+				expect( state.history.length).toBe(2);
+				done();
+			})
+			.catch( (err) => done( err ) );
+	})
 });

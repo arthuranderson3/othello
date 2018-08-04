@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import BoardNavigation from './BoardNavigation';
 import GameBoardPieces from './GameBoardPieces';
+import GameState from './GameState';
 
 export default class MoveLogic {
 
@@ -13,12 +14,42 @@ export default class MoveLogic {
 * in this class in order to use them from button clicks.
 *
 *************************************************************/
+		this.checkMove = this.checkMove.bind(this);
 		this.hasMove = this.hasMove.bind(this);
 		this.isValidMove = this.isValidMove.bind(this);
 		this.validateDirection = this.validateDirection.bind(this);
 		this.updateSquares = this.updateSquares.bind(this);
 		this.findMovesInDirection = this.findMovesInDirection.bind(this);
 		this.toOppositePlayer = this.toOppositePlayer.bind(this);
+
+	}
+
+	checkMove( idx, state ) {
+		return new Promise( ( resolve, reject ) => {
+			const currentState = state;
+			const gameBoardPieces = currentState.getLastBoard();
+			gameBoardPieces.idx = idx;
+
+			const moveLogic = new MoveLogic();
+			if( !moveLogic.hasMove( gameBoardPieces ) ) {
+				return reject( new Error('not valid move') );
+
+			} else if ( moveLogic.isValidMove( gameBoardPieces ) ) {
+
+				moveLogic.updateSquares( gameBoardPieces );
+				// see if the next player has a move.
+				const next_player = moveLogic.toOppositePlayer( gameBoardPieces.player );
+				gameBoardPieces.player = next_player;
+				if( moveLogic.hasMove( gameBoardPieces ) ){
+					currentState.recordLastBoard( gameBoardPieces );
+				} else {
+					gameBoardPieces.player = moveLogic.toOppositePlayer( gameBoardPieces.player);
+					currentState.recordLastBoard( gameBoardPieces );
+				}
+
+				return resolve( currentState );
+			} 
+		});
 	}
 
 	hasMove( pieces ) {
@@ -140,6 +171,9 @@ export default class MoveLogic {
 	updateSquares( pieces ) {
 		let movement = [ pieces.idx ];
 		const bn = new BoardNavigation();
+		//
+		// accumulate all the board squares that will turn
+		//
 		movement = _.concat( movement, this.findMovesInDirection( bn.top, pieces ) );
 		movement = _.concat( movement, this.findMovesInDirection( bn.topRight, pieces ) );
 		movement = _.concat( movement, this.findMovesInDirection( bn.topLeft, pieces ) );
@@ -152,8 +186,6 @@ export default class MoveLogic {
 		_.each( movement, ( i ) => {
 			pieces.squares[i] = pieces.player;
 		});
-
-		return pieces.squares.slice();
 	}
 
 	findMovesInDirection( direction, pieces ) {

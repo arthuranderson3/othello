@@ -14,6 +14,7 @@ export default class GameState {
 		}
 
 		this.getLastBoard = this.getLastBoard.bind(this);
+		this.recordLastBoard = this.recordLastBoard.bind(this);
 	}
 
 	getLastBoard() {
@@ -25,4 +26,7 @@ export default class GameState {
 		}
 	}
 
+	recordLastBoard( gb ) {
+		this.history.push( gb );
+	}
 }

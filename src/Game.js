@@ -11,7 +11,6 @@ export default class Game extends Component {
 		super( props );
 
 		this.state = new GameState( props );
-		this.checkMove = this.checkMove.bind(this);
 	}
 
 	render() {
@@ -29,23 +28,11 @@ export default class Game extends Component {
 
 
 	handle_Click( i ) {
-		this.checkMove(i);
-	}
-
-	checkMove( idx ) {
-		const gameBoardPieces = this.state.getLastBoard();
-		gameBoardPieces.idx = idx;
-
 		const moveLogic = new MoveLogic();
-		if( ! moveLogic.hasMove( gameBoardPieces ) ) {
-			return;
-		}
-		if( moveLogic.isValidMove( gameBoardPieces ) ) {
-			const updatedSquares = moveLogic.updateSquares( gameBoardPieces );
-
-			this.setState( { history: history.concat( {squares: updatedSquares} )
-												, isWhiteNext: !this.state.isWhiteNext } );
-		}
+		const self = this;
+		moveLogic.checkMove(i, this.state )
+		.then( (state) => { self.setState( state ) } )
+		.catch( (err) => { console.error( err ); } );
 	}
 
 };
