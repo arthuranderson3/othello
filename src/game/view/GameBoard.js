@@ -14,6 +14,13 @@ export default class GameBoard extends Component {
 																	onClick={(i) => this.props.onClick(i) } /> 
 													);
 									});	
-		return (<div className='game-board shadow'>{ board }</div>);
+		return (<div className='card game-board shadow'>
+							<div className='card-text'>
+			{ board }</div>
+								<div className='card-footer game-footer'>
+									<button type="button" className="btn btn-primary btn-sm">Reset</button>&nbsp;
+									<button type="button" className="btn btn-secondary btn-sm">Undo</button>
+								</div>
+							</div>);
 	}
 }
