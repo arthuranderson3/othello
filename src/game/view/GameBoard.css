@@ -25,6 +25,11 @@
   min-width: 40px;
 }
 
+.circleFont {
+  font-size:  20px;
+  font-weight:  bold;
+}
+
 .square:focus {
   outline: none;
 }

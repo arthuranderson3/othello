@@ -9,25 +9,19 @@ export default class GameStats extends Component {
 		const player = ( this.props.player === 'W' ) ? whiteCircle : blackCircle;
 		const wCount = _.filter( this.props.squares, (square) => square === 'W' ).length;
 		const bCount = _.filter( this.props.squares, (square) => square === 'B' ).length;
-		return ( <div className="shadow">
-				<table className="table" >
-					<thead>
-						<tr>
-							<th>Player</th>
-							<th>Score</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>{whiteCircle}</td>
-							<td>{wCount}</td>
-						</tr>
-						<tr>
-							<td>{blackCircle}</td>
-							<td>{bCount}</td>
-						</tr>
-					</tbody>
-				</table>
+		return ( <div className="card shadow">
+				<div className="card">
+					<div className="card-body">
+						<h5 className="card-title">Score</h5>
+						<p className="card-text"><span className="circleFont">{whiteCircle}</span>: &nbsp; {wCount} &nbsp; 
+																		<span className="circleFont">{blackCircle}</span>: &nbsp; {bCount} </p>
+						<p className="card-text">Current player: &nbsp; <span className="circleFont">{player}</span></p>
+					</div>
+					<div className="card-footer">
+					<button type="button" className="btn btn-primary">Reset</button>&nbsp;
+					<button type="button" className="btn btn-secondary">Undo</button>
+					</div>
+				</div>
 				</div> );
 	}
 }
