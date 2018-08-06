@@ -15,7 +15,7 @@ export default class BoardRow extends Component {
 										onClick={(i) => this.props.onClick(i)} 
 										/> );
 							});
-		return ( <div className='board-row' rowid={rowid} >
+		return ( <div className='d-flex flex-row mb-8 ' rowid={rowid} >
 							 	{squares}
 							</div> );
 	}

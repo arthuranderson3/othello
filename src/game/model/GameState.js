@@ -12,9 +12,13 @@ export default class GameState {
 		} else {
 			this.history = props.history.slice();
 		}
+		_.bindAll(this, ['getLastBoard'
+										, 'recordLastBoard'
+										, 'getTurn'] );
+	}
 
-		this.getLastBoard = this.getLastBoard.bind(this);
-		this.recordLastBoard = this.recordLastBoard.bind(this);
+	getTurn() {
+		return this.history.length;
 	}
 
 	getLastBoard() {

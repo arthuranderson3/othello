@@ -28,7 +28,7 @@ export default class GameBoardPieces {
 			this.idx = props.idx;
 		}
 
-		this.clone = this.clone.bind(this);
+		_.bindAll( this, ['clone']);
 	}
 
 	clone() {

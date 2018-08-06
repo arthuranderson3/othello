@@ -6,20 +6,13 @@ export default class MoveLogic {
 
 	constructor( ) {
 
-/*************************************************************
-*
-* interesting thing - we need to bind / create the functions
-* in this class in order to use them from button clicks.
-*
-*************************************************************/
-		this.checkMove = this.checkMove.bind(this);
-		this.hasMove = this.hasMove.bind(this);
-		this.isValidMove = this.isValidMove.bind(this);
-		this.validateDirection = this.validateDirection.bind(this);
-		this.updateSquares = this.updateSquares.bind(this);
-		this.findMovesInDirection = this.findMovesInDirection.bind(this);
-		this.toOppositePlayer = this.toOppositePlayer.bind(this);
-
+		_.bindAll(this, ['checkMove'
+									, 'hasMove'
+									, 'isValidMove'
+									, 'validateDirection'
+									, 'updateSquares'
+									, 'findMovesInDirection'
+									, 'toOppositePlayer']);
 	}
 
 	checkMove( idx, state ) {

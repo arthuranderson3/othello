@@ -4,18 +4,18 @@ import _ from 'lodash';
 export default class BoardNavigation {
 
 	constructor() {
-		this.toRow = this.toRow.bind(this);
-		this.toCol = this.toCol.bind(this);
-		this.toIdx = this.toIdx.bind(this);
-		this.createRowCol = this.createRowCol.bind(this);
-		this.top = this.top.bind(this);
-		this.topRight = this.topRight.bind(this);
-		this.topLeft = this.topLeft.bind(this);
-		this.right = this.right.bind(this);
-		this.left = this.left.bind(this);
-		this.bottom = this.bottom.bind(this);
-		this.bottomRight = this.bottomRight.bind(this);
-		this.bottomLeft = this.bottomLeft.bind(this);
+		_.bindAll(this, ['toRow'
+									, 'toCol'
+									, 'toIdx'
+									, 'createRowCol'
+									, 'top'
+									, 'topRight'
+									, 'topLeft'
+									, 'right'
+									, 'left'
+									, 'bottom'
+									, 'bottomRight'
+									,'bottomLeft']);
 	}
 /*************************************************************
 *

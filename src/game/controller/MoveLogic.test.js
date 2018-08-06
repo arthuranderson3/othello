@@ -1,7 +1,7 @@
 import MoveLogic from './MoveLogic';
 import BoardNavigation from './BoardNavigation';
-import GameBoardPieces from './GameBoardPieces';
-import GameState from './GameState';
+import GameBoardPieces from '../model/GameBoardPieces';
+import GameState from '../model/GameState';
 
 describe('MoveLogic Test Suite', () => {
 	it('isValidMove#true', () => {

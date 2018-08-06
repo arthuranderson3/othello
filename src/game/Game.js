@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Game.css';
-import GameBoard from './GameBoard';
-import MoveLogic from './MoveLogic';
-import GameState from './GameState';
+import GameBoard from './view/GameBoard';
+import GameStats from './view/GameStats';
+import MoveLogic from './controller/MoveLogic';
+import GameState from './model/GameState';
 
 export default class Game extends Component {
 
@@ -14,19 +14,26 @@ export default class Game extends Component {
 
 	render() {
 		const gameBoardPieces = this.state.getLastBoard();
-		const status = "Current Player: " + gameBoardPieces.player;
 		return (
-			<div>
-			<div className='game-board'>
-				<GameBoard squares={gameBoardPieces.squares} onClick={ (i) => this.handle_Click(i) }/>
-			</div>
-			<div className='game-info'>{status}</div>
+			<div class='row'>
+				<div className='col-4'>
+					<GameBoard 
+						className='d-flex flex-content-center shadow' 
+						squares={gameBoardPieces.squares} 
+						onClick={ (i) => this.click_Square(i) }/>
+				</div>
+				<div className='col-4'>
+					<GameStats 
+						squares={gameBoardPieces.squares} 
+						player={gameBoardPieces.player} 
+						turn={this.state.getTurn()} />
+				</div>
 			</div>
 		);
 	}
 
 
-	handle_Click( i ) {
+	click_Square( i ) {
 		const moveLogic = new MoveLogic();
 		const self = this;
 		moveLogic.checkMove(i, this.state )
