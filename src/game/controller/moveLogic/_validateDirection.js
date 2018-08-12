@@ -19,31 +19,31 @@ export function validateDirection( direction, pieces ) {
     let adjacent_is_opposite = false;
     do{ 
         if( next_idx > -1 ) {
-    		
+            
             let adj_player = pieces.squares[next_idx];
 
             /* 
-    		* are we next to or ending with an undefined square? 
-    		*/
+            * are we next to or ending with an undefined square? 
+            */
             if( _.isUndefined(adj_player) ) {
                 return false;
             }
-    		
+            
             /* 
-    		* are we adjacent to the same piece we are? 
-    		*/
+            * are we adjacent to the same piece we are? 
+            */
             if( !adjacent_is_opposite && adj_player === pieces.player ) {
                 return false;
             }
 
             /*
-    		*  are we adjacent to the opposing player
-    		*/
+            *  are we adjacent to the opposing player
+            */
             if( adj_player === opp_player ) {
                 adjacent_is_opposite = true;
                 /*
-    			* now iterate this direction and return false if no same player
-    			*/
+                * now iterate this direction and return false if no same player
+                */
                 next_idx = direction( next_idx);
             } else if( adjacent_is_opposite && pieces.player === adj_player ) {
                 return true;

@@ -16,7 +16,7 @@ export default class BoardRow extends Component {
                 /> );
         });
         return ( <div className='d-flex flex-row mb-8 ' rowid={rowid} >
-							 	{squares}
+            {squares}
         </div> );
     }
 }

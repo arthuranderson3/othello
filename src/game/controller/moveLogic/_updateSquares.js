@@ -2,7 +2,6 @@ import _ from 'lodash';
 import { top, topLeft, topRight} from '../boardNavigation';
 import { right, left } from '../boardNavigation';
 import { bottom, bottomRight, bottomLeft } from '../boardNavigation';
-import { toOppositePlayer } from './_toOppositePlayer';
 import { findMovesInDirection } from './_findMovesInDirection';
 
 /*************************************************************

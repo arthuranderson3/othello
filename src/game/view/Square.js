@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toIdx, createRowCol } from '../controller/boardTransform';
 
 export default class Square extends Component {
 
@@ -6,6 +7,7 @@ export default class Square extends Component {
         let classes = 'square';
         let sym = '';
 
+        const idx = toIdx( createRowCol( this.props.rowid, this.props.colid ) );
         if( this.props.value ) {
             if( this.props.value === 'W') {
                 //classes += ' square-white';
@@ -21,7 +23,7 @@ export default class Square extends Component {
                 className={classes} 
                 rowid={this.props.rowid} 
                 colid={this.props.colid} 
-                onClick={(i) => this.props.onClick(this.props.rowid * 8 + this.props.colid) }>{sym}</div> 
+                onClick={() => this.props.onClick(idx) }>{sym}</div> 
         );
     }
 }

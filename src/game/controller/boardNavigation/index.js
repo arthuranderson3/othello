@@ -1,4 +1,4 @@
-import { boardNavigation } from "./_boardNavigation";
+import { boardNavigation } from './_boardNavigation';
 
 const _top 					= boardNavigation( -1,  0 );
 const _topLeft 			= boardNavigation( -1, -1 );

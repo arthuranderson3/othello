@@ -3,7 +3,6 @@ import { isValidMove } from './_isValidMove';
 import { updateSquares } from './_updateSquares';
 import { toOppositePlayer } from './_toOppositePlayer';
 
-
 export function checkMove( idx, state ) {
     return new Promise( ( resolve, reject ) => {
         const currentState = state;

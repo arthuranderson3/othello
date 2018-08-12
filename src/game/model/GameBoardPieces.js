@@ -3,13 +3,13 @@ import _ from 'lodash';
 
 const defaultGameBoard = {
     squares: [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-                , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-                , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-                , undefined, undefined, undefined,       'W',       'B', undefined, undefined, undefined 
-                , undefined, undefined, undefined,       'B',       'W', undefined, undefined, undefined 
-                , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-                , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
-                , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined ]
+        , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+        , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+        , undefined, undefined, undefined,       'W',       'B', undefined, undefined, undefined 
+        , undefined, undefined, undefined,       'B',       'W', undefined, undefined, undefined 
+        , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+        , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+        , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined ]
     , player: 'W'
 };
 

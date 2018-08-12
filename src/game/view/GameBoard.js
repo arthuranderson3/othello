@@ -14,7 +14,7 @@ export default class GameBoard extends Component {
                     squares={squares}
                     onClick={(i) => this.props.onClick(i)} /> 
             );
-        });	
+        }); 
         return (<div className='card shadow'>
             <div className="game-header" >
                 <h5 className="card-title">Othello</h5>
