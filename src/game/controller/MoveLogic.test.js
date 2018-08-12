@@ -1,5 +1,5 @@
 import MoveLogic from './MoveLogic';
-import BoardNavigation from './BoardNavigation';
+import { top, topLeft, topRight, left, right, bottom, bottomLeft, bottomRight } from './boardNavigation';
 import GameBoardPieces from '../model/GameBoardPieces';
 import GameState from '../model/GameState';
 
@@ -27,8 +27,8 @@ describe('MoveLogic Test Suite', () => {
         const pieces = new GameBoardPieces();
         pieces.idx = 29;
         const ml = new MoveLogic();
-        const bn = new BoardNavigation();
-        expect( ml.validateDirection( bn.left, pieces ) ).toBe(true);
+        
+        expect( ml.validateDirection( left, pieces ) ).toBe(true);
     });
 
     it('validateDirection#false', () => {
@@ -36,8 +36,8 @@ describe('MoveLogic Test Suite', () => {
         const pieces = new GameBoardPieces();
         pieces.idx = 29;
         const ml = new MoveLogic();
-        const bn = new BoardNavigation();
-        expect( ml.validateDirection( bn.right, pieces ) ).toBe(false);
+        
+        expect( ml.validateDirection( right, pieces ) ).toBe(false);
     });
 
     it('hasMove', () => {
@@ -49,15 +49,15 @@ describe('MoveLogic Test Suite', () => {
     it('findMovesInDirection', () => {
         const pieces = new GameBoardPieces();
         pieces.idx = 29;
-        const nav = new BoardNavigation();
+        
         const ml = new MoveLogic();
-        expect( ml.findMovesInDirection( nav.left, pieces) ).toEqual( expect.arrayContaining([28]) );
+        expect( ml.findMovesInDirection( left, pieces) ).toEqual( expect.arrayContaining([28]) );
     });
 
     it('updateSquares', () => {
         const pieces = new GameBoardPieces();
         pieces.idx = 29;
-        const nav = new BoardNavigation();
+        
         const ml = new MoveLogic();
         ml.updateSquares(pieces);
         expect( pieces.squares[27] ).toBe('W');

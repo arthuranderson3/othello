@@ -28,6 +28,33 @@ describe('GameBoardPieces fs.WriteStream(path, options); suite', () => {
 
     });
 
+    it('#clone2 ', () => {
+        const gameBoard = {
+                squares: [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+                            , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+                            , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+                            , undefined, undefined, undefined,       'W',       'W',       'W', undefined, undefined 
+                            , undefined, undefined, undefined,       'B',       'W', undefined, undefined, undefined 
+                            , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+                            , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined 
+                            , undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined ]
+                , player: 'W'
+                , idx: 21
+            };
+
+       const pieces = new GameBoardPieces(gameBoard);
+       const cloned = pieces.clone();
+       pieces.squares[20] = 'W';
+       pieces.idx = 1;
+
+       expect( cloned.squares[20] ).toBeUndefined();
+       expect( cloned.squares[29] ).toBe('W');
+       expect( cloned.idx ).toBe(21);
+       expect( pieces.squares[20] ).toBe('W');
+       expect( pieces.idx ).toBe(1);
+
+    });
+
     it('#ctor props', () => {
         const props = {
             player: 'B',

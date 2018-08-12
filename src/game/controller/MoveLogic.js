@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
-import BoardNavigation from './BoardNavigation';
+import { top, topLeft, topRight} from './boardNavigation';
+import { right, left } from './boardNavigation';
+import { bottom, bottomRight, bottomLeft } from './boardNavigation';
 
 export default class MoveLogic {
 
@@ -62,34 +64,34 @@ export default class MoveLogic {
         // we have an open square?
         if( _.isUndefined( pieces.squares[pieces.idx] ) ){
 
-            const bn = new BoardNavigation();
+
             let validMove = false;
             //
             // we are adjacent to opposing player with player's square enclosing the line.
             // Keep track of validMove to speed up whether or not this is a valid move.
             //
-            if( this.validateDirection( bn.top, pieces ) ) {
+            if( this.validateDirection( top, pieces ) ) {
                 validMove = true;
             }
-            if( !validMove && this.validateDirection( bn.topRight, pieces ) ) {
+            if( !validMove && this.validateDirection( topRight, pieces ) ) {
                 validMove = true;
             }
-            if( !validMove && this.validateDirection( bn.topLeft, pieces ) ) {
+            if( !validMove && this.validateDirection( topLeft, pieces ) ) {
                 validMove = true;
             }
-            if( !validMove && this.validateDirection( bn.right, pieces ) ) {
+            if( !validMove && this.validateDirection( right, pieces ) ) {
                 validMove = true;
             }
-            if( !validMove && this.validateDirection( bn.left, pieces ) ) {
+            if( !validMove && this.validateDirection( left, pieces ) ) {
                 validMove = true;
             }
-            if( !validMove && this.validateDirection( bn.bottom, pieces ) ) {
+            if( !validMove && this.validateDirection( bottom, pieces ) ) {
                 validMove = true;
             }
-            if( !validMove && this.validateDirection( bn.bottomRight, pieces ) ) {
+            if( !validMove && this.validateDirection( bottomRight, pieces ) ) {
                 validMove = true;
             }
-            if( !validMove && this.validateDirection( bn.bottomLeft, pieces ) ) {
+            if( !validMove && this.validateDirection( bottomLeft, pieces ) ) {
                 validMove = true;
             }
 
@@ -160,18 +162,17 @@ export default class MoveLogic {
 *************************************************************/
     updateSquares( pieces ) {
         let movement = [ pieces.idx ];
-        const bn = new BoardNavigation();
         //
         // accumulate all the board squares that will turn
         //
-        movement = _.concat( movement, this.findMovesInDirection( bn.top, pieces ) );
-        movement = _.concat( movement, this.findMovesInDirection( bn.topRight, pieces ) );
-        movement = _.concat( movement, this.findMovesInDirection( bn.topLeft, pieces ) );
-        movement = _.concat( movement, this.findMovesInDirection( bn.right, pieces ) );
-        movement = _.concat( movement, this.findMovesInDirection( bn.bottom, pieces ) );
-        movement = _.concat( movement, this.findMovesInDirection( bn.bottomRight, pieces ) );
-        movement = _.concat( movement, this.findMovesInDirection( bn.bottomLeft, pieces ) );
-        movement = _.concat( movement, this.findMovesInDirection( bn.left, pieces ) );
+        movement = _.concat( movement, this.findMovesInDirection( top, pieces ) );
+        movement = _.concat( movement, this.findMovesInDirection( topRight, pieces ) );
+        movement = _.concat( movement, this.findMovesInDirection( topLeft, pieces ) );
+        movement = _.concat( movement, this.findMovesInDirection( right, pieces ) );
+        movement = _.concat( movement, this.findMovesInDirection( bottom, pieces ) );
+        movement = _.concat( movement, this.findMovesInDirection( bottomRight, pieces ) );
+        movement = _.concat( movement, this.findMovesInDirection( bottomLeft, pieces ) );
+        movement = _.concat( movement, this.findMovesInDirection( left, pieces ) );
 
         _.each( movement, ( i ) => {
             pieces.squares[i] = pieces.player;
