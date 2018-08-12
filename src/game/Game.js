@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import GameBoard from './view/GameBoard';
 import GameStats from './view/GameStats';
-import MoveLogic from './controller/MoveLogic';
-import GameState from './model/GameState';
+import { checkMove } from './controller/moveLogic';
+import { GameState } from './model';
 
 export default class Game extends Component {
 
@@ -30,11 +30,10 @@ export default class Game extends Component {
 
 
     click_Square( i ) {
-        const moveLogic = new MoveLogic();
         const self = this;
-        moveLogic.checkMove(i, self.state )
-            .then( (state) => { self.setState( state ); } )
-            .catch( (err) => { console.error( err ); } );
-    }
+        checkMove(i, self.state )
+        .then( (state) => { self.setState( state ); } )
+        .catch( (err) => { console.error( err ); } );
+}
 
 }

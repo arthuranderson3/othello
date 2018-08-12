@@ -12,7 +12,7 @@ export default class GameBoard extends Component {
                 <BoardRow key={idx}
                     rowid={idx} 
                     squares={squares}
-                    onClick={(i) => this.props.onClick(i) } /> 
+                    onClick={(i) => this.props.onClick(i)} /> 
             );
         });	
         return (<div className='card shadow'>

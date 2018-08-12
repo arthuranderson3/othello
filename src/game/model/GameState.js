@@ -1,8 +1,8 @@
 import React from 'react';
-import GameBoardPieces from './GameBoardPieces';
+import { GameBoardPieces } from './GameBoardPieces';
 import _ from 'lodash';
 
-export default class GameState {
+export class GameState {
 
     constructor( props ) {
         if( _.isUndefined(props) || _.isUndefined(props.history ) ) {

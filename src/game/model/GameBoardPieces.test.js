@@ -1,4 +1,4 @@
-import GameBoardPieces from './GameBoardPieces';
+import { GameBoardPieces } from './GameBoardPieces';
 import _ from 'lodash';
 
 describe('GameBoardPieces fs.WriteStream(path, options); suite', () => {

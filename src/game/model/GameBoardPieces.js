@@ -13,7 +13,7 @@ const defaultGameBoard = {
     , player: 'W'
 };
 
-export default class GameBoardPieces {
+export class GameBoardPieces {
     constructor( props = defaultGameBoard ) {
 
         this.squares = props.squares.slice();
