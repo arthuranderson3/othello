@@ -1,4 +1,3 @@
-import React from 'react';
 import _ from 'lodash';
 
 const defaultGameBoard = {
@@ -66,9 +65,9 @@ const defaultGameBoard = {
     undefined,
     undefined,
     undefined,
-    undefined
+    undefined,
   ],
-  player: 'W'
+  player: 'W',
 };
 
 export class GameBoardPieces {

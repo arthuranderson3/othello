@@ -12,6 +12,12 @@
     "react-scripts": "1.1.4",
     "typeface-roboto": "^0.0.54"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "scripts": {
     "precommit": "lint-staged",
     "start": "react-scripts start",
