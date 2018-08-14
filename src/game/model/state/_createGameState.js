@@ -1,8 +1,8 @@
-import{ GameBoardPieces } from '../GameBoardPieces';
+import { GameBoardPieces } from '../GameBoardPieces';
 
 const initGamePieces = new GameBoardPieces();
-const initHistory = [ initGamePieces ];
+const initHistory = [initGamePieces];
 
-export function createGameState( history = initHistory ) {
-    return { history };
+export function createGameState(history = initHistory) {
+  return { history };
 }
