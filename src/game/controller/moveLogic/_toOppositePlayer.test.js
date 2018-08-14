@@ -3,10 +3,10 @@ import { toOppositePlayer } from "./_toOppositePlayer";
 describe('toOppositePlayer Test Suite', () => {
     
     it('toOppositePlayer W', () => {
-        expect( toOppositePlayer( 'W' ) ).toBe( 'B' );
+        expect( toOppositePlayer( { player:'W' } ) ).toEqual( { player:'B' } );
     });
 
     it('toOppositePlayer B', () => {
-        expect( toOppositePlayer( 'B' ) ).toBe( 'W' );
+        expect( toOppositePlayer( { player:'B' } ) ).toEqual( { player:'W' } );
     });
 });

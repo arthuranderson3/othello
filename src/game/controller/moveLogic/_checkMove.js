@@ -2,11 +2,13 @@ import { hasMove } from './_hasMove';
 import { isValidMove } from './_isValidMove';
 import { updateSquares } from './_updateSquares';
 import { toOppositePlayer } from './_toOppositePlayer';
+import { getLastBoard } from '../../model/state';
+import { recordLastBoard } from '../../model/state';
 
 export function checkMove( idx, state ) {
     return new Promise( ( resolve, reject ) => {
-        const currentState = state;
-        const gameBoardPieces = currentState.getLastBoard();
+        let currentState = state;
+        const gameBoardPieces = getLastBoard( currentState );
         gameBoardPieces.idx = idx;
 
         if( ! hasMove( gameBoardPieces ) ) {
@@ -16,16 +18,16 @@ export function checkMove( idx, state ) {
 
             const newGamePieces = updateSquares( gameBoardPieces );
             // see if the next player has a move.
-            const next_player = toOppositePlayer( newGamePieces.player );
-            newGamePieces.player = next_player;
-            
-            if( ! hasMove( newGamePieces ) ){
+            const next = toOppositePlayer( newGamePieces );
+            newGamePieces.player = next.player;
 
-                newGamePieces.player = toOppositePlayer( newGamePieces.player);
+            if( ! hasMove( newGamePieces ) ){
+              const revert = toOppositePlayer( newGamePieces );
+              newGamePieces.player = revert.player;
             }
-            currentState.recordLastBoard( newGamePieces );
+            currentState = recordLastBoard( currentState, newGamePieces );
 
             return resolve( currentState );
-        } 
+        }
     });
 }

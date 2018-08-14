@@ -8,7 +8,7 @@ export function findMovesInDirection( direction, pieces ) {
 */
     let potentialMoves = [];
     let next_idx = direction( pieces.idx );
-    const opp_player = toOppositePlayer( pieces.player );
+    const opp = toOppositePlayer( pieces );
     let adjacent_is_opposite = false;
     do{ 
         if( next_idx > -1 ) {
@@ -32,7 +32,7 @@ export function findMovesInDirection( direction, pieces ) {
             /*
         *  are we adjacent to the opposing player
         */
-            if( adj_player === opp_player ) {
+            if( adj_player === opp.player ) {
                 adjacent_is_opposite = true;
                 potentialMoves.push( next_idx );
                 /*

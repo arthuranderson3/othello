@@ -1,36 +1,13 @@
-import React from 'react';
-import { GameBoardPieces } from './GameBoardPieces';
-import _ from 'lodash';
+
+import { createGameState } from './state/';
+
+const gameStateDefaults = createGameState();
 
 export class GameState {
 
-    constructor( props ) {
-        if( _.isUndefined(props) || _.isUndefined(props.history ) ) {
+    constructor( props = gameStateDefaults ) {
 
-            this.history = [];
-            this.history.push( new GameBoardPieces() );
-        } else {
-            this.history = props.history.slice();
-        }
-        _.bindAll(this, ['getLastBoard'
-            , 'recordLastBoard'
-            , 'getTurn'] );
+        this.history = props.history.slice();
     }
 
-    getTurn() {
-        return this.history.length;
-    }
-
-    getLastBoard() {
-        const len = this.history.length;
-        if( len > 0 ) {
-            return this.history[ len - 1 ].clone();
-        } else {
-            return [];
-        }
-    }
-
-    recordLastBoard( gb ) {
-        this.history.push( gb );
-    }
 }
