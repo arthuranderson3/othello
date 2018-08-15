@@ -9,9 +9,4 @@ describe('toRow Test Suite', () => {
     expect(toRow(23)).toBe(2);
     expect(toRow(24)).toBe(3);
   });
-
-  it('#toRow -- undefined for out of bounds Row idx', () => {
-    expect(toRow(-1)).toBeUndefined();
-    expect(toRow(64)).toBeUndefined();
-  });
 });

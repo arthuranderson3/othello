@@ -12,6 +12,5 @@ describe('toIdx Test Suite', () => {
   it('#toIdx -- out of bounds for toIdx', () => {
     expect(toIdx({ row: 0, col: undefined })).toBeUndefined();
     expect(toIdx({ row: undefined, col: 0 })).toBeUndefined();
-    expect(toIdx(undefined)).toBeUndefined();
   });
 });

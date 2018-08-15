@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
+
 import { toIdx, createRowCol } from '../controller/boardTransform';
+import { WHITE_CIRCLE, BLACK_CIRCLE } from './circles';
 
 export default class Square extends Component {
   render() {
     let classes = 'square';
-    let sym = '';
+    let game_piece = '';
 
-    const idx = toIdx(createRowCol(this.props.rowid, this.props.colid));
+    const idx = toIdx(createRowCol(this.props));
     if (this.props.value) {
       if (this.props.value === 'W') {
         //classes += ' square-white';
-        sym = String.fromCodePoint(9898); // unicode white circle
+        game_piece = WHITE_CIRCLE;
       } else {
         //classes += ' square-black';
-        sym = String.fromCodePoint(9899); // unicode black circle
+        game_piece = BLACK_CIRCLE;
       }
     }
 
@@ -24,7 +26,7 @@ export default class Square extends Component {
         colid={this.props.colid}
         onClick={() => this.props.onClick(idx)}
       >
-        {sym}
+        {game_piece}
       </div>
     );
   }

@@ -6,14 +6,9 @@ import GameStats from './GameStats';
 export default class GameBoard extends Component {
   render() {
     const rowSquares = _.chunk(this.props.squares, 8);
-    const board = rowSquares.map((squares, idx) => {
+    const board = rowSquares.map((squares, row) => {
       return (
-        <BoardRow
-          key={idx}
-          rowid={idx}
-          squares={squares}
-          onClick={i => this.props.onClick(i)}
-        />
+        <BoardRow key={row} row={row} squares={squares} onClick={i => this.props.onClick(i)} />
       );
     });
     return (
@@ -26,9 +21,10 @@ export default class GameBoard extends Component {
         <div className="game-board">{board}</div>
         <div>
           <GameStats
-            squares={this.props.squares}
             player={this.props.player}
             turn={this.props.turn}
+            whiteScore={this.props.whiteScore}
+            blackScore={this.props.blackScore}
           />
         </div>
       </div>

@@ -3,21 +3,19 @@ import Square from './Square';
 
 export default class BoardRow extends Component {
   render() {
-    const rowid = this.props.rowid;
-    const squares = this.props.squares.map((square, idx) => {
-      return (
-        <Square
-          key={rowid * 8 + idx}
-          value={square}
-          rowid={rowid}
-          colid={idx}
-          onClick={i => this.props.onClick(i)}
-        />
-      );
-    });
     return (
-      <div className="board-row" rowid={rowid}>
-        {squares}
+      <div className="board-row" row={this.props.row}>
+        {this.props.squares.map((square, col) => {
+          return (
+            <Square
+              key={this.props.row * 8 + col}
+              value={square}
+              row={this.props.row}
+              col={col}
+              onClick={i => this.props.onClick(i)}
+            />
+          );
+        })}
       </div>
     );
   }

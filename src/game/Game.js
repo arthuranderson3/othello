@@ -15,8 +15,8 @@ export default class Game extends Component {
 
   render() {
     const gameBoardPieces = getLastBoard(this.state);
-    const whiteCount = countSquareColor('W', gameBoardPieces);
-    const blackCount = countSquareColor('B', gameBoardPieces);
+    const whiteScore = countSquareColor('W', gameBoardPieces);
+    const blackScore = countSquareColor('B', gameBoardPieces);
     const currentTurns = getTurn(this.state);
     return (
       <div>
@@ -25,8 +25,8 @@ export default class Game extends Component {
             squares={gameBoardPieces.squares}
             player={gameBoardPieces.player}
             turn={currentTurns}
-            whiteCount={whiteCount}
-            blackCount={blackCount}
+            whiteScore={whiteScore}
+            blackScore={blackScore}
             onClick={i => this.click_Square(i)}
           />
         </div>
