@@ -6,7 +6,7 @@ root = true
 [*.md]
 trim_trailing_whitespace = false
 
-[*.js]
+[*.js, *.jsx]
 trim_trailing_whitespace = true
 
 # Unix-style newlines with a newline ending every file

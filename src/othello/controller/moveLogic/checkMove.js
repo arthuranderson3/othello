@@ -4,6 +4,7 @@ import updateSquares from './updateSquares';
 import toOppositePlayer from './toOppositePlayer';
 import getLastBoard from '../../model/state/getLastBoard';
 import recordLastBoard from '../../model/state/recordLastBoard';
+import getTurn from '../../model/stats/getTurn';
 
 export default function checkMove(idx, state) {
   return new Promise((resolve, reject) => {
@@ -18,7 +19,7 @@ export default function checkMove(idx, state) {
       // see if the next player has a move.
       const next = toOppositePlayer(newGamePieces);
       newGamePieces.player = next.player;
-
+      newGamePieces.turn = getTurn(currentState) + 1;
       if (!hasMove(newGamePieces)) {
         const revert = toOppositePlayer(newGamePieces);
         newGamePieces.player = revert.player;

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './OthelloApp.css';
 import GameBoard from './view/GameBoard';
-import getTurn from './model/stats/getTurn';
-import countSquareColor from './model/stats/countSquareColor';
 import GameState from './model/GameState';
 import getLastBoard from './model/state/getLastBoard';
 import checkMove from './controller/moveLogic/checkMove';
+import undo from './model/state/undo';
+import reset from './model/state/reset';
 
 export default class OthelloApp extends Component {
   constructor(props) {
@@ -25,6 +25,14 @@ export default class OthelloApp extends Component {
       });
   }
 
+  onReset() {
+    this.setState(new GameState(reset()));
+  }
+
+  onUndo() {
+    this.setState(new GameState(undo(this.state)));
+  }
+
   render() {
     const gbp = getLastBoard(this.state);
     return (
@@ -33,7 +41,12 @@ export default class OthelloApp extends Component {
           <h1 className="h1">Othello</h1>
         </header>
         <div className="game">
-          <GameBoard {...gbp} onClick={i => this.click_Square(i)} />
+          <GameBoard
+            {...gbp}
+            onClick={i => this.click_Square(i)}
+            onReset={() => this.onReset()}
+            onUndo={() => this.onUndo()}
+          />
         </div>
       </React.Fragment>
     );
