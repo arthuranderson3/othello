@@ -1,5 +1,5 @@
 import createGameState from './createGameState';
 
-export default function reset() {
+export default function resetBoard() {
   return createGameState();
 }

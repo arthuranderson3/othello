@@ -1,5 +1,5 @@
 import _ from 'lodash';
 
-export default function undo({ history }) {
+export default function undoMove({ history }) {
   return { history: _.dropRight(history) };
 }

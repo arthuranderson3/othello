@@ -9,11 +9,11 @@ export default class GameStats extends Component {
     const player_turn = this.props.player === 'W' ? WHITE_CIRCLE : BLACK_CIRCLE;
     return (
       <div>
-        <h6>
+        <p>
           Score&nbsp;
           <span>{WHITE_CIRCLE}</span>:&nbsp;{whiteScore}&nbsp;
           <span>{BLACK_CIRCLE}</span>:&nbsp;{blackScore}
-        </h6>
+        </p>
         <p>
           <span>Turn {this.props.turn}</span>&nbsp;{player_turn}&nbsp;
         </p>

@@ -6,7 +6,7 @@ import GameStats from './GameStats';
 export default class GameBoard extends Component {
   render() {
     const rowSquares = _.chunk(this.props.squares, 8);
-    const board = rowSquares.map((squares, row) => {
+    const board = _.map(rowSquares, (squares, row) => {
       return (
         <BoardRow key={row} row={row} squares={squares} onClick={i => this.props.onClick(i)} />
       );

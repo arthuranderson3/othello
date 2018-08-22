@@ -20,10 +20,12 @@ export default function checkMove(idx, state) {
       const next = toOppositePlayer(newGamePieces);
       newGamePieces.player = next.player;
       newGamePieces.turn = getTurn(currentState) + 1;
+
       if (!hasMove(newGamePieces)) {
         const revert = toOppositePlayer(newGamePieces);
         newGamePieces.player = revert.player;
       }
+
       currentState = recordLastBoard(currentState, newGamePieces);
 
       return resolve(currentState);

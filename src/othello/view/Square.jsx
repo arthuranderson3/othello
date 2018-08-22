@@ -7,6 +7,7 @@ export default class Square extends Component {
     let classes = 'square';
     let game_piece = '';
 
+    // we have 3 values { undefined, W, B }
     if (this.props.value) {
       if (this.props.value === 'W') {
         game_piece = WHITE_CIRCLE;
@@ -14,15 +15,15 @@ export default class Square extends Component {
         game_piece = BLACK_CIRCLE;
       }
     }
-
     return (
       <div className={classes} onClick={() => this.props.onClick(this.props.idx)}>
         {game_piece}
       </div>
     );
   }
+
   componentWillMount() {
-    this.style = { backgroundColor: '#CCC' };
+    this.style = { backgroundColor: '#AAA' };
   }
 
   componentWillUpdate() {

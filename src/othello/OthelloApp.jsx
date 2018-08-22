@@ -4,8 +4,8 @@ import GameBoard from './view/GameBoard';
 import GameState from './model/GameState';
 import getLastBoard from './model/state/getLastBoard';
 import checkMove from './controller/moveLogic/checkMove';
-import undo from './model/state/undo';
-import reset from './model/state/reset';
+import undoMove from './model/state/undoMove';
+import resetBoard from './model/state/resetBoard';
 
 export default class OthelloApp extends Component {
   constructor(props) {
@@ -26,11 +26,11 @@ export default class OthelloApp extends Component {
   }
 
   onReset() {
-    this.setState(new GameState(reset()));
+    this.setState(new GameState(resetBoard()));
   }
 
   onUndo() {
-    this.setState(new GameState(undo(this.state)));
+    this.setState(new GameState(undoMove(this.state)));
   }
 
   render() {
