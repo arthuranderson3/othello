@@ -2,10 +2,12 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import BoardRow from './BoardRow';
 import GameStats from './GameStats';
+import expandGameBoardPieces from '../model/gameBoardPieces/expandGameBoardPieces';
 
 export default class GameBoard extends Component {
   render() {
-    const rowSquares = _.chunk(this.props.squares, 8);
+    const gbp = expandGameBoardPieces(this.props);
+    const rowSquares = _.chunk(gbp.squares_arr, 8);
     const board = _.map(rowSquares, (squares, row) => {
       return (
         <BoardRow key={row} row={row} squares={squares} onClick={i => this.props.onClick(i)} />

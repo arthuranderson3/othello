@@ -1,3 +1,5 @@
+import toSquaresObj from './toSquaresObj';
+
 const SQUARES = [
   undefined,
   undefined,
@@ -65,4 +67,9 @@ const SQUARES = [
   undefined,
 ];
 
-export default SQUARES;
+describe('toSquaresObj suite', () => {
+  it('#toSquaresObj default ', () => {
+    const pieces = toSquaresObj(SQUARES);
+		expect( pieces ).toEqual( { '27': 'W', '28': 'B', '35': 'B', '36': 'W' } );
+  });
+});

@@ -7,6 +7,6 @@ describe('getLastBoard test suite', () => {
     const expected = state.history[0];
     const actual = getLastBoard(state);
     expect(actual.player).toBe(expected.player);
-    expect(actual.squares).toEqual(expect.arrayContaining(expected.squares));
+    expect(actual.squares_obj).toEqual(expected.squares_obj);
   });
 });

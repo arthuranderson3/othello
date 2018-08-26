@@ -11,7 +11,7 @@ import * as bn from '../boardNavigation';
  *************************************************************/
 export default function isValidMove(pieces) {
   // we have an open square?
-  if (_.isUndefined(pieces.squares[pieces.idx])) {
+  if (_.isUndefined(pieces.squares_arr[pieces.idx])) {
     let validMove = false;
     //
     // we are adjacent to opposing player with player's square enclosing the line.

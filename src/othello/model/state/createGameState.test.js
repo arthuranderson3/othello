@@ -7,8 +7,6 @@ describe('_createGameState test suite', () => {
     const gameState = createGameState();
     expect(gameState.history.length).toEqual(1);
     expect(gameState.history[0].idx).toBeUndefined();
-    expect(gameState.history[0].squares).toEqual(
-      expect.arrayContaining(gbp.squares)
-    );
+    expect(gameState.history[0].squares_obj).toEqual(gbp.squares_obj);
   });
 });

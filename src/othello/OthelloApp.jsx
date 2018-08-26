@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import './OthelloApp.css';
 import GameBoard from './view/GameBoard';
 import GameState from './model/GameState';
@@ -7,12 +8,15 @@ import checkMove from './controller/moveLogic/checkMove';
 import undoMove from './model/state/undoMove';
 import resetBoard from './model/state/resetBoard';
 import GameStart from './view/GameStart';
+import GameStartForm from './view/GameStartForm';
 
 export default class OthelloApp extends Component {
   constructor(props) {
     super(props);
     const gs = new GameState();
     this.state = gs;
+
+    _.bindAll(this, ['click_Square', 'reset', 'undo', 'start']);
   }
 
   /////////////////////////////////////////////////
@@ -23,6 +27,7 @@ export default class OthelloApp extends Component {
     const self = this;
     checkMove(self.state, idx)
       .then(state => {
+        console.log(JSON.stringify(state));
         self.setState(state);
       })
       .catch(err => {
@@ -30,12 +35,16 @@ export default class OthelloApp extends Component {
       });
   }
 
-  onReset() {
+  reset() {
     this.setState(new GameState(resetBoard()));
   }
 
-  onUndo() {
+  undo() {
     this.setState(new GameState(undoMove(this.state)));
+  }
+
+  start(nickName, numPlayers) {
+    console.info({ nickName, numPlayers });
   }
 
   render() {
@@ -45,14 +54,9 @@ export default class OthelloApp extends Component {
         <header>
           <h1 className="h1">Othello</h1>
         </header>
-        <GameStart />
+        <GameStartForm onStartGame={this.start} />
         <div className="game">
-          <GameBoard
-            {...gbp}
-            onClick={i => this.click_Square(i)}
-            onReset={() => this.onReset()}
-            onUndo={() => this.onUndo()}
-          />
+          <GameBoard {...gbp} onClick={this.click_Square} onReset={this.reset} onUndo={this.undo} />
         </div>
       </React.Fragment>
     );
