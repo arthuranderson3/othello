@@ -8,13 +8,13 @@ describe('validateDirection Test Suite', () => {
     const pieces = new GameBoardPieces();
     pieces.idx = 29;
 
-    expect(validateDirection(left, pieces)).toBe(true);
+    expect(validateDirection(pieces, left)).toBe(true);
   });
 
   it('validateDirection#false', () => {
     const pieces = new GameBoardPieces();
     pieces.idx = 29;
 
-    expect(validateDirection(right, pieces)).toBe(false);
+    expect(validateDirection(pieces, right)).toBe(false);
   });
 });

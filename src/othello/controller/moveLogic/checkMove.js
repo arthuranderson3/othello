@@ -6,7 +6,7 @@ import getLastBoard from '../../model/state/getLastBoard';
 import recordLastBoard from '../../model/state/recordLastBoard';
 import getTurn from '../../model/stats/getTurn';
 
-export default function checkMove(idx, state) {
+export default function checkMove(state, idx) {
   return new Promise((resolve, reject) => {
     let currentState = state;
     const gameBoardPieces = getLastBoard(currentState);

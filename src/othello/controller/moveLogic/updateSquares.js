@@ -15,14 +15,14 @@ export default function updateSquares(pieces) {
   //
   // accumulate all the board squares that will turn
   //
-  movement = _.concat(movement, findMovesInDirection(bn.top, newPieces));
-  movement = _.concat(movement, findMovesInDirection(bn.topRight, newPieces));
-  movement = _.concat(movement, findMovesInDirection(bn.topLeft, newPieces));
-  movement = _.concat(movement, findMovesInDirection(bn.right, newPieces));
-  movement = _.concat(movement, findMovesInDirection(bn.bottom, newPieces));
-  movement = _.concat(movement, findMovesInDirection(bn.bottomRight, newPieces));
-  movement = _.concat(movement, findMovesInDirection(bn.bottomLeft, newPieces));
-  movement = _.concat(movement, findMovesInDirection(bn.left, newPieces));
+  movement = _.concat(movement, findMovesInDirection(newPieces, bn.top));
+  movement = _.concat(movement, findMovesInDirection(newPieces, bn.topRight));
+  movement = _.concat(movement, findMovesInDirection(newPieces, bn.topLeft));
+  movement = _.concat(movement, findMovesInDirection(newPieces, bn.right));
+  movement = _.concat(movement, findMovesInDirection(newPieces, bn.bottom));
+  movement = _.concat(movement, findMovesInDirection(newPieces, bn.bottomRight));
+  movement = _.concat(movement, findMovesInDirection(newPieces, bn.bottomLeft));
+  movement = _.concat(movement, findMovesInDirection(newPieces, bn.left));
 
   _.each(movement, i => {
     newPieces.squares[i] = pieces.player;

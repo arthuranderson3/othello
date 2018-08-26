@@ -6,6 +6,7 @@ import getLastBoard from './model/state/getLastBoard';
 import checkMove from './controller/moveLogic/checkMove';
 import undoMove from './model/state/undoMove';
 import resetBoard from './model/state/resetBoard';
+import GameStart from './view/GameStart';
 
 export default class OthelloApp extends Component {
   constructor(props) {
@@ -14,9 +15,13 @@ export default class OthelloApp extends Component {
     this.state = gs;
   }
 
-  click_Square(i) {
+  /////////////////////////////////////////////////
+  // Method click_Square
+  // delegates to checkMove function
+  /////////////////////////////////////////////////
+  click_Square(idx) {
     const self = this;
-    checkMove(i, self.state)
+    checkMove(self.state, idx)
       .then(state => {
         self.setState(state);
       })
@@ -40,6 +45,7 @@ export default class OthelloApp extends Component {
         <header>
           <h1 className="h1">Othello</h1>
         </header>
+        <GameStart />
         <div className="game">
           <GameBoard
             {...gbp}

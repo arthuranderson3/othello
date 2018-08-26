@@ -17,28 +17,28 @@ export default function isValidMove(pieces) {
     // we are adjacent to opposing player with player's square enclosing the line.
     // Keep track of validMove to speed up whether or not this is a valid move.
     //
-    if (validateDirection(bn.top, pieces)) {
+    if (validateDirection(pieces, bn.top)) {
       validMove = true;
     }
-    if (!validMove && validateDirection(bn.topRight, pieces)) {
+    if (!validMove && validateDirection(pieces, bn.topRight)) {
       validMove = true;
     }
-    if (!validMove && validateDirection(bn.topLeft, pieces)) {
+    if (!validMove && validateDirection(pieces, bn.topLeft)) {
       validMove = true;
     }
-    if (!validMove && validateDirection(bn.right, pieces)) {
+    if (!validMove && validateDirection(pieces, bn.right)) {
       validMove = true;
     }
-    if (!validMove && validateDirection(bn.left, pieces)) {
+    if (!validMove && validateDirection(pieces, bn.left)) {
       validMove = true;
     }
-    if (!validMove && validateDirection(bn.bottom, pieces)) {
+    if (!validMove && validateDirection(pieces, bn.bottom)) {
       validMove = true;
     }
-    if (!validMove && validateDirection(bn.bottomRight, pieces)) {
+    if (!validMove && validateDirection(pieces, bn.bottomRight)) {
       validMove = true;
     }
-    if (!validMove && validateDirection(bn.bottomLeft, pieces)) {
+    if (!validMove && validateDirection(pieces, bn.bottomLeft)) {
       validMove = true;
     }
 

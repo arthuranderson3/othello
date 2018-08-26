@@ -4,7 +4,8 @@ import GameState from '../../model/GameState';
 describe('checkMove Test Suite', () => {
   it('checkMove#success', done => {
     const state = new GameState();
-    checkMove(29, state)
+
+    checkMove(state, 29)
       .then(state => {
         expect(state.history.length).toBe(2);
         done();

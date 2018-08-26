@@ -9,7 +9,7 @@ import toOppositePlayer from './toOppositePlayer';
  *
  *************************************************************/
 
-export default function validateDirection(direction, pieces) {
+export default function validateDirection(pieces, direction) {
   /*
     * if the adjacent tile is the opposite player keep going
     *    if this direction also ends with same player return true.

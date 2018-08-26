@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import toOppositePlayer from './toOppositePlayer';
 
-export default function findMovesInDirection(direction, pieces) {
+export default function findMovesInDirection(pieces, direction) {
   /*
 * if the adjacent tile is the opposite player keep going
 *    if this direction also ends with same player return true.

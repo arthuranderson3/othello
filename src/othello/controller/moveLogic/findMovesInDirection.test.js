@@ -7,8 +7,6 @@ describe('toOppositePlayer Test Suite', () => {
     const pieces = new GameBoardPieces();
     pieces.idx = 29;
 
-    expect(findMovesInDirection(left, pieces)).toEqual(
-      expect.arrayContaining([28])
-    );
+    expect(findMovesInDirection(pieces, left)).toEqual(expect.arrayContaining([28]));
   });
 });

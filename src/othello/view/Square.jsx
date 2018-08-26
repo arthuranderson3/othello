@@ -22,14 +22,6 @@ export default class Square extends Component {
     );
   }
 
-  componentWillMount() {
-    this.style = { backgroundColor: '#AAA' };
-  }
-
-  componentWillUpdate() {
-    this.style = null;
-  }
-
   shouldComponentUpdate(nextProps) {
     const { value } = this.props;
     return value !== nextProps.value;
