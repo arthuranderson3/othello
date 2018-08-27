@@ -1,4 +1,4 @@
-import forIn from 'lodash.forIn';
+import forIn from 'lodash.forin';
 import fill from 'lodash.fill';
 import DEFAULT_SQUARES from './DEFAULT_SQUARES';
 

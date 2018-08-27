@@ -1,4 +1,4 @@
-import isUndefined from 'lodash.isUndefined';
+import isUndefined from 'lodash.isundefined';
 import toOppositePlayer from './toOppositePlayer';
 
 export default function findMovesInDirection({ idx, player, squares_arr }, direction) {

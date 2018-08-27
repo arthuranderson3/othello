@@ -1,4 +1,4 @@
-import isUndefined from 'lodash.isUndefined';
+import isUndefined from 'lodash.isundefined';
 
 export default function toIdx({ row, col }) {
   if (isUndefined(row) || isUndefined(col)) {

@@ -1,7 +1,7 @@
-import _ from 'lodash';
+import forIn from 'lodash.forin';
 
 export default function countSquareColor(color, { squares_obj }) {
   let count = 0;
-  _.forIn(squares_obj, (value, key) => (value === color ? count++ : undefined));
+  forIn(squares_obj, value => (value === color ? count++ : undefined));
   return count;
 }

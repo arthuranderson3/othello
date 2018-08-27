@@ -34,11 +34,13 @@ export default class OthelloApp extends Component {
   }
 
   reset() {
-    this.setState(createGameState(resetBoard()));
+    const newState = resetBoard();
+    this.setState(newState);
   }
 
   undo() {
-    this.setState(createGameState(undoMove(this.state)));
+    const newState = undoMove(this.state);
+    this.setState(newState);
   }
 
   start(nickName, numPlayers) {

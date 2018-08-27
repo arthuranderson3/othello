@@ -1,4 +1,4 @@
-import isUndefined from 'lodash.isUndefined';
+import isUndefined from 'lodash.isundefined';
 import some from 'lodash.some';
 import map from 'lodash.map';
 import filter from 'lodash.filter';
@@ -12,7 +12,7 @@ function filterUndefinedSquare(p) {
   return isUndefined(p.square);
 }
 
-export default function hasMove({ squares_arr, idx }, player) {
+export default function hasMove({ squares_arr }, player) {
   // gather all potential movement squares.
   const board_map = map(squares_arr, toSquareIndex);
   const potential_moves = filter(board_map, filterUndefinedSquare);

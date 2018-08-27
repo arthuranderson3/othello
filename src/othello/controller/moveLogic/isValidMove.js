@@ -1,4 +1,4 @@
-import isUndefined from 'lodash.isUndefined';
+import isUndefined from 'lodash.isundefined';
 import validateDirection from './validateDirection';
 import * as bn from '../boardNavigation';
 
