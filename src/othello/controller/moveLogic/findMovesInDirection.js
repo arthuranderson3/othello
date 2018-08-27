@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import isUndefined from 'lodash.isUndefined';
 import toOppositePlayer from './toOppositePlayer';
 
 export default function findMovesInDirection({ idx, player, squares_arr }, direction) {
@@ -17,7 +17,7 @@ export default function findMovesInDirection({ idx, player, squares_arr }, direc
       /*
       * are we next to or ending with an undefined square?
       */
-      if (_.isUndefined(adj_player)) {
+      if (isUndefined(adj_player)) {
         return [];
       }
 

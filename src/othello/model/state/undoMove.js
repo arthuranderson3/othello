@@ -1,5 +1,5 @@
-import _ from 'lodash';
+import dropRight from 'lodash.dropRight';
 
 export default function undoMove({ history }) {
-  return { history: _.dropRight(history) };
+  return { history: dropRight(history) };
 }

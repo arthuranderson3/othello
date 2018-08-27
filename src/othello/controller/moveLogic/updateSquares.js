@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import concat from 'lodash.concat';
+import each from 'lodash.foreach';
 import * as bn from '../boardNavigation';
 import findMovesInDirection from './findMovesInDirection';
 /*************************************************************
@@ -13,16 +14,16 @@ export default function updateSquares({ idx, player, squares_arr }) {
   //
   // accumulate all the board squares that will turn
   //
-  movement = _.concat(movement, findMovesInDirection(newPieces, bn.top));
-  movement = _.concat(movement, findMovesInDirection(newPieces, bn.topRight));
-  movement = _.concat(movement, findMovesInDirection(newPieces, bn.topLeft));
-  movement = _.concat(movement, findMovesInDirection(newPieces, bn.right));
-  movement = _.concat(movement, findMovesInDirection(newPieces, bn.bottom));
-  movement = _.concat(movement, findMovesInDirection(newPieces, bn.bottomRight));
-  movement = _.concat(movement, findMovesInDirection(newPieces, bn.bottomLeft));
-  movement = _.concat(movement, findMovesInDirection(newPieces, bn.left));
+  movement = concat(movement, findMovesInDirection(newPieces, bn.top));
+  movement = concat(movement, findMovesInDirection(newPieces, bn.topRight));
+  movement = concat(movement, findMovesInDirection(newPieces, bn.topLeft));
+  movement = concat(movement, findMovesInDirection(newPieces, bn.right));
+  movement = concat(movement, findMovesInDirection(newPieces, bn.bottom));
+  movement = concat(movement, findMovesInDirection(newPieces, bn.bottomRight));
+  movement = concat(movement, findMovesInDirection(newPieces, bn.bottomLeft));
+  movement = concat(movement, findMovesInDirection(newPieces, bn.left));
 
-  _.each(movement, i => {
+  each(movement, i => {
     newPieces.squares_arr[i] = player;
   });
   return newPieces;

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import isUndefined from 'lodash.isUndefined';
 import validateDirection from './validateDirection';
 import * as bn from '../boardNavigation';
 
@@ -11,7 +11,7 @@ import * as bn from '../boardNavigation';
  *************************************************************/
 export default function isValidMove(pieces) {
   // we have an open square?
-  if (_.isUndefined(pieces.squares_arr[pieces.idx])) {
+  if (isUndefined(pieces.squares_arr[pieces.idx])) {
     let validMove = false;
     //
     // we are adjacent to opposing player with player's square enclosing the line.

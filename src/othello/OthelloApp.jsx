@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import bindAll from 'lodash.bindall';
 import './OthelloApp.css';
 import GameBoard from './view/GameBoard';
-import GameState from './model/GameState';
+import createGameState from './model/state/createGameState';
 import getLastBoard from './model/state/getLastBoard';
 import checkMove from './controller/moveLogic/checkMove';
 import undoMove from './model/state/undoMove';
@@ -12,10 +12,9 @@ import GameStartForm from './view/GameStartForm';
 export default class OthelloApp extends Component {
   constructor(props) {
     super(props);
-    const gs = new GameState();
-    this.state = gs;
+    this.state = createGameState();
 
-    _.bindAll(this, ['click_Square', 'reset', 'undo', 'start']);
+    bindAll(this, ['click_Square', 'reset', 'undo', 'start']);
   }
 
   /////////////////////////////////////////////////
@@ -35,11 +34,11 @@ export default class OthelloApp extends Component {
   }
 
   reset() {
-    this.setState(new GameState(resetBoard()));
+    this.setState(createGameState(resetBoard()));
   }
 
   undo() {
-    this.setState(new GameState(undoMove(this.state)));
+    this.setState(createGameState(undoMove(this.state)));
   }
 
   start(nickName, numPlayers) {

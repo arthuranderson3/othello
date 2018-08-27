@@ -1,14 +1,16 @@
-import _ from 'lodash';
+import reduce from 'lodash.reduce';
 
 export default function toSquaresObj(squares_arr) {
-  return _.reduce(
-    squares_arr,
-    (acc, value, index, collection) => {
-      if (value) {
-        acc[index] = value;
-      }
-      return acc;
-    },
-    {},
-  );
+  if (Array.isArray(squares_arr)) {
+    return reduce(
+      squares_arr,
+      (acc, value, index, collection) => {
+        if (value) {
+          acc[index] = value;
+        }
+        return acc;
+      },
+      {},
+    );
+  }
 }

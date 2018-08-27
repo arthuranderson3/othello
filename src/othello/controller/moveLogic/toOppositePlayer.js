@@ -1,7 +1,7 @@
-function createPlayer(player) {
+function buildPlayer(player) {
   return { player };
 }
 
 export default function toOppositePlayer({ player }) {
-  return player === 'W' ? createPlayer('B') : createPlayer('W');
+  return player === 'W' ? buildPlayer('B') : buildPlayer('W');
 }

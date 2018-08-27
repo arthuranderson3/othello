@@ -1,5 +1,9 @@
+import assign from 'lodash.assign';
 import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
 
 export default function createGameState(history = [createGameBoardPieces()]) {
-  return { history };
+  if (Array.isArray(history)) {
+    return assign({}, { history });
+  }
+  return undefined;
 }

@@ -1,12 +1,12 @@
+import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
 import getLastBoard from './getLastBoard';
 import createGameState from './createGameState';
 
 describe('getLastBoard test suite', () => {
   it('getLastBoard#success', () => {
-    const state = createGameState();
-    const expected = state.history[0];
+    const board = createGameBoardPieces();
+    const state = createGameState([board]);
     const actual = getLastBoard(state);
-    expect(actual.player).toBe(expected.player);
-    expect(actual.squares_obj).toEqual(expected.squares_obj);
+    expect(actual).toEqual(board);
   });
 });
