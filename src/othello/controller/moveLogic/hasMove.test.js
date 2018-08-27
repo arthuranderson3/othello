@@ -6,6 +6,6 @@ describe('hasMove Test Suite', () => {
   it('hasMove', () => {
     const pieces = new GameBoardPieces();
     const ep = expandGameBoardPieces(pieces);
-    expect(hasMove(ep)).toBe(true);
+    expect(hasMove(ep, 'W')).toBe(true);
   });
 });

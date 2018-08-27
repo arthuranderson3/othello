@@ -15,24 +15,22 @@ export default function checkMove(state, idx) {
     gameBoardPieces.idx = idx;
     const epGBP = expandGameBoardPieces(gameBoardPieces);
 
-    if (!hasMove(epGBP)) {
+    if (!hasMove(epGBP, epGBP.player)) {
       return reject(new Error('not valid move'));
-    } else if (isValidMove(epGBP)) {
+    } else if (isValidMove(epGBP, epGBP.player)) {
       const newEPGamePieces = updateSquares(epGBP);
 
       const newGamePieces = compressGameBoardPieces(newEPGamePieces);
       //
       // see if the next player has a move.
       //
-      const next = toOppositePlayer(newGamePieces);
+      let next = toOppositePlayer(newEPGamePieces);
+
+      if (!hasMove(newEPGamePieces, next.player)) {
+        next = toOppositePlayer(next);
+      }
       newGamePieces.player = next.player;
       newGamePieces.turn = getTurn(currentState) + 1;
-
-      if (!hasMove(newEPGamePieces)) {
-        const revert = toOppositePlayer(newGamePieces);
-        newGamePieces.player = revert.player;
-      }
-
       currentState = recordLastBoard(currentState, newGamePieces);
 
       return resolve(currentState);

@@ -7,7 +7,6 @@ import getLastBoard from './model/state/getLastBoard';
 import checkMove from './controller/moveLogic/checkMove';
 import undoMove from './model/state/undoMove';
 import resetBoard from './model/state/resetBoard';
-import GameStart from './view/GameStart';
 import GameStartForm from './view/GameStartForm';
 
 export default class OthelloApp extends Component {
