@@ -1,10 +1,10 @@
 import updateSquares from './updateSquares';
-import GameBoardPieces from '../../model/GameBoardPieces';
+import createGameBoardPieces from '../../model/gameBoardPieces/createGameBoardPieces';
 import expandGameBoardPieces from '../../model/gameBoardPieces/expandGameBoardPieces';
 
 describe('updateSquares Test Suite', () => {
   it('updateSquares', () => {
-    const pieces = new GameBoardPieces();
+    const pieces = createGameBoardPieces();
     pieces.idx = 29;
     const ep = expandGameBoardPieces(pieces);
     let newPieces = updateSquares(ep);
