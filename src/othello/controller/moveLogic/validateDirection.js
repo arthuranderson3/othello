@@ -1,4 +1,3 @@
-import isUndefined from 'lodash.isundefined';
 import toOppositePlayer from './toOppositePlayer';
 
 /*************************************************************
@@ -24,7 +23,7 @@ export default function validateDirection({ idx, player, squares_arr }, directio
       /*
             * are we next to or ending with an undefined square?
             */
-      if (isUndefined(adj_player)) {
+      if (adj_player === undefined) {
         return false;
       }
 

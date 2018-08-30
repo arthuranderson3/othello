@@ -1,7 +1,5 @@
-import isUndefined from 'lodash.isundefined';
-
 export default function toIdx({ row, col }) {
-  if (isUndefined(row) || isUndefined(col)) {
+  if (row === undefined || col === undefined) {
     return undefined;
   }
   if (row < 0 || row > 7 || col < 0 || col > 7) {
