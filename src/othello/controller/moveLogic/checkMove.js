@@ -2,7 +2,7 @@ import hasMove from './hasMove';
 import isValidMove from './isValidMove';
 import updateSquares from './updateSquares';
 import toOppositePlayer from './toOppositePlayer';
-import getLastBoard from '../../model/state/getLastBoard';
+import { getLastBoard } from '../../model/state';
 import recordLastBoard from '../../model/state/recordLastBoard';
 import getTurn from '../../model/stats/getTurn';
 import expandGameBoardPieces from '../../model/gameBoardPieces/expandGameBoardPieces';

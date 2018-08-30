@@ -1,5 +1,5 @@
-export createGameState from './createGameState';
-export getLastBoard from './getLastBoard';
-export recordLastBoard from './recordLastBoard';
-export resetBoard from './resetBoard';
-export undoMove from './undoMove';
+export { default as createGameState } from './createGameState';
+export { default as getLastBoard } from './getLastBoard';
+export { default as recordLastBoard } from './recordLastBoard';
+export { default as resetBoard } from './resetBoard';
+export { default as undoMove } from './undoMove';
