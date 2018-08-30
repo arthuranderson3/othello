@@ -3,10 +3,10 @@ import isValidMove from './isValidMove';
 import updateSquares from './updateSquares';
 import toOppositePlayer from './toOppositePlayer';
 import { getLastBoard } from '../../model/state';
-import recordLastBoard from '../../model/state/recordLastBoard';
+import { recordLastBoard } from '../../model/state';
 import getTurn from '../../model/stats/getTurn';
-import expandGameBoardPieces from '../../model/gameBoardPieces/expandGameBoardPieces';
-import compressGameBoardPieces from '../../model/gameBoardPieces/compressGameBoardPieces';
+import { expandGameBoardPieces } from '../../model/gameBoardPieces';
+import { compressGameBoardPieces } from '../../model/gameBoardPieces';
 
 export default function checkMove(state, idx) {
   return new Promise((resolve, reject) => {

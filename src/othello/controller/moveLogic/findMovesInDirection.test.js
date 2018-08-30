@@ -1,8 +1,8 @@
-import createGameBoardPieces from '../../model/gameBoardPieces/createGameBoardPieces';
-import expandGameBoardPieces from '../../model/gameBoardPieces/expandGameBoardPieces';
+import { createGameBoardPieces } from '../../model/gameBoardPieces';
+import { expandGameBoardPieces } from '../../model/gameBoardPieces';
 
 import findMovesInDirection from './findMovesInDirection';
-import left from '../boardNavigation/left';
+import { left } from '../boardNavigation';
 
 describe('findMovesInDirection Test Suite', () => {
   it('findMovesInDirection#success', () => {

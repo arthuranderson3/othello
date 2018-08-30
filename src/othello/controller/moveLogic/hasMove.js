@@ -1,7 +1,7 @@
 import some from 'lodash.some';
 import isValidMove from './isValidMove';
 import gatherUnusedSquares from './gatherUnusedSquares';
-import createGameBoardPiecesArray from '../../model/gameBoardPieces/createGameBoardPiecesArray';
+import { createGameBoardPiecesArray } from '../../model/gameBoardPieces';
 
 export default function hasMove({ squares_arr }, player) {
   return some(gatherUnusedSquares(squares_arr), ({ index }) => {

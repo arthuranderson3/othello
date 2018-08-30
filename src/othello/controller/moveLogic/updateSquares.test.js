@@ -1,6 +1,6 @@
 import updateSquares from './updateSquares';
-import createGameBoardPieces from '../../model/gameBoardPieces/createGameBoardPieces';
-import expandGameBoardPieces from '../../model/gameBoardPieces/expandGameBoardPieces';
+import { createGameBoardPieces } from '../../model/gameBoardPieces';
+import { expandGameBoardPieces } from '../../model/gameBoardPieces';
 
 describe('updateSquares Test Suite', () => {
   it('updateSquares', () => {

@@ -1,2 +1,2 @@
-export countSquareColor from './countSquareColor';
-export getTurn from './getTurn';
+export { default as countSquareColor } from './countSquareColor';
+export { default as getTurn } from './getTurn';

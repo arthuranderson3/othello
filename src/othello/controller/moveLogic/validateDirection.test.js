@@ -1,8 +1,8 @@
-import createGameBoardPieces from '../../model/gameBoardPieces/createGameBoardPieces';
-import expandGameBoardPieces from '../../model/gameBoardPieces/expandGameBoardPieces';
+import { createGameBoardPieces } from '../../model/gameBoardPieces';
+import { expandGameBoardPieces } from '../../model/gameBoardPieces';
 import validateDirection from './validateDirection';
-import right from '../boardNavigation/right';
-import left from '../boardNavigation/left';
+import { right } from '../boardNavigation';
+import { left } from '../boardNavigation';
 
 describe('validateDirection Test Suite', () => {
   it('validateDirection#true', () => {
