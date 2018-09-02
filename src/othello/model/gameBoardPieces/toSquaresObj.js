@@ -10,7 +10,7 @@ export default function toSquaresObj(squares_arr) {
         }
         return acc;
       },
-      {},
+      {}
     );
   }
   return undefined;
