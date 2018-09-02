@@ -6,7 +6,7 @@ export default function GameStartForm({ onStartGame = f => f }) {
     e.preventDefault();
     onStartGame(_nickName.value, _numPlayer.value);
     _nickName.value = '';
-    _numPlayer.value = false;
+    _numPlayer = undefined;
   };
 
   return (

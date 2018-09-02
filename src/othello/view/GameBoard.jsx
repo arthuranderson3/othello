@@ -10,7 +10,7 @@ export default class GameBoard extends Component {
     const rowSquares = _.chunk(gbp.squares_arr, 8);
     const board = _.map(rowSquares, (squares, row) => {
       return (
-        <BoardRow key={row} row={row} squares={squares} onClick={i => this.props.onClick(i)} />
+        <BoardRow key={row} squares={squares} row={row} onClick={i => this.props.onClick(i)} />
       );
     });
     return (
