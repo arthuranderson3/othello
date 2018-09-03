@@ -10,7 +10,7 @@ const defaultGameBoard = {
   player: 'W',
   turn: 1,
   idx: undefined,
-  ...createValidSquares( [20, 29, 34, 44] )
+  ...createValidSquares( [20, 29, 34, 43] )
 };
 
 //

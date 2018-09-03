@@ -14,6 +14,6 @@ describe('createGameBoardPieces suite', () => {
     expect(pieces.idx).toBeUndefined();
     expect(pieces.squaresObj).toEqual(DEFAULT_SQUARES);
     expect(pieces.turn).toBe(1);
-    expect(pieces.validSquares).toEqual([20,29,34,44]);
+    expect(pieces.validSquares).toEqual([20,29,34,43]);
   });
 });
