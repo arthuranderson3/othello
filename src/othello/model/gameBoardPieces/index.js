@@ -1,4 +1,3 @@
-export { default as compressGameBoardPieces } from './compressGameBoardPieces';
-export { default as expandGameBoardPieces } from './expandGameBoardPieces';
-export { default as createGameBoardPiecesSquaresArray } from './createGameBoardPiecesSquaresArray';
+export { default as toSquaresArray } from './toSquaresArray';
+export { default as toSquaresObj } from './toSquaresObj';
 export { default as createGameBoardPieces } from './createGameBoardPieces';

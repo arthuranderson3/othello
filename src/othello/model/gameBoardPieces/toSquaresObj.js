@@ -1,9 +1,9 @@
 import reduce from 'lodash.reduce';
 
-export default function toSquaresObj(squares_arr) {
-  if (Array.isArray(squares_arr)) {
+export default function toSquaresObj(squaresArr) {
+  if (Array.isArray(squaresArr)) {
     return reduce(
-      squares_arr,
+      squaresArr,
       (acc, value, idx) => {
         if (value) {
           acc[idx] = value;

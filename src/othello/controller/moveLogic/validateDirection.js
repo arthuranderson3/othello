@@ -8,7 +8,7 @@ import toOppositePlayer from './toOppositePlayer';
  *
  *************************************************************/
 
-export default function validateDirection({ idx, player, squares_arr }, direction) {
+export default function validateDirection({ idx, player }, squaresArr , direction) {
   /*
     * if the adjacent tile is the opposite player keep going
     *    if this direction also ends with same player return true.
@@ -18,7 +18,7 @@ export default function validateDirection({ idx, player, squares_arr }, directio
   let adjacent_is_opposite = false;
   do {
     if (next_idx > -1) {
-      let adj_player = squares_arr[next_idx];
+      let adj_player = squaresArr[next_idx];
 
       /*
             * are we next to or ending with an undefined square?

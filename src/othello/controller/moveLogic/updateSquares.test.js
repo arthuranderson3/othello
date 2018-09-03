@@ -1,17 +1,17 @@
 import updateSquares from './updateSquares';
+import { toSquaresArray } from '../../model/gameBoardPieces';
 import { createGameBoardPieces } from '../../model/gameBoardPieces';
-import { expandGameBoardPieces } from '../../model/gameBoardPieces';
 
 describe('updateSquares Test Suite', () => {
   it('updateSquares', () => {
     const pieces = createGameBoardPieces();
     pieces.idx = 29;
-    const ep = expandGameBoardPieces(pieces);
-    let newPieces = updateSquares(ep);
-    expect(newPieces.squares_arr[27]).toBe('W');
-    expect(newPieces.squares_arr[28]).toBe('W');
-    expect(newPieces.squares_arr[29]).toBe('W');
-    expect(newPieces.squares_arr[35]).toBe('B');
-    expect(newPieces.squares_arr[36]).toBe('W');
+    const squaresArr = toSquaresArray(pieces.squaresObj);
+    let newPieces = updateSquares(pieces, squaresArr);
+    expect(newPieces.squaresArr[27]).toBe('W');
+    expect(newPieces.squaresArr[28]).toBe('W');
+    expect(newPieces.squaresArr[29]).toBe('W');
+    expect(newPieces.squaresArr[35]).toBe('B');
+    expect(newPieces.squaresArr[36]).toBe('W');
   });
 });

@@ -25,7 +25,7 @@ export default class OthelloApp extends Component {
     const self = this;
     checkMove(self.state, idx)
       .then(state => {
-        console.log(JSON.stringify(state));
+        //console.log(JSON.stringify(state));
         self.setState(state);
       })
       .catch(err => {
@@ -44,7 +44,9 @@ export default class OthelloApp extends Component {
   }
 
   start(nickName, numPlayers) {
-    console.info({ nickName, numPlayers });
+    //console.info({ nickName, numPlayers });
+    let game = constructGame( numPlayers, nickName );
+    console.info( game );
   }
 
   render() {

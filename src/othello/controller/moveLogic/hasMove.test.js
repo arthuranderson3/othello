@@ -1,17 +1,17 @@
 import { createGameBoardPieces } from '../../model/gameBoardPieces';
-import { expandGameBoardPieces } from '../../model/gameBoardPieces';
+import { toSquaresArray } from '../../model/gameBoardPieces';
 import hasMove from './hasMove';
 
 describe('hasMove Test Suite', () => {
   it('hasMove', () => {
     const pieces = createGameBoardPieces();
-    const ep = expandGameBoardPieces(pieces);
-    expect(hasMove(ep, 'W')).toBe(true);
+    const squaresArr = toSquaresArray(pieces.squaresObj);
+    expect(hasMove( squaresArr, 'W')).toBe(true);
   });
 
   it('hasMove', () => {
     const pieces = {
-      squares_obj: {
+      squaresObj: {
         '19': 'B',
         '20': 'B',
         '21': 'B',
@@ -25,8 +25,8 @@ describe('hasMove Test Suite', () => {
       idx: 19,
       turn: 5,
     };
-    const ep = expandGameBoardPieces(pieces);
-    expect(hasMove(ep, 'W')).toBeTruthy();
-    expect(hasMove(ep, 'B')).toBeTruthy();
+    const squaresArr = toSquaresArray(pieces.squaresObj);
+    expect(hasMove( squaresArr, 'W')).toBeTruthy();
+    expect(hasMove( squaresArr, 'B')).toBeTruthy();
   });
 });

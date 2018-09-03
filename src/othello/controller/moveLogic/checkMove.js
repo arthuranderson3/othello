@@ -5,17 +5,15 @@ import toOppositePlayer from './toOppositePlayer';
 import { getLastBoard } from '../../model/state';
 import { recordLastBoard } from '../../model/state';
 import getTurn from '../../model/stats/getTurn';
-import { expandGameBoardPieces } from '../../model/gameBoardPieces';
-import { compressGameBoardPieces } from '../../model/gameBoardPieces';
 
 export default function checkMove(state, idx) {
   return new Promise((resolve, reject) => {
     let currentState = state;
     const gameBoardPieces = getLastBoard(currentState);
     gameBoardPieces.idx = idx;
-    const epGBP = expandGameBoardPieces(gameBoardPieces);
+    const squaresArr = toSquaresArray( gameBoardPieces.squaresObj );
 
-    if (!hasMove(epGBP, epGBP.player)) {
+    if (!hasMove(squaresArr, gameBoardPieces.player)) {
       return reject(new Error('not valid move'));
     } else if (isValidMove(epGBP, epGBP.player)) {
       const newEPGamePieces = updateSquares(epGBP);

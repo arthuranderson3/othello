@@ -1,5 +1,5 @@
 import constructPlayer from './constructPlayer';
 
-export default function createPlayer({ id, name, color } = constructPlayer()) {
-  return { id, name, color };
+export default function createPlayer( { color, id, name, tz } = constructPlayer()) {
+  return { color, id, name, tz };
 }

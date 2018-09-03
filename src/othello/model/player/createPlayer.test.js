@@ -7,14 +7,16 @@ describe('createPlayer suite', () => {
     expect(p).toHaveProperty('id');
     expect(p).toHaveProperty('name');
     expect(p).toHaveProperty('color');
+    expect(p).toHaveProperty('tz');
     expect(p.name).toEqual('anonymous');
     expect(p.color).toEqual('W');
   });
 
   it('createPlayer# named', () => {
-    const named = constructPlayer('Bob');
+    const named = constructPlayer('Bob', 'W', 'Etc/UTC-0');
     const p = createPlayer(named);
     expect(p.name).toEqual('Bob');
     expect(p.color).toEqual('W');
+    expect(p.tz).toEqual('Etc/UTC-0');
   });
 });

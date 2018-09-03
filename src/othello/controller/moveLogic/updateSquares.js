@@ -6,11 +6,11 @@ import accumulateIdxForMove from './accumulateIdxForMove';
  * then update them all at the end.
  *
  *************************************************************/
-export default function updateSquares(pieces) {
-  const moveIdx = accumulateIdxForMove(pieces);
-  const newPieces = { ...pieces };
+export default function updateSquares(pieces, squaresArr ) {
+  const moveIdx = accumulateIdxForMove(pieces, squaresArr);
+  const newSquares = [ ...squaresArr ];
   foreach(moveIdx, i => {
-    newPieces.squares_arr[i] = pieces.player;
+    newSquares[i] = pieces.player;
   });
-  return newPieces;
+  return { ...pieces, squaresArr:[ ...newSquares ] };
 }

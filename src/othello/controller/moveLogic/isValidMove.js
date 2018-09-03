@@ -1,6 +1,16 @@
+import some from 'lodash/some';
 import validateDirection from './validateDirection';
-import * as bn from '../boardNavigation';
+import { top, topLeft, topRight, right, left, bottomLeft, bottomRight, bottom } from '../boardNavigation';
 
+//
+// we are adjacent to opposing player with player's square enclosing the line.
+// Keep track of validMove to speed up whether or not this is a valid move.
+//
+function checkAdjacentSquares( pieces, squaresArr ) {
+  return some( [top, topLeft, topRight, right, left, bottom, bottomLeft, bottomRight ], dir => {
+    return validateDirection( pieces, squaresArr, dir );
+  } );
+}
 /*************************************************************
  *
  * check the board against the current choice of move to see if
@@ -8,40 +18,10 @@ import * as bn from '../boardNavigation';
  * REF: can refactor this into seperate async checks and join at end
  *
  *************************************************************/
-export default function isValidMove(pieces) {
+export default function isValidMove(pieces, squaresArr) {
   // we have an open square?
-  if (pieces.squares_arr[pieces.idx] === undefined) {
-    let validMove = false;
-    //
-    // we are adjacent to opposing player with player's square enclosing the line.
-    // Keep track of validMove to speed up whether or not this is a valid move.
-    //
-    if (validateDirection(pieces, bn.top)) {
-      validMove = true;
-    }
-    if (!validMove && validateDirection(pieces, bn.topRight)) {
-      validMove = true;
-    }
-    if (!validMove && validateDirection(pieces, bn.topLeft)) {
-      validMove = true;
-    }
-    if (!validMove && validateDirection(pieces, bn.right)) {
-      validMove = true;
-    }
-    if (!validMove && validateDirection(pieces, bn.left)) {
-      validMove = true;
-    }
-    if (!validMove && validateDirection(pieces, bn.bottom)) {
-      validMove = true;
-    }
-    if (!validMove && validateDirection(pieces, bn.bottomRight)) {
-      validMove = true;
-    }
-    if (!validMove && validateDirection(pieces, bn.bottomLeft)) {
-      validMove = true;
-    }
-
-    return validMove;
+  if (squaresArr[pieces.idx] === undefined) {
+    return checkAdjacentSquares( pieces, squaresArr );
   } else {
     return false;
   }

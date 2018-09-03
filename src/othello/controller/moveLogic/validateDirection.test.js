@@ -1,5 +1,5 @@
 import { createGameBoardPieces } from '../../model/gameBoardPieces';
-import { expandGameBoardPieces } from '../../model/gameBoardPieces';
+import { toSquaresArray } from '../../model/gameBoardPieces';
 import validateDirection from './validateDirection';
 import { right } from '../boardNavigation';
 import { left } from '../boardNavigation';
@@ -8,14 +8,14 @@ describe('validateDirection Test Suite', () => {
   it('validateDirection#true', () => {
     const pieces = createGameBoardPieces();
     pieces.idx = 29;
-    const ep = expandGameBoardPieces(pieces);
-    expect(validateDirection(ep, left)).toBe(true);
+    const squaresArr = toSquaresArray(pieces.squaresObj);
+    expect(validateDirection(pieces, squaresArr, left)).toBe(true);
   });
 
   it('validateDirection#false', () => {
     const pieces = createGameBoardPieces();
     pieces.idx = 29;
-    const ep = expandGameBoardPieces(pieces);
-    expect(validateDirection(ep, right)).toBe(false);
+    const squaresArr = toSquaresArray(pieces.squaresObj);
+    expect(validateDirection(pieces, squaresArr, right)).toBe(false);
   });
 });
