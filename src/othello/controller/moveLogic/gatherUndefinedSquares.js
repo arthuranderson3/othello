@@ -8,8 +8,8 @@ function filterUndefinedSquare(piece) {
   return piece.square === undefined;
 }
 
-export default function gatherUndefinedSquares(squares_arr) {
+export default function gatherUndefinedSquares({ squaresArr }) {
   // gather all potential movement squares.
-  const board_map = map(squares_arr, toSquareIndex);
+  const board_map = map(squaresArr, toSquareIndex);
   return filter(board_map, filterUndefinedSquare);
 }

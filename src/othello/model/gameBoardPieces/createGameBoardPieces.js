@@ -1,14 +1,16 @@
 import slice from 'lodash/slice';
 import DEFAULT_SQUARES from './DEFAULT_SQUARES';
 import constructIdentity from '../identity/constructIdentity';
+import createValidSquares from './createValidSquares';
+import toSquaresObj from './toSquaresObj';
 
 const defaultGameBoard = {
   ...constructIdentity(),
-  squaresObj: { ...DEFAULT_SQUARES },
+  squaresObj: DEFAULT_SQUARES,
   player: 'W',
   turn: 1,
   idx: undefined,
-  validSquares:[20, 29, 34, 44]
+  ...createValidSquares( [20, 29, 34, 44] )
 };
 
 //
@@ -16,5 +18,5 @@ const defaultGameBoard = {
 // object destructuring causes errors to be thrown when we have undefined parameter.
 //
 export default function createGameBoardPieces( { id, squaresObj, player, turn, idx, validSquares } = defaultGameBoard) {
-  return { id, squaresObj: { ...squaresObj } , player, turn, idx, validSquares: [ ...validSquares] };
+  return { id, squaresObj, player, turn, idx, validSquares: [ ...validSquares] };
 }

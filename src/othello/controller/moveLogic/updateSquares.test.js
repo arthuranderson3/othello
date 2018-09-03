@@ -6,7 +6,7 @@ describe('updateSquares Test Suite', () => {
   it('updateSquares', () => {
     const pieces = createGameBoardPieces();
     pieces.idx = 29;
-    const squaresArr = toSquaresArray(pieces.squaresObj);
+    const squaresArr = toSquaresArray(pieces);
     let newPieces = updateSquares(pieces, squaresArr);
     expect(newPieces.squaresArr[27]).toBe('W');
     expect(newPieces.squaresArr[28]).toBe('W');

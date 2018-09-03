@@ -1,7 +1,7 @@
 import forIn from 'lodash.forin';
 
-export default function countSquareColor(color, { squares_obj }) {
+export default function countSquareColor(color, { squaresObj }) {
   let count = 0;
-  forIn(squares_obj, value => (value === color ? count++ : undefined));
+  forIn(squaresObj, value => (value === color ? count++ : undefined));
   return count;
 }

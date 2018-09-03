@@ -1,6 +1,6 @@
 import toOppositePlayer from './toOppositePlayer';
 
-export default function findMovesInDirection({ idx, player }, squaresArr, direction) {
+export default function findMovesInDirection({ idx, player }, { squaresArr }, direction) {
   /*
 * if the adjacent tile is the opposite player keep going
 *    if this direction also ends with same player return true.

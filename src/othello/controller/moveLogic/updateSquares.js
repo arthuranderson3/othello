@@ -8,7 +8,7 @@ import accumulateIdxForMove from './accumulateIdxForMove';
  *************************************************************/
 export default function updateSquares(pieces, squaresArr ) {
   const moveIdx = accumulateIdxForMove(pieces, squaresArr);
-  const newSquares = [ ...squaresArr ];
+  const newSquares = [ ...squaresArr.squaresArr ];
   foreach(moveIdx, i => {
     newSquares[i] = pieces.player;
   });

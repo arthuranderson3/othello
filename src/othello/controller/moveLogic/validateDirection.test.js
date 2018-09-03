@@ -8,14 +8,14 @@ describe('validateDirection Test Suite', () => {
   it('validateDirection#true', () => {
     const pieces = createGameBoardPieces();
     pieces.idx = 29;
-    const squaresArr = toSquaresArray(pieces.squaresObj);
+    const squaresArr = toSquaresArray(pieces);
     expect(validateDirection(pieces, squaresArr, left)).toBe(true);
   });
 
   it('validateDirection#false', () => {
     const pieces = createGameBoardPieces();
     pieces.idx = 29;
-    const squaresArr = toSquaresArray(pieces.squaresObj);
+    const squaresArr = toSquaresArray(pieces);
     expect(validateDirection(pieces, squaresArr, right)).toBe(false);
   });
 });

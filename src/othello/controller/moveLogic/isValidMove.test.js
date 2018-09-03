@@ -6,7 +6,7 @@ describe('isValidMove Test Suite', () => {
   it('isValidMove#true', () => {
     const pieces = createGameBoardPieces();
     pieces.idx = 29;
-    const squaresArr = toSquaresArray(pieces.squaresObj);
+    const squaresArr = toSquaresArray(pieces);
 
     expect(isValidMove(pieces, squaresArr)).toBe(true);
   });
@@ -14,7 +14,7 @@ describe('isValidMove Test Suite', () => {
   it('isValidMove#false', () => {
     const pieces = createGameBoardPieces();
     pieces.idx = 15;
-    const squaresArr = toSquaresArray(pieces.squaresObj);
+    const squaresArr = toSquaresArray(pieces);
     expect(isValidMove(pieces, squaresArr)).toBe(false);
   });
 });

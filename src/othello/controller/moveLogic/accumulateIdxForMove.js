@@ -18,8 +18,14 @@ export default function accumulateIdxForMove(pieces, squaresArr) {
   //
   // move in each direction to find all the squares that will turn
   //
-  foreach([top, topRight, topLeft, right, bottom, bottomRight, bottomLeft, left], dir =>
-    movement = concat(movement, findMovesInDirection(pieces, squaresArr, dir))
+  foreach([top,
+    topRight,
+    topLeft,
+    right,
+    bottom,
+    bottomRight,
+    bottomLeft,
+    left], dir => movement = concat(movement, findMovesInDirection(pieces, squaresArr, dir) )
   );
   return slice(movement);
 }

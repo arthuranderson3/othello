@@ -6,6 +6,6 @@ import gatherUndefinedSquares from './gatherUndefinedSquares';
 export default function hasMove( squaresArr, player) {
   const squaresObj = toSquaresObj( squaresArr );
   return some(gatherUndefinedSquares(squaresArr), ({ idx }) => {
-    return isValidMove({ squaresObj, player, idx }, squaresArr);
+    return isValidMove({ ...squaresObj, player, idx }, squaresArr);
   });
 }

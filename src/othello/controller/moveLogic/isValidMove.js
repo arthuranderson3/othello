@@ -7,9 +7,15 @@ import { top, topLeft, topRight, right, left, bottomLeft, bottomRight, bottom } 
 // Keep track of validMove to speed up whether or not this is a valid move.
 //
 function checkAdjacentSquares( pieces, squaresArr ) {
-  return some( [top, topLeft, topRight, right, left, bottom, bottomLeft, bottomRight ], dir => {
-    return validateDirection( pieces, squaresArr, dir );
-  } );
+  return some( [top,
+    topLeft,
+    topRight,
+    right,
+    left,
+    bottom,
+    bottomLeft,
+    bottomRight ],
+    dir => validateDirection( pieces, squaresArr, dir ) );
 }
 /*************************************************************
  *

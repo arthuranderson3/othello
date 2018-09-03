@@ -7,6 +7,6 @@ describe('findMovesInDirection Test Suite', () => {
   it('findMovesInDirection#success', () => {
     const pieces = createGameBoardPieces();
     pieces.idx = 29;
-    expect(findMovesInDirection(pieces, toSquaresArray( pieces.squaresObj ), left)).toEqual(expect.arrayContaining([28]));
+    expect(findMovesInDirection(pieces, toSquaresArray( pieces ), left)).toEqual(expect.arrayContaining([28]));
   });
 });

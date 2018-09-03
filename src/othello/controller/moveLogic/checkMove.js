@@ -11,7 +11,7 @@ export default function checkMove(state, idx) {
     let currentState = state;
     const gameBoardPieces = getLastBoard(currentState);
     gameBoardPieces.idx = idx;
-    const squaresArr = toSquaresArray( gameBoardPieces.squaresObj );
+    const squaresArr = toSquaresArray( gameBoardPieces );
 
     if (!hasMove(squaresArr, gameBoardPieces.player)) {
       return reject(new Error('not valid move'));

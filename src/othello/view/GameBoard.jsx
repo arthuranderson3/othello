@@ -6,7 +6,7 @@ import { toSquaresArray } from '../model/gameBoardPieces';
 
 export default class GameBoard extends Component {
   render() {
-    const squaresArr = toSquaresArray(this.props.squaresObj);
+    const squaresArr = toSquaresArray(this.props);
     const rowSquares = _.chunk(squaresArr, 8);
     const board = _.map(rowSquares, (squares, row) => {
       return (

@@ -3,13 +3,13 @@ import { toSquaresArray } from '../../model/gameBoardPieces';
 import hasMove from './hasMove';
 
 describe('hasMove Test Suite', () => {
-  it('hasMove', () => {
+  it('hasMove# true', () => {
     const pieces = createGameBoardPieces();
-    const squaresArr = toSquaresArray(pieces.squaresObj);
+    const squaresArr = toSquaresArray(pieces);
     expect(hasMove( squaresArr, 'W')).toBe(true);
   });
 
-  it('hasMove', () => {
+  it('hasMove# both', () => {
     const pieces = {
       squaresObj: {
         '19': 'B',
@@ -25,7 +25,7 @@ describe('hasMove Test Suite', () => {
       idx: 19,
       turn: 5,
     };
-    const squaresArr = toSquaresArray(pieces.squaresObj);
+    const squaresArr = toSquaresArray(pieces);
     expect(hasMove( squaresArr, 'W')).toBeTruthy();
     expect(hasMove( squaresArr, 'B')).toBeTruthy();
   });
