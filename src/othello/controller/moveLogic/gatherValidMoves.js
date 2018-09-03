@@ -6,8 +6,7 @@ import isValidMove from './isValidMove';
 
 export default function gatherValidMoves( squaresArr, player ) {
 	const squaresObj = toSquaresObj( squaresArr );
-	const undefinedSquares = gatherUndefinedSquares(squaresArr);
-	const moves = filter(undefinedSquares, ({ idx }) => {
+	const moves = filter(gatherUndefinedSquares(squaresArr), ({ idx }) => {
 		return isValidMove({ ...squaresObj, player, idx }, squaresArr);
 	});
 	return map( moves, ( {idx} ) => idx );;
