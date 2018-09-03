@@ -15,7 +15,7 @@ export default function constructGame( gameName = 'anonymous', playerName = 'ano
       startTime: moment.utc().format(),
       players: [ player1, player2 ],
       history: createGameBoardPiecesArray( [ createGameBoardPieces() ]),
-      gameView: {
+      view: {
         score: { white: 2, black: 2 },
         currentTurn: 1,
         currentPlayer: 'W',

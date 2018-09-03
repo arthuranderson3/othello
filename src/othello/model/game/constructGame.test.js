@@ -10,7 +10,7 @@ describe('constructGame suite', () => {
     expect(game).toHaveProperty('startTime');
     expect(game).toHaveProperty('players');
     expect(game).toHaveProperty('history');
-    expect(game).toHaveProperty('gameView');
+    expect(game).toHaveProperty('view');
     expect(game.name).toEqual('anonymous');
     expect(game.players.length).toEqual(2);
     expect(game.history.length).toEqual(1);

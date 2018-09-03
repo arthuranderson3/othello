@@ -10,7 +10,7 @@ describe('createGame suite', () => {
 		expect(game).toHaveProperty('startTime');
 		expect(game).toHaveProperty('players');
 		expect(game).toHaveProperty('history');
-		expect(game).toHaveProperty('gameView');
+		expect(game).toHaveProperty('view');
 		expect(game).toEqual(g1);
 	})
 })
