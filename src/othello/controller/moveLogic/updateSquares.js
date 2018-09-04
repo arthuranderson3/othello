@@ -1,5 +1,8 @@
 import foreach from 'lodash.foreach';
 import accumulateIdxForMove from './accumulateIdxForMove';
+import toSquaresObj from '../../model/gameBoardPieces/toSquaresObj';
+import createGameBoardPieces from '../../model/gameBoardPieces/createGameBoardPieces';
+
 /*************************************************************
  *
  * Create a list of all the squares that need to be updated
@@ -12,5 +15,8 @@ export default function updateSquares(pieces, squaresArr ) {
   foreach(moveIdx, i => {
     newSquares[i] = pieces.player;
   });
-  return { ...pieces, squaresArr:[ ...newSquares ] };
+
+  return createGameBoardPieces( {
+    ...pieces,
+    ...toSquaresObj( { squaresArr: newSquares } ) } );
 }

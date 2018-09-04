@@ -5,30 +5,41 @@ import toOppositePlayer from './toOppositePlayer';
 import { getLastBoard } from '../../model/state';
 import { recordLastBoard } from '../../model/state';
 import getTurn from '../../model/stats/getTurn';
+import toSquaresArray from '../../model/gameBoardPieces/toSquaresArray';
+import gatherValidMoves from './gatherValidMoves';
+// import toSquaresObj from '../../model/gameBoardPieces/toSquaresObj';
 
 export default function checkMove(state, idx) {
   return new Promise((resolve, reject) => {
+
     let currentState = state;
     const gameBoardPieces = getLastBoard(currentState);
     gameBoardPieces.idx = idx;
     const squaresArr = toSquaresArray( gameBoardPieces );
 
-    if (!hasMove(squaresArr, gameBoardPieces.player)) {
+    if (!hasMove( gameBoardPieces.player, squaresArr )) {
       return reject(new Error('not valid move'));
-    } else if (isValidMove(epGBP, epGBP.player)) {
-      const newEPGamePieces = updateSquares(epGBP);
+    } else if (isValidMove( gameBoardPieces, squaresArr )) {
 
-      const newGamePieces = compressGameBoardPieces(newEPGamePieces);
+      const newGamePieces = updateSquares(gameBoardPieces, squaresArr);
       //
       // see if the next player has a move.
       //
-      let next = toOppositePlayer(newEPGamePieces);
+      let next = toOppositePlayer(newGamePieces);
 
-      if (!hasMove(newEPGamePieces, next.player)) {
+      if (!hasMove(next.player, squaresArr)) {
         next = toOppositePlayer(next);
+      } else if( !hasMove( newGamePieces.player, squaresArr )){
+        // end game - no more moves
+        console.info("end game!!!");
       }
       newGamePieces.player = next.player;
       newGamePieces.turn = getTurn(currentState) + 1;
+      newGamePieces.validSquares = gatherValidMoves( 
+        toSquaresArray( newGamePieces ),
+        newGamePieces.player );
+
+      console.log( {newGamePieces: newGamePieces});
       currentState = recordLastBoard(currentState, newGamePieces);
 
       return resolve(currentState);

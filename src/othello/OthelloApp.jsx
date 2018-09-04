@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import bindAll from 'lodash.bindall';
 import './OthelloApp.css';
 import GameBoard from './view/GameBoard';
-import createGameState from './model/state/createGameState';
+// import createGameState from './model/state/createGameState';
 import getLastBoard from './model/state/getLastBoard';
 import checkMove from './controller/moveLogic/checkMove';
 import undoMove from './model/state/undoMove';
 import resetBoard from './model/state/resetBoard';
 import GameStartForm from './view/GameStartForm';
+import constructGame from './model/game/constructGame';
 
 export default class OthelloApp extends Component {
   constructor(props) {
     super(props);
-    this.state = createGameState();
+    this.state = constructGame();
 
     bindAll(this, ['click_Square', 'reset', 'undo', 'start']);
   }
@@ -22,10 +23,10 @@ export default class OthelloApp extends Component {
   // delegates to checkMove function
   /////////////////////////////////////////////////
   click_Square(idx) {
+    console.info( { click: idx });
     const self = this;
     checkMove(self.state, idx)
       .then(state => {
-        //console.log(JSON.stringify(state));
         self.setState(state);
       })
       .catch(err => {
@@ -34,23 +35,21 @@ export default class OthelloApp extends Component {
   }
 
   reset() {
-    const newState = resetBoard();
-    this.setState(newState);
+    this.setState(resetBoard());
   }
 
   undo() {
-    const newState = undoMove(this.state);
-    this.setState(newState);
+    this.setState(undoMove(this.state));
   }
 
   start(nickName, numPlayers) {
-    //console.info({ nickName, numPlayers });
     let game = constructGame( numPlayers, nickName );
-    console.info( game );
+    this.setState(game);
   }
 
   render() {
     const gbp = getLastBoard(this.state);
+    console.log({ lastBoard: gbp } );
     return (
       <React.Fragment>
         <header>

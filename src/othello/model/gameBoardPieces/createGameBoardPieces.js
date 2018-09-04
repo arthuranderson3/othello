@@ -1,8 +1,6 @@
-import slice from 'lodash/slice';
 import DEFAULT_SQUARES from './DEFAULT_SQUARES';
 import constructIdentity from '../identity/constructIdentity';
 import createValidSquares from './createValidSquares';
-import toSquaresObj from './toSquaresObj';
 
 const defaultGameBoard = {
   ...constructIdentity(),

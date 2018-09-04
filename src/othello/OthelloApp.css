@@ -65,10 +65,14 @@ ul {
   height: 40px;
   margin-right: -1px;
   margin-top: -1px;
-  padding: 0px;
+  padding: 2px;
   text-align: center;
   width: 40px;
   min-width: 40px;
+}
+
+.valid-square:hover {
+  background-color: green;
 }
 
 .circleFont {

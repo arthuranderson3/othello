@@ -1,7 +1,7 @@
 import createGameState from './createGameState';
 import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
 
-describe('_createGameState test suite', () => {
+describe('createGameState test suite', () => {
   it('createGameState# default', () => {
     const gbp = createGameBoardPieces();
     const gameState = createGameState();

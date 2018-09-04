@@ -6,7 +6,7 @@ describe('hasMove Test Suite', () => {
   it('hasMove# true', () => {
     const pieces = createGameBoardPieces();
     const squaresArr = toSquaresArray(pieces);
-    expect(hasMove( squaresArr, 'W')).toBe(true);
+    expect(hasMove( 'W', squaresArr )).toBe(true);
   });
 
   it('hasMove# both', () => {
@@ -26,7 +26,7 @@ describe('hasMove Test Suite', () => {
       turn: 5,
     };
     const squaresArr = toSquaresArray(pieces);
-    expect(hasMove( squaresArr, 'W')).toBeTruthy();
-    expect(hasMove( squaresArr, 'B')).toBeTruthy();
+    expect(hasMove( 'W', squaresArr)).toBeTruthy();
+    expect(hasMove( 'B', squaresArr)).toBeTruthy();
   });
 });

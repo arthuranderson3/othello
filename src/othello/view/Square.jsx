@@ -15,6 +15,19 @@ export default class Square extends Component {
         game_piece = BLACK_CIRCLE;
       }
     }
+
+    if( this.props.validSquare ){
+      classes += ' valid-square';
+    }
+
+    if( this.props.onClick === undefined ) {
+      return (
+        <div className={classes} >
+          {game_piece}
+        </div>
+      );
+    }
+
     return (
       <div className={classes} onClick={() => this.props.onClick(this.props.idx)}>
         {game_piece}
@@ -22,8 +35,8 @@ export default class Square extends Component {
     );
   }
 
-  shouldComponentUpdate(nextProps) {
-    const { value } = this.props;
-    return value !== nextProps.value;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   const { value } = this.props;
+  //   return value !== nextProps.value && this.props.validSquare !== nextProps.validSquare;
+  // }
 }
