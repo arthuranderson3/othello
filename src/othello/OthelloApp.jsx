@@ -23,7 +23,6 @@ export default class OthelloApp extends Component {
   // delegates to checkMove function
   /////////////////////////////////////////////////
   click_Square(idx) {
-    console.info( { click: idx });
     const self = this;
     checkMove(self.state, idx)
       .then(state => {
@@ -49,7 +48,6 @@ export default class OthelloApp extends Component {
 
   render() {
     const gbp = getLastBoard(this.state);
-    console.log({ lastBoard: gbp } );
     return (
       <React.Fragment>
         <header>

@@ -35,11 +35,10 @@ export default function checkMove(state, idx) {
       }
       newGamePieces.player = next.player;
       newGamePieces.turn = getTurn(currentState) + 1;
-      newGamePieces.validSquares = gatherValidMoves( 
+      newGamePieces.validSquares = gatherValidMoves(
         toSquaresArray( newGamePieces ),
         newGamePieces.player );
 
-      console.log( {newGamePieces: newGamePieces});
       currentState = recordLastBoard(currentState, newGamePieces);
 
       return resolve(currentState);

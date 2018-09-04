@@ -8,10 +8,10 @@ describe('updateSquares Test Suite', () => {
     pieces.idx = 29;
     const squaresArr = toSquaresArray(pieces);
     let newPieces = updateSquares(pieces, squaresArr);
-    expect(newPieces.squaresArr[27]).toBe('W');
-    expect(newPieces.squaresArr[28]).toBe('W');
-    expect(newPieces.squaresArr[29]).toBe('W');
-    expect(newPieces.squaresArr[35]).toBe('B');
-    expect(newPieces.squaresArr[36]).toBe('W');
+    expect(newPieces.squaresObj[27]).toBe('W');
+    expect(newPieces.squaresObj[28]).toBe('W');
+    expect(newPieces.squaresObj[29]).toBe('W');
+    expect(newPieces.squaresObj[35]).toBe('B');
+    expect(newPieces.squaresObj[36]).toBe('W');
   });
 });

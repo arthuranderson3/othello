@@ -34,9 +34,4 @@ export default class Square extends Component {
       </div>
     );
   }
-
-  // shouldComponentUpdate(nextProps) {
-  //   const { value } = this.props;
-  //   return value !== nextProps.value && this.props.validSquare !== nextProps.validSquare;
-  // }
 }
