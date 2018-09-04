@@ -15,7 +15,7 @@ export default class OthelloApp extends Component {
     super(props);
     this.state = constructGame();
 
-    bindAll(this, ['click_Square', 'reset', 'undo', 'start']);
+    bindAll(this, ['click_Square', 'reset', 'undo', 'start', 'debugLog']);
   }
 
   /////////////////////////////////////////////////
@@ -40,7 +40,10 @@ export default class OthelloApp extends Component {
   undo() {
     this.setState(undoMove(this.state));
   }
-
+  debugLog() {
+    const debugState = JSON.stringify( this.state );
+    console.info( debugState );
+  }
   start(nickName, numPlayers) {
     let game = constructGame( numPlayers, nickName );
     this.setState(game);
@@ -55,7 +58,7 @@ export default class OthelloApp extends Component {
         </header>
         <GameStartForm onStartGame={this.start} />
         <div className="game">
-          <GameBoard {...gbp} onClick={this.click_Square} onReset={this.reset} onUndo={this.undo} />
+          <GameBoard {...gbp} onClick={this.click_Square} onReset={this.reset} onUndo={this.undo} onDebug={this.debugLog} />
         </div>
       </React.Fragment>
     );

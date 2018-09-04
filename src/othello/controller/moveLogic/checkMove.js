@@ -7,7 +7,6 @@ import { recordLastBoard } from '../../model/state';
 import getTurn from '../../model/stats/getTurn';
 import toSquaresArray from '../../model/gameBoardPieces/toSquaresArray';
 import gatherValidMoves from './gatherValidMoves';
-// import toSquaresObj from '../../model/gameBoardPieces/toSquaresObj';
 
 export default function checkMove(state, idx) {
   return new Promise((resolve, reject) => {
@@ -40,8 +39,9 @@ export default function checkMove(state, idx) {
         newGamePieces.player );
 
       currentState = recordLastBoard(currentState, newGamePieces);
-
+      console.info(JSON.stringify({newGame: newGamePieces}));
       return resolve(currentState);
     }
+    return reject( new Error("not valid Move!!!???"));
   });
 }
