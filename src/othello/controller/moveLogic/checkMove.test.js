@@ -50,7 +50,7 @@ describe('checkMove Test Suite', () => {
         expect( lastBoard.validSquares ).toEqual([8, 17]);
         done();
       })
-      .catch( err => { console.error(err), done(err); } );
+      .catch( err => { console.error(err), done.fail(err); } );
   })
   it("checkMove#capture_2", done => {
     const file = fs.readFileSync(path.join(__dirname, "checkMove.test.capture2.json" ));
@@ -58,7 +58,7 @@ describe('checkMove Test Suite', () => {
     const debugBoard = getLastBoard(gameState);
     expect( debugBoard.player ).toEqual('B');
     expect( debugBoard.validSquares[0] ).toEqual(0);
-    
+
     console.info(JSON.stringify(debugBoard));
     checkMove( gameState, 0 )
       .then( state => {

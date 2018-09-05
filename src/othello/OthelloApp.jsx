@@ -53,9 +53,6 @@ export default class OthelloApp extends Component {
     const gbp = getLastBoard(this.state);
     return (
       <React.Fragment>
-        <header>
-          <h1 className="h1">Othello</h1>
-        </header>
         <GameStartForm onStartGame={this.start} />
         <div className="game">
           <GameBoard {...gbp} onClick={this.click_Square} onReset={this.reset} onUndo={this.undo} onDebug={this.debugLog} />

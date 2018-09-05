@@ -1,5 +1,6 @@
 import chunk from 'lodash.chunk';
 import map from 'lodash.map';
+import reduce from 'lodash.reduce';
 import React, { Component } from 'react';
 import BoardRow from './BoardRow';
 import GameStats from './GameStats';
@@ -9,7 +10,7 @@ export default class GameBoard extends Component {
   render() {
     const sq = toSquaresArray(this.props);
     const rowSquares = chunk(sq.squaresArr, 8);
-    const board = _.map(rowSquares, (squares, row) => {
+    const board = map(rowSquares, (squares, row) => {
       return (
         <BoardRow
           key={row}
@@ -22,7 +23,7 @@ export default class GameBoard extends Component {
     return (
       <div>
         <div>
-          <h5>Othello</h5>
+          <h1>Othello</h1>
           <button type="button" onClick={() => this.props.onReset()}>
             Reset
           </button>&nbsp;
