@@ -12,5 +12,7 @@ describe('createGame suite', () => {
 		expect(game).toHaveProperty('history');
 		expect(game).toHaveProperty('view');
 		expect(game).toEqual(g1);
+		expect(game.name).toEqual('namedGame');
+		expect(game.players[0].name).toEqual('Yoda');
 	})
 })

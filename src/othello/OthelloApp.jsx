@@ -4,7 +4,7 @@ import './OthelloApp.css';
 import GameBoard from './view/GameBoard';
 // import createGameState from './model/state/createGameState';
 import getLastBoard from './model/state/getLastBoard';
-import checkMove from './controller/moveLogic/checkMove';
+import makeMove from './controller/moveLogic/makeMove';
 import undoMove from './model/state/undoMove';
 import resetBoard from './model/state/resetBoard';
 import GameStartForm from './view/GameStartForm';
@@ -23,14 +23,12 @@ export default class OthelloApp extends Component {
   // delegates to checkMove function
   /////////////////////////////////////////////////
   click_Square(idx) {
-    const self = this;
-    checkMove(self.state, idx)
-      .then(state => {
-        self.setState(state);
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    try{
+      const state = makeMove( this.state, idx );
+      this.setState( state );
+    } catch( err ) {
+      console.error( err );
+    }
   }
 
   reset() {
@@ -45,7 +43,7 @@ export default class OthelloApp extends Component {
     console.info( debugState );
   }
   start(nickName, numPlayers) {
-    let game = constructGame( numPlayers, nickName );
+    let game = constructGame( "gameName", nickName, numPlayers );
     this.setState(game);
   }
 
