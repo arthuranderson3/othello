@@ -15,7 +15,7 @@ export default function makeMove(state, idx) {
     const squaresArr = toSquaresArray( gameBoardPieces );
 
     if (!hasMove( gameBoardPieces.player, squaresArr )) {
-      throw new Error(`no move available ${idx}`);
+      throw new Error(`no move for player ${gameBoardPieces.player}`);
     } else if (isValidMove( gameBoardPieces, squaresArr )) {
 
       const newGamePieces = updateSquares(gameBoardPieces, squaresArr);

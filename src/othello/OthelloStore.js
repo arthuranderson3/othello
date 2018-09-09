@@ -1,45 +1,16 @@
 import { createStore } from 'redux';
-import { createGame } from './model/game/createGame';
+import { START_GAME } from './actions/othelloActionConstants';
+import { MAKE_MOVE } from './actions/othelloActionConstants';
+import { UNDO_MOVE } from './actions/othelloActionConstants';
+import { RESET_GAME } from './actions/othelloActionConstants';
+import { DEBUG_STATE } from './actions/othelloActionConstants';
+
 import { constructGame } from './model/game/constructGame';
 import { makeMove } from './controller/moveLogic/makeMove';
 import { undoMove } from './state/undoMove';
 import { resetBoard } from './state/resetBoard';
 
 
-function createActionStartGame( gameName, playerOneName, numPlayers = 1  ) {
-	return {
-		type: START_GAME,
-		payload: constructGame( gameName, playerOneName, numPlayers )
-	};
-}
-
-function createActionMakeMove( idx ) {
-	return {
-		type: MAKE_MOVE,
-		payload: { idx }
-	};
-}
-
-function createActionUndoMove( ){
-	return {
-		type: UNDO_MOVE,
-		payload: {}
-	};
-}
-
-function createActionResetGame() {
-	return {
-		type: RESET_GAME,
-		payload: {}
-	}
-}
-
-function createActionDebugState( logLevel ) {
-	return {
-		type: DEBUG_STATE,
-		payload: { logLevel }
-	}
-}
 
 /**
 
@@ -67,27 +38,42 @@ function createActionDebugState( logLevel ) {
 	}
 
 **/
+
 function gameReducer( state, action ) {
 	switch( action.type ){
 		case START_GAME:
 		{
-			return startGame( state, action.payload );
+			return constructGame( action.payload.gameName, action.payload.playerName );
 		}
 		case MAKE_MOVE:
 		{
-			return makeMove( state, action.payload )
+			try{
+				return makeMove( state, action.payload.idx );
+			} catch ( err ) {
+				console.error( err );
+				return state;
+			}
 		}
 		case UNDO_MOVE:
 		{
-			return undoMove( state, action.payload );
+			try{
+				return undoMove( state );
+			} catch( err ) {
+				console.error( err );
+				return state;
+			}
 		}
 		case RESET_GAME:
 		{
-			return resetBoard( state, action.payload );
+			return resetBoard();
 		}
-		case DEBUG_LOG:
+		case DEBUG_STATE:
 		{
 			console.info( JSON.stringify( state, null, 2 ) );
+			return state;
+		}
+		default: {
+			console.error( { error: "Unhandled action", state, action } );
 			return state;
 		}
 	}
@@ -98,4 +84,4 @@ let store = createStore( gameReducer );
 store.subscribe( () =>
 	console.log( store.getState() ) );
 
-store.dispatch( actionStartGame( 'createGameName', 'guru', 'yoda', 1 ) );
+store.dispatch( createActionStartGame( 'createGameName', 'guru', 'yoda', 1 ) );

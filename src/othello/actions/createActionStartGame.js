@@ -1,9 +1,6 @@
 import { START_GAME } from './othelloActionConstants';
-import constructGame from '../model/game/constructGame';
+import createAction from './createAction';
 
-export default function createActionStartGame( gameName, playerName ) {
-	return {
-		type: START_GAME,
-		payload: constructGame( gameName, playerName )
-	}
+export default function createActionStartGame( gameName = 'anonymous', playerName = 'white' ) {
+	return createAction( START_GAME, { gameName, playerName } );
 }
