@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import bindAll from 'lodash.bindall';
 import './OthelloApp.css';
 import GameBoard from './view/GameBoard';
-// import createGameState from './model/state/createGameState';
 import getLastBoard from './model/state/getLastBoard';
 import makeMove from './controller/moveLogic/makeMove';
 import undoMove from './model/state/undoMove';
@@ -15,7 +14,7 @@ export default class OthelloApp extends Component {
     super(props);
     this.state = constructGame();
 
-    bindAll(this, ['click_Square', 'reset', 'undo', 'start', 'debugLog']);
+    bindAll(this, ['click_Square', 'reset', 'undo', 'startGame', 'debugState']);
   }
 
   /////////////////////////////////////////////////
@@ -38,11 +37,11 @@ export default class OthelloApp extends Component {
   undo() {
     this.setState(undoMove(this.state));
   }
-  debugLog() {
-    const debugState = JSON.stringify( this.state );
-    console.info( debugState );
+  debugState() {
+    console.info( JSON.stringify( this.state, null, 2 ) );
   }
-  start(nickName, numPlayers) {
+
+  startGame(nickName, numPlayers) {
     let game = constructGame( "gameName", nickName, numPlayers );
     this.setState(game);
   }
@@ -51,7 +50,7 @@ export default class OthelloApp extends Component {
     const gbp = getLastBoard(this.state);
     return (
       <React.Fragment>
-        <GameStartForm onStartGame={this.start} />
+        <GameStartForm onStartGame={this.startGame} />
         <div className="game">
           <GameBoard {...gbp} onClick={this.click_Square} onReset={this.reset} onUndo={this.undo} onDebug={this.debugLog} />
         </div>
