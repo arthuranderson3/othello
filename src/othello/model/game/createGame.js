@@ -9,6 +9,6 @@ export default function createGame( { id, name, startTime, players, history, vie
 		startTime,
 		players: createPlayerArray( players ),
 		history: createGameBoardPiecesArray( history ),
-		view: createGameView( view )
+		view: createGameView( history )
 	}
 }

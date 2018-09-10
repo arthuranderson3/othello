@@ -1,9 +1,9 @@
-import moment from 'moment';
 import createGameView from './createGameView';
+import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
 
 describe('createGameView test suite', () => {
   it('#createGameView ', () => {
-    const gv = createGameView({ currentPlayer: 'W', currentTurn: 1, lastTurnTime: moment.utc().format(), score: { white: 2, black: 2 } } );
+    const gv = createGameView( [createGameBoardPieces()] );
     expect(gv).toHaveProperty('currentPlayer');
     expect(gv).toHaveProperty('currentTurn');
     expect(gv).toHaveProperty('lastTurnTime');

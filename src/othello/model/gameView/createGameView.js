@@ -1,10 +1,12 @@
-import createScore from '../score/createScore';
+import computeScore from '../score/computeScore';
+import moment from 'moment';
 
-export default function createGameView( { score, currentTurn, currentPlayer, lastTurnTime } ) {
+export default function createGameView( history ) {
+	const lastGameBoard = history[ history.length - 1 ];
 	return {
-		...createScore( score ),
-		currentTurn,
-		currentPlayer,
-		lastTurnTime
+		...computeScore( lastGameBoard ),
+		currentTurn: history.length,
+		currentPlayer: lastGameBoard.player,
+		lastTurnTime: moment.utc().format()
 	};
 }

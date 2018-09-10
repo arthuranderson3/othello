@@ -20,7 +20,7 @@ export default function constructGame( gameName = 'anonymous', playerName = 'ano
         ... computeScore( gbp ),
         currentTurn: 1,
         currentPlayer: 'W',
-        lastTurnTime: undefined
+        lastTurnTime: moment.utc().format()
       }
     };
   }

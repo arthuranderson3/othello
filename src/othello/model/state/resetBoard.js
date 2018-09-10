@@ -1,6 +1,6 @@
+import createGame from '../game/createGame';
 import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
-import createGameState from './createGameState';
 
-export default function resetBoard() {
-  return createGameState([createGameBoardPieces()]);
+export default function resetBoard( state ) {
+  return createGame( { ...state, ...{ history: [createGameBoardPieces()] } } );
 }

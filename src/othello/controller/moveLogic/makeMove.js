@@ -2,7 +2,6 @@ import hasMove from './hasMove';
 import isValidMove from './isValidMove';
 import updateSquares from './updateSquares';
 import toOppositePlayer from './toOppositePlayer';
-import { getLastBoard } from '../../model/state';
 import { recordLastBoard } from '../../model/state';
 import getTurn from '../../model/stats/getTurn';
 import toSquaresArray from '../../model/gameBoardPieces/toSquaresArray';
@@ -10,7 +9,7 @@ import gatherValidMoves from './gatherValidMoves';
 
 export default function makeMove(state, idx) {
     let currentState = state;
-    const gameBoardPieces = getLastBoard(currentState);
+    const gameBoardPieces = currentState.history[ currentState.history.length - 1];
     gameBoardPieces.idx = idx;
     const squaresArr = toSquaresArray( gameBoardPieces );
 

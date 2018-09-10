@@ -1,9 +1,6 @@
-import createGameState from './createGameState';
+import concat from 'lodash/concat';
+import createGame from '../game/createGame';
 
-export default function recordLastBoard({ history }, gb) {
-  if (Array.isArray(history)) {
-    history.push(gb);
-    return createGameState(history);
-  }
-  return undefined;
+export default function recordLastBoard(gameState, gb) {
+  return createGame( { ...gameState, ...{ history: concat( gameState.history, gb ) } });
 }

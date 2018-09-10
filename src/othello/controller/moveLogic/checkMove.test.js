@@ -1,7 +1,6 @@
 import checkMove from './checkMove';
 import constructGame from '../../model/game/constructGame';
 import createGame from '../../model/game/createGame';
-import getLastBoard from '../../model/state/getLastBoard';
 import fs from 'fs';
 import path from 'path';
 
@@ -19,13 +18,13 @@ describe('checkMove Test Suite', () => {
   it("checkMove#capture2", done => {
     const file = fs.readFileSync(path.join(__dirname, "checkMove.test.capture2.json" ));
     const gameState = createGame( JSON.parse(file) );
-    const debugBoard = getLastBoard(gameState);
+    const debugBoard = gameState.history[ gameState.history.length - 1 ];
     expect( debugBoard.player ).toEqual('B');
     expect( debugBoard.validSquares[0] ).toEqual(0);
 
     checkMove( gameState, 0 )
       .then( state => {
-        const lastBoard = getLastBoard( state );
+        const lastBoard = state.history[ state.history.length - 1];
         expect( lastBoard.player ).toEqual('W');
         done();
       })

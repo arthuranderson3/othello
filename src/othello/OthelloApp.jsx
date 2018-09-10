@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import bindAll from 'lodash.bindall';
 import './OthelloApp.css';
 import GameBoard from './view/GameBoard';
-import getLastBoard from './model/state/getLastBoard';
 import makeMove from './controller/moveLogic/makeMove';
 import undoMove from './model/state/undoMove';
 import resetBoard from './model/state/resetBoard';
@@ -37,6 +36,7 @@ export default class OthelloApp extends Component {
   undo() {
     this.setState(undoMove(this.state));
   }
+
   debugState() {
     console.info( JSON.stringify( this.state, null, 2 ) );
   }
@@ -47,7 +47,7 @@ export default class OthelloApp extends Component {
   }
 
   render() {
-    const gbp = getLastBoard(this.state);
+    const gbp = this.state.history[ this.state.history.length - 1 ];
     return (
       <React.Fragment>
         <GameStartForm onStartGame={this.startGame} />
