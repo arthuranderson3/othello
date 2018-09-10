@@ -1,8 +1,6 @@
 import dropRight from 'lodash.dropright';
+import createGame from '../game/createGame';
 
-export default function undoMove({ history }) {
-  if (Array.isArray(history) && history.length > 1) {
-    return { history: dropRight(history) };
-  }
-  return undefined;
+export default function undoMove( state ) {
+  return createGame({ ...state, ...{ history: dropRight(state.history) } });
 }
