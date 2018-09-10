@@ -3,12 +3,18 @@ import createAction from './createAction';
 describe('createAction test suite', () => {
 	let type;
 	let payload;
+	let action;
 	beforeAll( () => {
-		const action = createAction( 'MAKE_MY_DAY', { some:'object', defined:'here' } );
+		action = createAction( 'MAKE_MY_DAY', { some:'object', defined:'here' } );
 		type = action.type;
 		payload = action.payload;
 	});
-
+	it( 'action.type', () => {
+		expect( action ).toHaveProperty('type');
+	});
+	it( 'action.payload', () => {
+		expect( action ).toHaveProperty('payload');
+	});
 	it( 'type#MAKE_MY_DAY', () => {
 		expect( type ).toEqual( 'MAKE_MY_DAY' );
 	});
