@@ -3,10 +3,10 @@ import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
 
 describe('createGameView test suite', () => {
   it('#createGameView ', () => {
-    const gv = createGameView( [createGameBoardPieces()] );
-    expect(gv).toHaveProperty('currentPlayer');
-    expect(gv).toHaveProperty('currentTurn');
-    expect(gv).toHaveProperty('lastTurnTime');
-    expect(gv).toHaveProperty('score');
+    const { view } = createGameView( [createGameBoardPieces()] );
+    expect(view).toHaveProperty('currentPlayer');
+    expect(view).toHaveProperty('currentTurn');
+    expect(view).toHaveProperty('lastTurnTime');
+    expect(view).toHaveProperty('score');
   });
 });

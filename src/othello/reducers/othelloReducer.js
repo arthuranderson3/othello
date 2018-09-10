@@ -63,7 +63,7 @@ export default function othelloReducer( state, action ) {
 		}
 		case RESET_GAME:
 		{
-			return resetBoard();
+			return resetBoard( state );
 		}
 		case DEBUG_STATE:
 		{
