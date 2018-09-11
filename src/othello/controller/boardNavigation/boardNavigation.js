@@ -5,7 +5,7 @@ import createRowCol from '../boardTransform/createRowCol';
 
 export default function boardNavigation(opRow, opCol) {
   return function(i) {
-    if (i + opRow < 0 || i + opCol > 64) return undefined;
+    if (i < 0 || i > 64) return undefined;
 
     const rc = {
       row: toRow(i) + opRow,
