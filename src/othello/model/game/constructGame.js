@@ -5,9 +5,9 @@ import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
 import createGameBoardPiecesArray from '../gameBoardPieces/createGameBoardPiecesArray';
 import createGameView from '../gameView/createGameView';
 
-const player2 = constructPlayer( 'yoda', 'B', 'Etc/GMT-0');
+const player2 = constructPlayer( 'black', 'B', 'Etc/GMT-0');
 
-export default function constructGame( gameName = 'anonymous', playerName = 'anonymous', numPlayers = 1 ) {
+export default function constructGame( gameName = 'anonymous', playerName = 'white', numPlayers = 1 ) {
   if( numPlayers === 1 ){
     const gbp = createGameBoardPieces();
     const history = createGameBoardPiecesArray( [ gbp ] );
@@ -15,7 +15,7 @@ export default function constructGame( gameName = 'anonymous', playerName = 'ano
       ...constructIdentity(),
       name: gameName,
       startTime: moment.utc().format(),
-      players: [ constructPlayer( playerName ), player2 ],
+      players: [ constructPlayer( playerName, 'W' ), player2 ],
       history: createGameBoardPiecesArray( history ),
       ...createGameView( history )
     };
