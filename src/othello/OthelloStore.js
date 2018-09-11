@@ -1,10 +1,8 @@
 import { createStore } from 'redux';
 import othelloReducer from './reducers/othelloReducer';
 
+let store = createStore(othelloReducer);
 
-let store = createStore( othelloReducer );
+store.subscribe(() => console.log(store.getState()));
 
-store.subscribe( () =>
-	console.log( store.getState() ) );
-
-store.dispatch( createActionStartGame( 'createGameName', 'guru', 'yoda', 1 ) );
+store.dispatch(createActionStartGame('createGameName', 'guru', 'yoda', 1));
