@@ -7,7 +7,7 @@ const defaultGameBoard = {
   squaresObj: DEFAULT_SQUARES,
   player: 'W',
   turn: 1,
-  idx: undefined,
+  index: undefined,
   ...createValidSquares( [20, 29, 34, 43] )
 };
 
@@ -15,6 +15,6 @@ const defaultGameBoard = {
 // using an object variable allows for undefined optional parameters
 // object destructuring causes errors to be thrown when we have undefined parameter.
 //
-export default function createGameBoardPieces( { id, squaresObj, player, turn, idx, validSquares } = defaultGameBoard) {
-  return { id, squaresObj, player, turn, idx, validSquares: [ ...validSquares] };
+export default function createGameBoardPieces( { id, squaresObj, player, turn, index, validSquares } = defaultGameBoard) {
+  return { id, squaresObj, player, turn, index, validSquares: [ ...validSquares] };
 }

@@ -55,4 +55,17 @@ describe('constructGame suite', () => {
       expect(game.players[1].color).toEqual('B');
     });
   });
+  describe('w/params construction', () => {
+    let game;
+    beforeAll( () => {
+      game = constructGame('test_game_name', 'player_one_name');
+    });
+    it('game.name=test_game_name', () => {
+      expect( game.name ).toEqual('test_game_name');
+    });
+    it('game.players[0].name=player_one_name', () => {
+      expect( game.players[0].name ).toEqual('player_one_name');
+    });
+  });
+
 });

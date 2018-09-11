@@ -1,4 +1,7 @@
 
 export default function createValidSquares( squares ) {
-	return { validSquares: [ ...squares ]}
+	if( Array.isArray( squares ) ){
+		return { validSquares: [ ...squares ]};
+	}
+	return undefined;
 }
