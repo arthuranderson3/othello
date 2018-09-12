@@ -15,6 +15,6 @@ const defaultGameBoard = {
 // using an object variable allows for undefined optional parameters
 // object destructuring causes errors to be thrown when we have undefined parameter.
 //
-export default function createGameBoardPieces( { id, squaresObj, player, turn, index, validSquares } = defaultGameBoard) {
+export default function createGameBoard( { id, squaresObj, player, turn, index, validSquares } = defaultGameBoard) {
   return { id, squaresObj, player, turn, index, validSquares: [ ...validSquares] };
 }

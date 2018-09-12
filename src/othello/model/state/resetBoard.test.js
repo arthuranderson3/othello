@@ -1,6 +1,6 @@
 import resetBoard from './resetBoard';
 import constructGame from '../game/constructGame';
-import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
+import createGameBoard from '../gameBoard/createGameBoard';
 
 describe('resetBoard test suite', () => {
   it('resetBoard#success', () => {

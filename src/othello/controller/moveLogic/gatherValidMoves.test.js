@@ -1,10 +1,10 @@
 import gatherValidMoves from './gatherValidMoves';
-import createGameBoardPieces from '../../model/gameBoardPieces/createGameBoardPieces';
-import toSquaresArray from '../../model/gameBoardPieces/toSquaresArray';
+import createGameBoard from '../../model/gameBoard/createGameBoard';
+import toSquaresArray from '../../model/gameBoard/toSquaresArray';
 
 describe('gatherValidMoves Test Suite', () => {
   it('gatherValidMoves# true', () => {
-    const pieces = createGameBoardPieces();
+    const pieces = createGameBoard();
     const squaresArr = toSquaresArray(pieces);
 		const vm = gatherValidMoves( squaresArr, 'W');
     expect(vm).toEqual([20, 29, 34, 43]);

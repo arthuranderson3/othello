@@ -1,9 +1,9 @@
 import calculateScore from './calculateScore';
-import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
+import createGameBoard from '../gameBoard/createGameBoard';
 
 describe('calculateScore test suite', () => {
 	it('initial Score', () => {
-		const gbp = createGameBoardPieces();
+		const gbp = createGameBoard();
 		const whiteScore = calculateScore( gbp, 'W' );
 		expect( whiteScore ).toEqual(2);
 	});

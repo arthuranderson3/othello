@@ -1,6 +1,6 @@
 import map from 'lodash.map';
 import filter from 'lodash.filter';
-import toSquaresObj from '../../model/gameBoardPieces/toSquaresObj';
+import toSquaresObj from '../../model/gameBoard/toSquaresObj';
 import gatherUndefinedSquares from './gatherUndefinedSquares';
 import isValidMove from './isValidMove';
 

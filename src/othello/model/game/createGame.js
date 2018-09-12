@@ -1,5 +1,5 @@
 import createPlayerArray from '../player/createPlayerArray';
-import createGameBoardPiecesArray from '../gameBoardPieces/createGameBoardPiecesArray';
+import createGameBoardArray from '../gameBoard/createGameBoardArray';
 import createGameView from '../gameView/createGameView';
 
 export default function createGame( { id, name, startTime, players, history }) {
@@ -8,7 +8,7 @@ export default function createGame( { id, name, startTime, players, history }) {
 		name,
 		startTime,
 		players: createPlayerArray( players ),
-		history: createGameBoardPiecesArray( history ),
+		history: createGameBoardArray( history ),
 		...createGameView( history )
 	}
 }

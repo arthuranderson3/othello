@@ -1,8 +1,8 @@
 import calculateScore from './calculateScore';
 import constructScore from './constructScore';
 
-export default function computeScore( gameBoardPieces ) {
+export default function computeScore( gameBoard ) {
 	return constructScore(
-					calculateScore( gameBoardPieces, 'W'),
-					calculateScore( gameBoardPieces, 'B') );
+					calculateScore( gameBoard, 'W'),
+					calculateScore( gameBoard, 'B') );
 }

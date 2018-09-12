@@ -4,20 +4,20 @@ import updateSquares from './updateSquares';
 import toOppositePlayer from './toOppositePlayer';
 import { recordLastBoard } from '../../model/state';
 import getTurn from '../../model/stats/getTurn';
-import toSquaresArray from '../../model/gameBoardPieces/toSquaresArray';
+import toSquaresArray from '../../model/gameBoard/toSquaresArray';
 import gatherValidMoves from './gatherValidMoves';
 
 export default function makeMove(state, index) {
     let currentState = state;
-    const gameBoardPieces = currentState.history[ currentState.history.length - 1];
-    gameBoardPieces.index = index;
-    const squaresArr = toSquaresArray( gameBoardPieces );
+    const gameBoard = currentState.history[ currentState.history.length - 1];
+    gameBoard.index = index;
+    const squaresArr = toSquaresArray( gameBoard );
 
-    if (!hasMove( gameBoardPieces.player, squaresArr )) {
-      throw new Error(`no move for player ${gameBoardPieces.player}`);
-    } else if (isValidMove( gameBoardPieces, squaresArr )) {
+    if (!hasMove( gameBoard.player, squaresArr )) {
+      throw new Error(`no move for player ${gameBoard.player}`);
+    } else if (isValidMove( gameBoard, squaresArr )) {
 
-      const newGamePieces = updateSquares(gameBoardPieces, squaresArr);
+      const newGamePieces = updateSquares(gameBoard, squaresArr);
       //
       // see if the next player has a move.
       //

@@ -1,10 +1,10 @@
-import { createGameBoardPieces } from '../../model/gameBoardPieces';
-import { toSquaresArray } from '../../model/gameBoardPieces';
+import { createGameBoard } from '../../model/gameBoard';
+import { toSquaresArray } from '../../model/gameBoard';
 import hasMove from './hasMove';
 
 describe('hasMove Test Suite', () => {
   it('hasMove# true', () => {
-    const pieces = createGameBoardPieces();
+    const pieces = createGameBoard();
     const squaresArr = toSquaresArray(pieces);
     expect(hasMove( 'W', squaresArr )).toBe(true);
   });

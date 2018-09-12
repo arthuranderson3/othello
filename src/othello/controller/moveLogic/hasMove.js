@@ -1,6 +1,6 @@
 import some from 'lodash.some';
 import isValidMove from './isValidMove';
-import { toSquaresObj } from '../../model/gameBoardPieces';
+import { toSquaresObj } from '../../model/gameBoard';
 import gatherUndefinedSquares from './gatherUndefinedSquares';
 
 export default function hasMove( player, squaresArr ) {

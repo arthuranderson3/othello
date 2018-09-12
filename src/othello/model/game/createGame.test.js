@@ -1,6 +1,6 @@
 import createGame from './createGame';
 import constructGame from './constructGame';
-import DEFAULT_SQUARES from '../gameBoardPieces/DEFAULT_SQUARES';
+import DEFAULT_SQUARES from '../gameBoard/DEFAULT_SQUARES';
 
 describe('createGame suite', () => {
 	describe('properties', () => {

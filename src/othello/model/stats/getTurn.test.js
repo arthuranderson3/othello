@@ -1,9 +1,9 @@
-import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
+import createGameBoard from '../gameBoard/createGameBoard';
 import getTurn from './getTurn';
 
 describe('_getTurn test suite', () => {
   it('getTurn# success', () => {
-    expect(getTurn({ history: [createGameBoardPieces()] })).toBe(1);
+    expect(getTurn({ history: [createGameBoard()] })).toBe(1);
   });
 
   it('getTurn# undefined', done => {

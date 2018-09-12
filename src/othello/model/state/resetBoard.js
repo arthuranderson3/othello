@@ -1,6 +1,6 @@
 import createGame from '../game/createGame';
-import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
+import createGameBoard from '../gameBoard/createGameBoard';
 
 export default function resetBoard( state ) {
-  return createGame( { ...state, ...{ history: [createGameBoardPieces()] } } );
+  return createGame( { ...state, ...{ history: [createGameBoard()] } } );
 }

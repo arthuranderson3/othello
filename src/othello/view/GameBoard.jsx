@@ -4,7 +4,7 @@ import reduce from 'lodash.reduce';
 import React, { Component } from 'react';
 import BoardRow from './BoardRow';
 import GameStats from './GameStats';
-import { toSquaresArray } from '../model/gameBoardPieces';
+import { toSquaresArray } from '../model/gameBoard';
 
 export default class GameBoard extends Component {
   render() {

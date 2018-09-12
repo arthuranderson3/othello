@@ -1,5 +1,5 @@
-import { createGameBoardPieces } from '../../model/gameBoardPieces';
-import { toSquaresArray } from '../../model/gameBoardPieces';
+import { createGameBoard } from '../../model/gameBoard';
+import { toSquaresArray } from '../../model/gameBoard';
 import findMovesInDirection from './findMovesInDirection';
 import { left } from '../boardNavigation';
 
@@ -7,7 +7,7 @@ describe('findMovesInDirection Test Suite', () => {
   describe('initial board', () => {
     let moves;
     beforeAll( () => {
-      const pieces = createGameBoardPieces();
+      const pieces = createGameBoard();
       pieces.index = 29;
       moves = findMovesInDirection( pieces, toSquaresArray( pieces ), left );
     });

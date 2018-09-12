@@ -1,11 +1,11 @@
-import createGameBoardPieces from './createGameBoardPieces';
+import createGameBoard from './createGameBoard';
 import DEFAULT_SQUARES from './DEFAULT_SQUARES';
 
-describe('createGameBoardPieces suite', () => {
+describe('createGameBoard suite', () => {
   describe('default initial board properties', () => {
     let pieces;
     beforeAll( () => {
-      pieces = createGameBoardPieces();
+      pieces = createGameBoard();
     });
     it('pieces.id', () => {
       expect(pieces).toHaveProperty('id');
@@ -30,7 +30,7 @@ describe('createGameBoardPieces suite', () => {
   describe('default initial board values', () => {
     let pieces;
     beforeAll( () => {
-      pieces = createGameBoardPieces();
+      pieces = createGameBoard();
     });
     it('pieces.player=W', () => {
       expect(pieces.player).toEqual('W');

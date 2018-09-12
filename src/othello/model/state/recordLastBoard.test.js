@@ -1,11 +1,11 @@
 import recordLastBoard from './recordLastBoard';
-import createGameBoardPieces from '../gameBoardPieces/createGameBoardPieces';
+import createGameBoard from '../gameBoard/createGameBoard';
 
 describe('recordLastBoard test suite', () => {
   it('recordLastBoard#success', () => {
-    const gbp = createGameBoardPieces();
+    const gbp = createGameBoard();
     const history = [gbp];
-    const newGbp = createGameBoardPieces({ ...gbp, idx: 20 });
+    const newGbp = createGameBoard({ ...gbp, idx: 20 });
     const newGameRecords = history.concat(newGbp);
     const record = recordLastBoard({ history }, newGbp);
     expect(record.history).toEqual(newGameRecords);

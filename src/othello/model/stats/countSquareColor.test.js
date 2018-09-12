@@ -1,5 +1,5 @@
 import countSquareColor from './countSquareColor';
-import toSquaresObj from '../gameBoardPieces/toSquaresObj';
+import toSquaresObj from '../gameBoard/toSquaresObj';
 
 describe('countSquareColor test suite', () => {
   it('countSquareColor# white', () => {

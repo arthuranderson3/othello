@@ -1,7 +1,7 @@
 import foreach from 'lodash.foreach';
 import accumulateIdxForMove from './accumulateIdxForMove';
-import toSquaresObj from '../../model/gameBoardPieces/toSquaresObj';
-import createGameBoardPieces from '../../model/gameBoardPieces/createGameBoardPieces';
+import toSquaresObj from '../../model/gameBoard/toSquaresObj';
+import createGameBoard from '../../model/gameBoard/createGameBoard';
 
 /*************************************************************
  *
@@ -16,7 +16,7 @@ export default function updateSquares(pieces, squaresArr ) {
     newSquares[i] = pieces.player;
   });
 
-  return createGameBoardPieces( {
+  return createGameBoard( {
     ...pieces,
     ...toSquaresObj( { squaresArr: newSquares } ) } );
 }
