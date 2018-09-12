@@ -21,11 +21,11 @@ export default class OthelloApp extends Component {
   // delegates to checkMove function
   /////////////////////////////////////////////////
   click_Square(idx) {
-    try{
-      const state = makeMove( this.state, idx );
-      this.setState( state );
-    } catch( err ) {
-      console.error( err );
+    try {
+      const state = makeMove(this.state, idx);
+      this.setState(state);
+    } catch (err) {
+      console.error(err);
     }
   }
 
@@ -38,21 +38,27 @@ export default class OthelloApp extends Component {
   }
 
   debugState() {
-    console.info( JSON.stringify( this.state, null, 2 ) );
+    console.info(JSON.stringify(this.state, null, 2));
   }
 
   startGame(nickName, numPlayers) {
-    let game = constructGame( "gameName", nickName, numPlayers );
+    let game = constructGame('gameName', nickName, numPlayers);
     this.setState(game);
   }
 
   render() {
-    const gbp = this.state.history[ this.state.history.length - 1 ];
+    const gbp = this.state.history[this.state.history.length - 1];
     return (
       <React.Fragment>
         <GameStartForm onStartGame={this.startGame} />
         <div className="game">
-          <GameBoard {...gbp} onClick={this.click_Square} onReset={this.reset} onUndo={this.undo} onDebug={this.debugLog} />
+          <GameBoard
+            {...gbp}
+            onClick={this.click_Square}
+            onReset={this.reset}
+            onUndo={this.undo}
+            onDebug={this.debugLog}
+          />
         </div>
       </React.Fragment>
     );
