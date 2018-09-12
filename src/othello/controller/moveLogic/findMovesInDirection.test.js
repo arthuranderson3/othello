@@ -4,9 +4,18 @@ import findMovesInDirection from './findMovesInDirection';
 import { left } from '../boardNavigation';
 
 describe('findMovesInDirection Test Suite', () => {
-  it('findMovesInDirection#success', () => {
-    const pieces = createGameBoardPieces();
-    pieces.index = 29;
-    expect(findMovesInDirection(pieces, toSquaresArray( pieces ), left)).toEqual(expect.arrayContaining([28]));
+  describe('initial board', () => {
+    let moves;
+    beforeAll( () => {
+      const pieces = createGameBoardPieces();
+      pieces.index = 29;
+      moves = findMovesInDirection( pieces, toSquaresArray( pieces ), left );
+    });
+    it('moves.length=1', () => {
+      expect( moves.length ).toEqual( 1 );
+    });
+    it('moves=[28]', () => {
+      expect( moves ).toEqual([28]);
+    });
   });
 });
