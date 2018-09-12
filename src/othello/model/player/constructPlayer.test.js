@@ -1,21 +1,35 @@
 import constructPlayer from './constructPlayer';
 
 describe('constructPlayer suite', () => {
-  it('constructPlayer# named', () => {
-    const p = constructPlayer('Bob');
-    expect(p).toHaveProperty('id');
-    expect(p).toHaveProperty('name');
-    expect(p).toHaveProperty('color');
-    expect(p.name).toEqual('Bob');
-    expect(p.color).toEqual('W');
+  describe('player properties', () => {
+    let player;
+    beforeAll( () => {
+      player = constructPlayer('Bob');
+    });
+    it('player.id', () => {
+      expect(player).toHaveProperty('id');
+    });
+    it('player.name', () => {
+      expect(player).toHaveProperty('name');
+    });
+    it('player.color', () => {
+      expect(player).toHaveProperty('tz');
+    });
   });
+  describe('default player', () => {
+    let player;
+    beforeAll( () => {
+      player = constructPlayer();
+    });
+    it('player.name=anonymous', () => {
+      expect(player.name).toEqual('anonymous');
+    });
+    it('player.color=W', () => {
+      expect(player.color).toEqual('W');
+    });
+    it('player.tz=America/Louisville', () => {
+      expect(player.tz).toEqual('America/Louisville');
+    })
 
-  it('constructPlayer# default', () => {
-    const p = constructPlayer();
-    expect(p).toHaveProperty('id');
-    expect(p).toHaveProperty('name');
-    expect(p).toHaveProperty('color');
-    expect(p.name).toEqual('anonymous');
-    expect(p.color).toEqual('W');
-  });
+  })
 });

@@ -2,21 +2,39 @@ import constructPlayer from './constructPlayer';
 import createPlayer from './createPlayer';
 
 describe('createPlayer suite', () => {
-  it('createPlayer#default', () => {
-    const p = createPlayer();
-    expect(p).toHaveProperty('id');
-    expect(p).toHaveProperty('name');
-    expect(p).toHaveProperty('color');
-    expect(p).toHaveProperty('tz');
-    expect(p.name).toEqual('anonymous');
-    expect(p.color).toEqual('W');
+  describe('createPlayer properties', () => {
+    let player;
+    beforeAll( () => {
+      player = createPlayer();
+    });
+    it('player.id', () => {
+      expect(player).toHaveProperty('id');
+    });
+    it('player.name', () => {
+      expect(player).toHaveProperty('name');
+    });
+    it('player.color', () => {
+      expect(player).toHaveProperty('color');
+    });
+    it('player.tz', () => {
+      expect(player).toHaveProperty('tz');
+    })
   });
 
-  it('createPlayer# named', () => {
-    const named = constructPlayer('Bob', 'W', 'Etc/UTC-0');
-    const p = createPlayer(named);
-    expect(p.name).toEqual('Bob');
-    expect(p.color).toEqual('W');
-    expect(p.tz).toEqual('Etc/UTC-0');
+  describe('createPlayer named', () => {
+    let player;
+    beforeAll( () => {
+      const named = constructPlayer('Bob', 'W', 'Etc/UTC-0');
+      player = createPlayer(named);
+    });
+    it('player.name=Bob', () => {
+      expect(player.name).toEqual('Bob');
+    });
+    it('player.color=W', () => {
+      expect(player.color).toEqual('W');
+    });
+    it('player.tz=Etc/UTC-0', () => {
+      expect(player.tz).toEqual('Etc/UTC-0');
+    });
   });
 });

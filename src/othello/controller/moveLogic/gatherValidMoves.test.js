@@ -23,7 +23,7 @@ describe('gatherValidMoves Test Suite', () => {
         '36': 'W',
       },
       player: 'W',
-      idx: 19,
+      index: 19,
       turn: 5,
     };
     const squaresArr = toSquaresArray(pieces);
