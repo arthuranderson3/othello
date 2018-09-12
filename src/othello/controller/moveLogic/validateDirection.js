@@ -8,17 +8,17 @@ import toOppositePlayer from './toOppositePlayer';
  *
  *************************************************************/
 
-export default function validateDirection({ idx, player }, { squaresArr } , direction) {
+export default function validateDirection({ index, player }, { squaresArr } , direction) {
   /*
     * if the adjacent tile is the opposite player keep going
     *    if this direction also ends with same player return true.
     */
-  let next_idx = direction(idx);
+  let next_index = direction(index);
   const opp = toOppositePlayer({ player });
   let adjacent_is_opposite = false;
   do {
-    if (next_idx > -1) {
-      let adj_player = squaresArr[next_idx];
+    if (next_index > -1) {
+      let adj_player = squaresArr[next_index];
 
       /*
             * are we next to or ending with an undefined square?
@@ -42,10 +42,10 @@ export default function validateDirection({ idx, player }, { squaresArr } , dire
         /*
                 * now iterate this direction and return false if no same player
                 */
-        next_idx = direction(next_idx);
+        next_index = direction(next_index);
       } else if (adjacent_is_opposite && player === adj_player) {
         return true;
       }
     }
-  } while (next_idx > -1 && next_idx < 64);
+  } while (next_index > -1 && next_index < 64);
 }

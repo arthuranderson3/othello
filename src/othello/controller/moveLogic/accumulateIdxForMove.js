@@ -13,8 +13,8 @@ import {
 } from '../boardNavigation';
 import findMovesInDirection from './findMovesInDirection';
 
-export default function accumulateIdxForMove(pieces, squaresArr) {
-  let movement = [pieces.idx];
+export default function accumulateIndexForMove(pieces, squaresArr) {
+  let movement = [pieces.index];
   //
   // move in each direction to find all the squares that will turn
   //

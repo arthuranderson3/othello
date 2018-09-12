@@ -7,8 +7,8 @@ describe('accumulateIdxForMove Test Suite', () => {
   it('accumulateIdxForMove#success', () => {
     let pieces = createGameBoardPieces();
     let squaresArr = toSquaresArray(pieces);
-    pieces.idx = 29;
-    let idxs = accumulateIdxForMove(pieces, squaresArr);
-    expect(idxs.length).toEqual(2);
+    pieces.index = 29;
+    let indices = accumulateIdxForMove(pieces, squaresArr);
+    expect(indices.length).toEqual(2);
   });
 });

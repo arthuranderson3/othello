@@ -7,10 +7,10 @@ import getTurn from '../../model/stats/getTurn';
 import toSquaresArray from '../../model/gameBoardPieces/toSquaresArray';
 import gatherValidMoves from './gatherValidMoves';
 
-export default function makeMove(state, idx) {
+export default function makeMove(state, index) {
     let currentState = state;
     const gameBoardPieces = currentState.history[ currentState.history.length - 1];
-    gameBoardPieces.idx = idx;
+    gameBoardPieces.index = index;
     const squaresArr = toSquaresArray( gameBoardPieces );
 
     if (!hasMove( gameBoardPieces.player, squaresArr )) {
@@ -38,5 +38,5 @@ export default function makeMove(state, idx) {
       currentState = recordLastBoard(currentState, newGamePieces);
       return currentState;
     }
-		throw new Error(`not a valid move ${idx}`);
+		throw new Error(`not a valid move ${index}`);
 }

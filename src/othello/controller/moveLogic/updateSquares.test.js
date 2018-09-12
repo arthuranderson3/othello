@@ -5,7 +5,7 @@ import { createGameBoardPieces } from '../../model/gameBoardPieces';
 describe('updateSquares Test Suite', () => {
   it('updateSquares', () => {
     const pieces = createGameBoardPieces();
-    pieces.idx = 29;
+    pieces.index = 29;
     const squaresArr = toSquaresArray(pieces);
     let newPieces = updateSquares(pieces, squaresArr);
     expect(newPieces.squaresObj[27]).toBe('W');

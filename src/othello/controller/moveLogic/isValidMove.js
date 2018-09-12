@@ -26,7 +26,7 @@ function checkAdjacentSquares( pieces, squaresArr ) {
  *************************************************************/
 export default function isValidMove(pieces, squaresArr) {
   // we have an open square?
-  if (squaresArr[pieces.idx] === undefined) {
+  if (squaresArr[pieces.index] === undefined) {
     return checkAdjacentSquares( pieces, squaresArr );
   } else {
     return false;
