@@ -3,7 +3,7 @@ import isValidMove from './isValidMove';
 import updateSquares from './updateSquares';
 import toOppositePlayer from './toOppositePlayer';
 import recordLastBoard from '../../model/game/recordLastBoard';
-import getTurn from '../../model/stats/getTurn';
+import getTurn from '../../model/game/getTurn';
 import toSquaresArray from '../../model/gameBoard/toSquaresArray';
 import gatherValidMoves from './gatherValidMoves';
 
