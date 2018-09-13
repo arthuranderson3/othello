@@ -20,8 +20,8 @@ describe('copyGame suite', () => {
 		it( 'game.players', () => {
 			expect(game).toHaveProperty('players');
 		});
-		it( 'game.history', () => {
-			expect(game).toHaveProperty('history');
+		it( 'game.snapshots', () => {
+			expect(game).toHaveProperty('snapshots');
 		});
 		it( 'game.view', () => {
 			expect(game).toHaveProperty('view');
@@ -48,11 +48,11 @@ describe('copyGame suite', () => {
 		it('game.players[1].color=B', () => {
 			expect(game.players[1].color).toEqual('B');
 		});
-		it('game.history.length=1', () => {
-			expect(game.history.length).toEqual(1);
+		it('game.snapshots.length=1', () => {
+			expect(game.snapshots.length).toEqual(1);
 		});
-		it('game.history[0].squaresObj=DEFAULT_SQUARES', () => {
-			expect(game.history[0].squaresObj).toEqual( DEFAULT_SQUARES );
+		it('game.snapshots[0].squaresObj=DEFAULT_SQUARES', () => {
+			expect(game.snapshots[0].squaresObj).toEqual( DEFAULT_SQUARES );
 		});
 	});
 });

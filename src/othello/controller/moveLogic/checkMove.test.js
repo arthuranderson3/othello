@@ -11,7 +11,7 @@ describe('checkMove Test Suite', () => {
       game = constructGame();
       checkMove( game, 29 )
       .then( state => {
-        expect( state.history.length).toEqual(2);
+        expect( state.snapshots.length).toEqual(2);
         done();
       })
       .catch( err => done.fail(err) );
@@ -23,7 +23,7 @@ describe('checkMove Test Suite', () => {
     beforeAll( () => {
       const file = fs.readFileSync(path.join(__dirname, "checkMove.test.capture2.json" ));
       const gameState = copyGame( JSON.parse(file) );
-      debugBoard = gameState.history[ gameState.history.length - 1 ];
+      debugBoard = gameState.snapshots[ gameState.snapshots.length - 1 ];
     });
     it( 'debugBoard.player=B', () => {
       expect(debugBoard.player).toEqual('B');
@@ -40,7 +40,7 @@ describe('checkMove Test Suite', () => {
       const gameState = copyGame( JSON.parse(file) );
       checkMove( gameState, 0 )
       .then( state => {
-        lastBoard = state.history[ state.history.length - 1 ];
+        lastBoard = state.snapshots[ state.snapshots.length - 1 ];
         done();
       })
       .catch( err => done.fail( err ) );

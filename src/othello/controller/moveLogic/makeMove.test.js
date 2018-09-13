@@ -3,6 +3,7 @@ import path from 'path';
 import copyGame from '../../model/game/copyGame';
 import constructGame from '../../model/game/constructGame';
 import makeMove from './makeMove';
+import currentSnapshot from '../../model/game/currentSnapshot';
 
 describe('makeMove test suite', () => {
 
@@ -17,8 +18,8 @@ describe('makeMove test suite', () => {
 				throw e;
 			}
     });
-		it('state.history.length=2', () => {
-			expect( state.history.length ).toEqual(2);
+		it('state.snapshots.length=2', () => {
+			expect( state.snapshots.length ).toEqual(2);
 		})
   });
 
@@ -27,7 +28,7 @@ describe('makeMove test suite', () => {
     beforeAll( () => {
       const file = fs.readFileSync(path.join(__dirname, "checkMove.test.capture2.json" ));
       const gameState = copyGame( JSON.parse(file) );
-      debugBoard = gameState.history[ gameState.history.length - 1 ];
+      debugBoard = currentSnapshot( gameState );
     });
     it( 'debugBoard.player=B', () => {
       expect(debugBoard.player).toEqual('B');
@@ -44,7 +45,7 @@ describe('makeMove test suite', () => {
       const gameState = copyGame( JSON.parse(file) );
 			try{
       	const state = makeMove( gameState, 0 );
-				lastBoard = state.history[ state.history.length - 1 ];
+				lastBoard = currentSnapshot( state );
 			} catch( e ) {
 				console.info( 'capture 2 debug board error thrown');
 				throw e;

@@ -1,12 +1,12 @@
 import computeScore from '../score/computeScore';
 import moment from 'moment';
 
-export default function constructGameView( history ) {
-	const lastGameBoard = history[ history.length - 1 ];
+export default function constructGameView( snapshots ) {
+	const currentBoard = snapshots[ snapshots.length - 1 ];
 	return { view: {
-			...computeScore( lastGameBoard ),
-			currentTurn: history.length,
-			currentPlayer: lastGameBoard.player,
+			...computeScore( currentBoard ),
+			currentTurn: snapshots.length,
+			currentPlayer: currentBoard.player,
 			lastTurnTime: moment.utc().format()
 		}
 	};

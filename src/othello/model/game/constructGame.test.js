@@ -22,11 +22,11 @@ describe('constructGame suite', () => {
     it('game.players.length', () => {
       expect(game.players).toHaveProperty('length');
     });
-    it('game.history', () => {
-      expect(game).toHaveProperty('history');
+    it('game.snapshots', () => {
+      expect(game).toHaveProperty('snapshots');
     });
-    it('game.history.length', () => {
-      expect(game.history).toHaveProperty('length');
+    it('game.snapshots.length', () => {
+      expect(game.snapshots).toHaveProperty('length');
     });
     it('game.view', () => {
       expect(game).toHaveProperty('view');

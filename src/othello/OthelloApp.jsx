@@ -7,6 +7,7 @@ import undoMove from './model/game/undoMove';
 import resetBoard from './model/game/resetBoard';
 import GameStartForm from './view/GameStartForm';
 import constructGame from './model/game/constructGame';
+import currentSnapshot from './model/game/currentSnapshot';
 
 export default class OthelloApp extends Component {
   constructor(props) {
@@ -47,7 +48,7 @@ export default class OthelloApp extends Component {
   }
 
   render() {
-    const gbp = this.state.history[this.state.history.length - 1];
+    const gbp = currentSnapshot( this.state );
     return (
       <React.Fragment>
         <GameStartForm onStartGame={this.startGame} />

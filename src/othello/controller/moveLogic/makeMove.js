@@ -5,10 +5,11 @@ import toOppositePlayer from './toOppositePlayer';
 import recordLastBoard from '../../model/game/recordLastBoard';
 import toSquaresArray from '../../model/gameBoard/toSquaresArray';
 import gatherValidMoves from './gatherValidMoves';
+import currentSnapshot from '../../model/game/currentSnapshot';
 
 export default function makeMove(state, index) {
     let currentState = state;
-    const gameBoard = currentState.history[ currentState.history.length - 1];
+    const gameBoard = currentSnapshot( currentState );
     gameBoard.index = index;
     const squaresArr = toSquaresArray( gameBoard );
 
@@ -29,7 +30,7 @@ export default function makeMove(state, index) {
         console.info("end game!!!");
       }
       newGameBoard.player = next.player;
-      newGameBoard.turn = currentState.history.length + 1;
+      newGameBoard.turn = currentState.snapshots.length + 1;
       newGameBoard.validSquares = gatherValidMoves(
         toSquaresArray( newGameBoard ),
         newGameBoard.player );

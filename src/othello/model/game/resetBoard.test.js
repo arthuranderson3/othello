@@ -31,16 +31,16 @@ describe('resetBoard test suite', () => {
   it('reset.players[1].tz=game.players[1].tz', () => {
     expect(reset.players[1].tz).toEqual(game.players[1].tz);
   });
-  it('reset.history.length=1', () => {
-    expect(reset.history.length).toEqual(1);
+  it('reset.snapshots.length=1', () => {
+    expect(reset.snapshots.length).toEqual(1);
   });
-  it('reset.history[0].squaresObj=', () => {
-    expect(reset.history[0].squaresObj).toEqual(DEFAULT_SQUARES);
+  it('reset.snapshots[0].squaresObj=', () => {
+    expect(reset.snapshots[0].squaresObj).toEqual(DEFAULT_SQUARES);
   });
-  it('reset.history[0].turn=1', () => {
-    expect(reset.history[0].turn).toEqual(1);
+  it('reset.snapshots[0].turn=1', () => {
+    expect(reset.snapshots[0].turn).toEqual(1);
   });
-  it('reset.history[0].player=W', () => {
-    expect(reset.history[0].player).toEqual('W');
+  it('reset.snapshots[0].player=W', () => {
+    expect(reset.snapshots[0].player).toEqual('W');
   });
 });
