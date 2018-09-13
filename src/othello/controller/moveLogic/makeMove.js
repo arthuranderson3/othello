@@ -2,7 +2,7 @@ import hasMove from './hasMove';
 import isValidMove from './isValidMove';
 import updateSquares from './updateSquares';
 import toOppositePlayer from './toOppositePlayer';
-import recordLastBoard from '../../model/game/recordLastBoard';
+import recordSnapshot from '../../model/game/recordSnapshot';
 import toSquaresArray from '../../model/gameBoard/toSquaresArray';
 import gatherValidMoves from './gatherValidMoves';
 import currentSnapshot from '../../model/game/currentSnapshot';
@@ -35,7 +35,7 @@ export default function makeMove(state, index) {
         toSquaresArray( newGameBoard ),
         newGameBoard.player );
 
-      currentState = recordLastBoard(currentState, newGameBoard);
+      currentState = recordSnapshot(currentState, newGameBoard);
       return currentState;
     }
 		throw new Error(`not a valid move ${index}`);
