@@ -1,8 +1,9 @@
 import computeScore from '../score/computeScore';
+import currentSnapshot from '../game/currentSnapshot';
 import moment from 'moment';
 
 export default function constructGameView( snapshots ) {
-	const currentBoard = snapshots[ snapshots.length - 1 ];
+	const currentBoard = currentSnapshot( {snapshots} );
 	return { view: {
 			...computeScore( currentBoard ),
 			currentTurn: snapshots.length,
