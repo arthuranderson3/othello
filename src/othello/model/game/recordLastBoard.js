@@ -1,6 +1,6 @@
 import concat from 'lodash/concat';
-import createGame from '../game/createGame';
+import copyGame from './copyGame';
 
 export default function recordLastBoard(state, gb) {
-  return createGame( { ...state, ...{ history: concat( state.history, gb ) } });
+  return copyGame( { ...state, ...{ history: concat( state.history, gb ) } });
 }

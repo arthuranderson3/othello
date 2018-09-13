@@ -3,7 +3,6 @@ import isValidMove from './isValidMove';
 import updateSquares from './updateSquares';
 import toOppositePlayer from './toOppositePlayer';
 import recordLastBoard from '../../model/game/recordLastBoard';
-import getTurn from '../../model/game/getTurn';
 import toSquaresArray from '../../model/gameBoard/toSquaresArray';
 import gatherValidMoves from './gatherValidMoves';
 
@@ -30,7 +29,7 @@ export default function makeMove(state, index) {
         console.info("end game!!!");
       }
       newGameBoard.player = next.player;
-      newGameBoard.turn = getTurn(currentState) + 1;
+      newGameBoard.turn = currentState.history.length + 1;
       newGameBoard.validSquares = gatherValidMoves(
         toSquaresArray( newGameBoard ),
         newGameBoard.player );

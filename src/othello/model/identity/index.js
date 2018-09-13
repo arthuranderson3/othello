@@ -1,2 +1,2 @@
 export { default as constructIdentity } from './constructIdentity';
-export { default as createIdentity } from './createIdentity';
+export { default as copyIdentity } from './copyIdentity';

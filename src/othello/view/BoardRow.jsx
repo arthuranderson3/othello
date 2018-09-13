@@ -6,7 +6,6 @@ import toIdx from '../controller/boardTransform/toIdx';
 
 export default class BoardRow extends Component {
   render() {
-    //console.log( this.props.validSquares );
     return (
       <div className="board-row">
         { map( this.props.squares, (piece, col) => {

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import createGame from '../../model/game/createGame';
+import copyGame from '../../model/game/copyGame';
 import constructGame from '../../model/game/constructGame';
 import makeMove from './makeMove';
 
@@ -26,7 +26,7 @@ describe('makeMove test suite', () => {
     let debugBoard;
     beforeAll( () => {
       const file = fs.readFileSync(path.join(__dirname, "checkMove.test.capture2.json" ));
-      const gameState = createGame( JSON.parse(file) );
+      const gameState = copyGame( JSON.parse(file) );
       debugBoard = gameState.history[ gameState.history.length - 1 ];
     });
     it( 'debugBoard.player=B', () => {
@@ -41,7 +41,7 @@ describe('makeMove test suite', () => {
     let lastBoard;
     beforeAll( () => {
       const file = fs.readFileSync(path.join(__dirname, "checkMove.test.capture2.json" ));
-      const gameState = createGame( JSON.parse(file) );
+      const gameState = copyGame( JSON.parse(file) );
 			try{
       	const state = makeMove( gameState, 0 );
 				lastBoard = state.history[ state.history.length - 1 ];

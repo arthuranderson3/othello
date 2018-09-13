@@ -1,23 +1,23 @@
 import moment from 'moment';
 import constructIdentity from '../identity/constructIdentity';
 import constructPlayer from '../player/constructPlayer';
-import createGameBoard from '../gameBoard/createGameBoard';
-import createGameBoardArray from '../gameBoard/createGameBoardArray';
-import createGameView from '../gameView/createGameView';
+import constructGameBoard from '../gameBoard/constructGameBoard';
+import copyGameBoardArray from '../gameBoard/copyGameBoardArray';
+import constructGameView from '../gameView/constructGameView';
 
 const player2 = constructPlayer( 'black', 'B', 'Etc/GMT-0');
 
 export default function constructGame( gameName = 'anonymous', playerName = 'white', numPlayers = 1 ) {
   if( numPlayers === 1 ){
-    const gbp = createGameBoard();
-    const history = createGameBoardArray( [ gbp ] );
+    const gbp = constructGameBoard();
+    const history = copyGameBoardArray( [ gbp ] );
     return {
       ...constructIdentity(),
       name: gameName,
       startTime: moment.utc().format(),
       players: [ constructPlayer( playerName, 'W' ), player2 ],
-      history: createGameBoardArray( history ),
-      ...createGameView( history )
+      history,
+      ...constructGameView( history )
     };
   }
 }

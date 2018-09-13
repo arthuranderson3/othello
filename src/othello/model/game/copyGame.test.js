@@ -1,12 +1,12 @@
-import createGame from './createGame';
+import copyGame from './copyGame';
 import constructGame from './constructGame';
 import DEFAULT_SQUARES from '../gameBoard/DEFAULT_SQUARES';
 
-describe('createGame suite', () => {
+describe('copyGame suite', () => {
 	describe('properties', () => {
 		let game;
 		beforeAll( () => {
-			game = createGame( constructGame() );
+			game = copyGame( constructGame() );
 		});
 		it( 'game.name', () => {
 			expect(game).toHaveProperty('name');
@@ -31,7 +31,7 @@ describe('createGame suite', () => {
 	describe('default values', () => {
 		let game;
 		beforeAll( () => {
-			game = createGame(constructGame());
+			game = copyGame(constructGame());
 		});
 		it('game.name=anonymous', () => {
 			expect(game.name).toEqual('anonymous');

@@ -1,10 +1,10 @@
-import createGameView from './createGameView';
-import createGameBoard from '../gameBoard/createGameBoard';
+import constructGameView from './constructGameView';
+import constructGameBoard from '../gameBoard/constructGameBoard';
 
-describe('createGameView test suite', () => {
+describe('constructGameView test suite', () => {
   let view;
   beforeAll( () => {
-    const game = createGameView( [createGameBoard()] );
+    const game = constructGameView( [constructGameBoard()] );
     view = game.view;
   });
   it('view.currentPlayer', () => {

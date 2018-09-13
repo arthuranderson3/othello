@@ -1,13 +1,13 @@
 import foreach from 'lodash.foreach';
 import accumulateIdxForMove from './accumulateIdxForMove';
-import createGameBoard from '../../model/gameBoard/createGameBoard';
+import constructGameBoard from '../../model/gameBoard/constructGameBoard';
 import toSquaresArray from '../../model/gameBoard/toSquaresArray';
 
 describe('accumulateIdxForMove Test Suite', () => {
   describe('initial board - index 29', () => {
     let indices;
     beforeAll( () => {
-      let pieces = createGameBoard();
+      let pieces = constructGameBoard();
       let squaresArr = toSquaresArray(pieces);
       pieces.index = 29;
       indices = accumulateIdxForMove(pieces, squaresArr);

@@ -1,10 +1,10 @@
 import computeScore from './computeScore';
-import createGameBoard from '../gameBoard/createGameBoard';
+import constructGameBoard from '../gameBoard/constructGameBoard';
 
 describe('computeCurrentScore test suite', () => {
 	it('initial score', () => {
 		const { score } = computeScore(
-											createGameBoard() );
+											constructGameBoard() );
 		expect( score.white ).toEqual(2);
 		expect( score.black ).toEqual(2);
 	});

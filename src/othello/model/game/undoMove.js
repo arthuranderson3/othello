@@ -1,6 +1,6 @@
 import dropRight from 'lodash.dropright';
-import createGame from '../game/createGame';
+import copyGame from './copyGame';
 
 export default function undoMove( state ) {
-  return createGame({ ...state, ...{ history: dropRight(state.history) } });
+  return copyGame({ ...state, ...{ history: dropRight(state.history) } });
 }

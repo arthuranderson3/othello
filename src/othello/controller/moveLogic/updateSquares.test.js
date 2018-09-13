@@ -1,10 +1,10 @@
 import updateSquares from './updateSquares';
 import { toSquaresArray } from '../../model/gameBoard';
-import { createGameBoard } from '../../model/gameBoard';
+import { constructGameBoard } from '../../model/gameBoard';
 
 describe('updateSquares Test Suite', () => {
   it('updateSquares', () => {
-    const pieces = createGameBoard();
+    const pieces = constructGameBoard();
     pieces.index = 29;
     const squaresArr = toSquaresArray(pieces);
     let newPieces = updateSquares(pieces, squaresArr);
