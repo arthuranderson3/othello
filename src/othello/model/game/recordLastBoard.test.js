@@ -7,9 +7,9 @@ describe('recordLastBoard test suite', () => {
     const gbp = constructGameBoard();
     const snapshots = [gbp];
     const newGbp = copyGameBoard({ ...gbp, idx: 20 });
-    const newGameRecords = snapshots.concat(newGbp);
+    const newSnapshots = snapshots.concat(newGbp);
     const record = recordLastBoard({ snapshots }, newGbp);
-    expect(record.snapshots).toEqual(newGameRecords);
+    expect(record.snapshots).toEqual(newSnapshots);
     expect(record.snapshots.length).toEqual(2);
   });
 });
