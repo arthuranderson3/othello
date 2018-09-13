@@ -4,7 +4,7 @@ import './OthelloApp.css';
 import GameBoard from './view/GameBoard';
 import makeMove from './controller/moveLogic/makeMove';
 import undoMove from './model/game/undoMove';
-import resetBoard from './model/game/resetBoard';
+import reset from './model/game/reset';
 import GameStartForm from './view/GameStartForm';
 import constructGame from './model/game/constructGame';
 import currentSnapshot from './model/game/currentSnapshot';
@@ -31,7 +31,7 @@ export default class OthelloApp extends Component {
   }
 
   reset() {
-    this.setState(resetBoard());
+    this.setState(reset( this.state ));
   }
 
   undo() {
