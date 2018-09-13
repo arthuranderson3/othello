@@ -17,25 +17,25 @@ export default function makeMove(state, index) {
       throw new Error(`no move for player ${gameBoard.player}`);
     } else if (isValidMove( gameBoard, squaresArr )) {
 
-      const newGamePieces = updateSquares(gameBoard, squaresArr);
+      const newGameBoard = updateSquares(gameBoard, squaresArr);
       //
       // see if the next player has a move.
       //
-      let next = toOppositePlayer(newGamePieces);
+      let next = toOppositePlayer(newGameBoard);
 
       if (!hasMove(next.player, squaresArr)) {
         next = toOppositePlayer(next);
-      } else if( !hasMove( newGamePieces.player, squaresArr )){
+      } else if( !hasMove( newGameBoard.player, squaresArr )){
         // end game - no more moves
         console.info("end game!!!");
       }
-      newGamePieces.player = next.player;
-      newGamePieces.turn = getTurn(currentState) + 1;
-      newGamePieces.validSquares = gatherValidMoves(
-        toSquaresArray( newGamePieces ),
-        newGamePieces.player );
+      newGameBoard.player = next.player;
+      newGameBoard.turn = getTurn(currentState) + 1;
+      newGameBoard.validSquares = gatherValidMoves(
+        toSquaresArray( newGameBoard ),
+        newGameBoard.player );
 
-      currentState = recordLastBoard(currentState, newGamePieces);
+      currentState = recordLastBoard(currentState, newGameBoard);
       return currentState;
     }
 		throw new Error(`not a valid move ${index}`);
