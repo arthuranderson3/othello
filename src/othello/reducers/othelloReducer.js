@@ -6,8 +6,8 @@ import { DEBUG_STATE } from '../actions/othelloActionConstants';
 
 import { constructGame } from '../model/game/constructGame';
 import { makeMove } from '../controller/moveLogic/makeMove';
-import { undoMove } from '../state/undoMove';
-import { resetBoard } from '../state/resetBoard';
+import { undoMove } from '../game/undoMove';
+import { resetBoard } from '../game/resetBoard';
 
 
 /**

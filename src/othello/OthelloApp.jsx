@@ -3,8 +3,8 @@ import bindAll from 'lodash.bindall';
 import './OthelloApp.css';
 import GameBoard from './view/GameBoard';
 import makeMove from './controller/moveLogic/makeMove';
-import undoMove from './model/state/undoMove';
-import resetBoard from './model/state/resetBoard';
+import undoMove from './model/game/undoMove';
+import resetBoard from './model/game/resetBoard';
 import GameStartForm from './view/GameStartForm';
 import constructGame from './model/game/constructGame';
 
