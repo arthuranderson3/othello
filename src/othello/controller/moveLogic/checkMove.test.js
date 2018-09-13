@@ -1,6 +1,6 @@
 import checkMove from './checkMove';
 import constructGame from '../../model/game/constructGame';
-import createGame from '../../model/game/createGame';
+import copyGame from '../../model/game/copyGame';
 import fs from 'fs';
 import path from 'path';
 
@@ -22,7 +22,7 @@ describe('checkMove Test Suite', () => {
     let debugBoard;
     beforeAll( () => {
       const file = fs.readFileSync(path.join(__dirname, "checkMove.test.capture2.json" ));
-      const gameState = createGame( JSON.parse(file) );
+      const gameState = copyGame( JSON.parse(file) );
       debugBoard = gameState.history[ gameState.history.length - 1 ];
     });
     it( 'debugBoard.player=B', () => {
@@ -37,7 +37,7 @@ describe('checkMove Test Suite', () => {
     let lastBoard;
     beforeAll( ( done ) => {
       const file = fs.readFileSync(path.join(__dirname, "checkMove.test.capture2.json" ));
-      const gameState = createGame( JSON.parse(file) );
+      const gameState = copyGame( JSON.parse(file) );
       checkMove( gameState, 0 )
       .then( state => {
         lastBoard = state.history[ state.history.length - 1 ];
