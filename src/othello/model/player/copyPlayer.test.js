@@ -1,11 +1,11 @@
 import constructPlayer from './constructPlayer';
-import createPlayer from './createPlayer';
+import copyPlayer from './copyPlayer';
 
-describe('createPlayer suite', () => {
-  describe('createPlayer properties', () => {
+describe('copyPlayer suite', () => {
+  describe('copyPlayer properties', () => {
     let player;
     beforeAll( () => {
-      player = createPlayer();
+      player = copyPlayer(constructPlayer());
     });
     it('player.id', () => {
       expect(player).toHaveProperty('id');
@@ -21,11 +21,10 @@ describe('createPlayer suite', () => {
     })
   });
 
-  describe('createPlayer named', () => {
+  describe('copyPlayer named', () => {
     let player;
     beforeAll( () => {
-      const named = constructPlayer('Bob', 'W', 'Etc/UTC-0');
-      player = createPlayer(named);
+      player = copyPlayer(constructPlayer('Bob', 'W', 'Etc/UTC-0'));
     });
     it('player.name=Bob', () => {
       expect(player.name).toEqual('Bob');

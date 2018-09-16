@@ -13,6 +13,9 @@ describe('constructPlayer suite', () => {
       expect(player).toHaveProperty('name');
     });
     it('player.color', () => {
+      expect(player).toHaveProperty('color');
+    });
+    it('player.tz', () => {
       expect(player).toHaveProperty('tz');
     });
   });

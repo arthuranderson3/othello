@@ -12,16 +12,16 @@ import currentSnapshot from './model/game/currentSnapshot';
 export default class OthelloApp extends Component {
   constructor(props) {
     super(props);
-    this.state = constructGame();
+    this.state = {};
 
-    bindAll(this, ['click_Square', 'reset', 'undo', 'startGame', 'debugState']);
+    bindAll(this, ['onSquare', 'onReset', 'onUndo', 'onStartGame', 'onDebugState']);
   }
 
   /////////////////////////////////////////////////
   // Method click_Square
   // delegates to checkMove function
   /////////////////////////////////////////////////
-  click_Square(idx) {
+  onSquare(idx) {
     try {
       const state = makeMove(this.state, idx);
       this.setState(state);
@@ -30,37 +30,39 @@ export default class OthelloApp extends Component {
     }
   }
 
-  reset() {
+  onReset() {
     this.setState(reset( this.state ));
   }
 
-  undo() {
+  onUndo() {
     this.setState(undoMove(this.state));
   }
 
-  debugState() {
+  onDebugState() {
     console.info(JSON.stringify(this.state, null, 2));
   }
 
-  startGame(nickName, numPlayers) {
-    let game = constructGame('gameName', nickName, numPlayers);
+  onStartGame(gameName, nickName, numPlayers) {
+    console.info( JSON.stringify( { gameName, nickName, numPlayers }, null, 2 ) );
+    let game = constructGame(gameName, nickName, numPlayers);
+    console.info( JSON.stringify( game, null, 2 ) );
     this.setState(game);
   }
 
   render() {
-    const gbp = currentSnapshot( this.state );
+    //const gbp = currentSnapshot( this.state );
     return (
       <React.Fragment>
-        <GameStartForm onStartGame={this.startGame} />
-        <div className="game">
+        <GameStartForm onStartGame={this.onStartGame} />
+        {/* <div className="game">
           <GameBoard
             {...gbp}
-            onClick={this.click_Square}
-            onReset={this.reset}
-            onUndo={this.undo}
-            onDebug={this.debugLog}
+            onClick={this.onSquare}
+            onReset={this.onReset}
+            onUndo={this.onUndo}
+            onDebug={this.onDebugState}
           />
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }

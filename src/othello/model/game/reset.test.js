@@ -34,7 +34,7 @@ describe('reset test suite', () => {
   it( 'gameReset.snapshots.length=1', () => {
     expect( gameReset.snapshots.length).toEqual(1);
   });
-  it( 'gameReset.snapshots[0].squaresObj=', () => {
+  it( 'gameReset.snapshots[0].squaresObj=DEFAULT_SQUARES', () => {
     expect( gameReset.snapshots[0].squaresObj).toEqual(DEFAULT_SQUARES);
   });
   it( 'gameReset.snapshots[0].turn=1', () => {

@@ -5,19 +5,22 @@ import constructGameBoard from '../gameBoard/constructGameBoard';
 import copyGameBoardArray from '../gameBoard/copyGameBoardArray';
 import constructGameView from '../gameView/constructGameView';
 
-const player2 = constructPlayer( 'black', 'B', 'Etc/GMT-0');
-
 export default function constructGame( gameName = 'anonymous', playerName = 'white', numPlayers = 1 ) {
-  if( numPlayers === 1 ){
-    const gbp = constructGameBoard();
-    const snapshots = copyGameBoardArray( [ gbp ] );
-    return {
-      ...constructIdentity(),
-      name: gameName,
-      startTime: moment.utc().format(),
-      players: [ constructPlayer( playerName, 'W' ), player2 ],
-      snapshots,
-      ...constructGameView( snapshots )
-    };
+  let players;
+  const num = parseInt( numPlayers );
+  if( num === 1 ){
+    players = [ constructPlayer( playerName, 'W' ),
+              constructPlayer( 'black', 'B', 'Etc/GMT-0')];
+  } else {
+    players = [ constructPlayer( playerName, 'W' )];
   }
+  const snapshots = copyGameBoardArray( [ constructGameBoard() ] );
+  return {
+    ...constructIdentity(),
+    name: gameName,
+    startTime: moment.utc().format(),
+    players,
+    snapshots,
+    ...constructGameView( snapshots )
+  };
 }

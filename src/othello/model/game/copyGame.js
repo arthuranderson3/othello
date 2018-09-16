@@ -1,13 +1,14 @@
-import createPlayerArray from '../player/createPlayerArray';
+import copyIdentity from '../identity/copyIdentity';
+import copyPlayerArray from '../player/copyPlayerArray';
 import copyGameBoardArray from '../gameBoard/copyGameBoardArray';
 import constructGameView from '../gameView/constructGameView';
 
 export default function copyGame( { id, name, startTime, players, snapshots }) {
 	return {
-		id,
+		...copyIdentity( { id } ),
 		name,
 		startTime,
-		players: createPlayerArray( players ),
+		players: copyPlayerArray( players ),
 		snapshots: copyGameBoardArray( snapshots ),
 		...constructGameView( snapshots )
 	}

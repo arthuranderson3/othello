@@ -1,24 +1,38 @@
 import React from 'react';
 
 export default function GameStartForm({ onStartGame = f => f }) {
-  let _nickName, _numPlayer;
+  let _playerName;
+  let _numPlayer;
+  let _gameName;
+
   const submit = e => {
     e.preventDefault();
-    onStartGame(_nickName.value, _numPlayer.value);
-    _nickName.value = '';
-    _numPlayer.value = '';
+
+    if( _gameName.value && _playerName.value && _numPlayer ){
+      onStartGame( _gameName.value,
+        _playerName.value,
+        _numPlayer);
+
+      _gameName.value = '';
+      _playerName.value = '';
+    } else {
+        // warn that we need all three values.
+    }
   };
 
   return (
     <form id="gameStart" onSubmit={submit}>
       <h2>Start Game</h2>
+      <label htmlFor="gameName">Game name&nbsp;</label>
+      <input id="gameName" type="text" ref={input => (_gameName = input)}/>
+      <br />
+
       <label htmlFor="onePlayerGame">One Player&nbsp;</label>
       <input
         id="onePlayerGame"
         name="numberOfPlayers"
         type="radio"
-        value="1"
-        ref={input => (_numPlayer = input)}
+        onClick={ e => _numPlayer = 1 }
       />
       <br />
       <label htmlFor="twoPlayerGame">Two Player&nbsp;</label>
@@ -26,13 +40,12 @@ export default function GameStartForm({ onStartGame = f => f }) {
         id="twoPlayerGame"
         name="numberOfPlayers"
         type="radio"
-        value="2"
-        ref={input => (_numPlayer = input)}
+        onClick={ e => _numPlayer = 2 }
       />
       <br />
 
-      <label htmlFor="nickName">Nick name&nbsp;</label>
-      <input id="nickName" type="text" ref={input => (_nickName = input)} />
+      <label htmlFor="playerName">Player name&nbsp;</label>
+      <input id="playerName" type="text" ref={input => (_playerName = input)} />
       <br />
       <button type="submit">Start</button>
     </form>

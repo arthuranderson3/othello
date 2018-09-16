@@ -1,11 +1,11 @@
 import constructPlayer from './constructPlayer';
-import createPlayerArray from './createPlayerArray';
+import copyPlayerArray from './copyPlayerArray';
 
-describe('createPlayerArray suite', () => {
-  it('createPlayerArray#default', () => {
+describe('copyPlayerArray suite', () => {
+  it('copyPlayerArray#default', () => {
 		const players = [ constructPlayer('Bob', 'W','Etc/UTC-0'),
                     constructPlayer('Rene', 'B', 'America/Louisville')];
-    const players2 = createPlayerArray( players );
+    const players2 = copyPlayerArray( players );
 		expect( players2.length ).toEqual(2);
   });
 });
