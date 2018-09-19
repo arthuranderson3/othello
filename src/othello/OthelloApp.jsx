@@ -31,7 +31,7 @@ export default class OthelloApp extends Component {
   }
 
   onReset() {
-    this.setState(reset( this.state ));
+    this.setState(reset(this.state));
   }
 
   onUndo() {
@@ -43,9 +43,9 @@ export default class OthelloApp extends Component {
   }
 
   onStartGame(gameName, nickName, numPlayers) {
-    console.info( JSON.stringify( { gameName, nickName, numPlayers }, null, 2 ) );
+    console.info(JSON.stringify({ gameName, nickName, numPlayers }, null, 2));
     let game = constructGame(gameName, nickName, numPlayers);
-    console.info( JSON.stringify( game, null, 2 ) );
+    console.info(JSON.stringify(game, null, 2));
     this.setState(game);
   }
 

@@ -4,8 +4,8 @@
   "private": true,
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
-      "prettier",
-      "git add"
+      "node_modules/.bin/prettier --config prettier.config.js --write",
+      "git add --no-verify"
     ]
   },
   "scripts": {
@@ -16,7 +16,6 @@
     "eject": "react-scripts eject",
     "eslint": "./node_modules/.bin/eslint",
     "lint": "eslint src",
-    "prettier": "./node_modules/.bin/prettier"
   },
   "proxy": "http://localhost:3001/api",
   "dependencies": {

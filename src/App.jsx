@@ -4,15 +4,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import OthelloApp from './othello/OthelloApp';
 
 export default class App extends Component {
-
   render() {
     return (
       <React.Fragment>
-        <CssBaseline >
+        <CssBaseline>
           <OthelloApp />
         </CssBaseline>
       </React.Fragment>
     );
   }
-
 }
