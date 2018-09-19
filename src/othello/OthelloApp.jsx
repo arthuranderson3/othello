@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import bindAll from 'lodash.bindall';
-import './OthelloApp.css';
 import GameBoard from './view/GameBoard';
 import makeMove from './controller/moveLogic/makeMove';
 import undoMove from './model/game/undoMove';
@@ -8,6 +7,8 @@ import reset from './model/game/reset';
 import GameStartForm from './view/GameStartForm';
 import constructGame from './model/game/constructGame';
 import currentSnapshot from './model/game/currentSnapshot';
+
+import './othelloApp.css';
 
 export default class OthelloApp extends Component {
   constructor(props) {
