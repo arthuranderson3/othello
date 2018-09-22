@@ -1,55 +1,72 @@
-import React from 'react';
+import bindAll from 'lodash.bindall';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material/react-button/dist';
 import './reactButtonOverrides.css';
 
-export default function GameStartForm({ onStartGame = f => f }) {
-  let _playerName;
-  let _numPlayer;
-  let _gameName;
+import TextField, { HelperText, Input } from '@material/react-text-field/dist';
 
-  const submit = e => {
+export default class GameStartForm extends Component {
+  //export default function GameStartForm({ onStartGame = f => f }) {
+  constructor(props) {
+    super(props);
+    this.state = { gameName: '', nickName: '', numPlayers: 1 };
+    bindAll(this, ['submit']);
+  }
+
+  submit(e) {
     e.preventDefault();
-    // console.info( { game: _gameName.value, player: _playerName.value, num: _numPlayer });
-    if (_gameName.value && _playerName.value && _numPlayer) {
-      onStartGame(_gameName.value, _playerName.value, _numPlayer);
+    this.props.onStartGame(this.gameName, this.nickName, this.numPlayers);
+  }
 
-      _gameName.value = '';
-      _playerName.value = '';
-    } else {
-      // warn that we need all three values.
-    }
-  };
+  updateState(name, value) {
+    this.setState({ [name]: value });
+  }
 
-  return (
-    <form id="gameStart" onSubmit={submit}>
-      <h2>Start Game</h2>
-      <label htmlFor="gameName">Game name&nbsp;</label>
-      <input id="gameName" type="text" ref={input => (_gameName = input)} />
-      <br />
+  get gameName() {
+    return this.state.gameName;
+  }
+  set gameName(value) {
+    this.updateState('gameName', value);
+  }
 
-      <label htmlFor="onePlayerGame">One Player&nbsp;</label>
-      <input
-        id="onePlayerGame"
-        name="numberOfPlayers"
-        type="radio"
-        onClick={e => (_numPlayer = 1)}
-      />
-      <br />
-      <label htmlFor="twoPlayerGame">Two Player&nbsp;</label>
-      <input
-        id="twoPlayerGame"
-        name="numberOfPlayers"
-        type="radio"
-        onClick={e => (_numPlayer = 2)}
-      />
-      <br />
+  get nickName() {
+    return this.state.nickName;
+  }
+  set nickName(value) {
+    this.updateState('nickName', value);
+  }
+  get numPlayers() {
+    return this.state.numPlayers;
+  }
+  set numPlayers(value) {
+    const val = parseInt(value, 10);
+    this.updateState('numPlayers', val);
+  }
 
-      <label htmlFor="playerName">Player name&nbsp;</label>
-      <input id="playerName" type="text" ref={input => (_playerName = input)} />
-      <br />
-      <Button raised className="button-alternate" type="submit">
-        Start
-      </Button>
-    </form>
-  );
+  render() {
+    return (
+      <React.Fragment>
+        <TextField label="Game Name">
+          <Input value={this.gameName} onChange={e => (this.gameName = e.target.value)} />
+        </TextField>
+        <br />
+        <TextField label="Nick name">
+          <Input value={this.nickName} onChange={e => (this.nickName = e.target.value)} />
+        </TextField>
+        <br />
+        <TextField label="# Players" helperText={<HelperText>1 or 2 players</HelperText>}>
+          <Input
+            min="1"
+            max="2"
+            value={this.numPlayers}
+            onChange={e => (this.numPlayers = e.target.value)}
+          />
+        </TextField>
+        <Button raised onClick={e => this.submit(e)}>
+          Start Game
+        </Button>
+      </React.Fragment>
+    );
+  }
 }

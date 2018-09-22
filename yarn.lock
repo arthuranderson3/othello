@@ -20,11 +20,49 @@
     "@material/theme" "^0.38.0"
     "@material/typography" "^0.38.0"
 
+"@material/card@^0.38.1":
+  version "0.38.1"
+  resolved "https://registry.yarnpkg.com/@material/card/-/card-0.38.1.tgz#4b5b905212703b4ac67aac8825a30f0112b88f26"
+  dependencies:
+    "@material/elevation" "^0.38.0"
+    "@material/ripple" "^0.38.1"
+    "@material/rtl" "^0.36.0"
+    "@material/theme" "^0.38.0"
+
 "@material/elevation@^0.38.0":
   version "0.38.0"
   resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-0.38.0.tgz#c7f8d0c9a28073b0ec62cb76248b76d5ff467bf8"
   dependencies:
     "@material/animation" "^0.34.0"
+    "@material/theme" "^0.38.0"
+
+"@material/floating-label@^0.38.0":
+  version "0.38.0"
+  resolved "https://registry.yarnpkg.com/@material/floating-label/-/floating-label-0.38.0.tgz#557771f8b9d05d0cd7ec6b3bb13ebb0d24d65ab5"
+  dependencies:
+    "@material/base" "^0.35.0"
+    "@material/rtl" "^0.36.0"
+    "@material/theme" "^0.38.0"
+    "@material/typography" "^0.38.0"
+
+"@material/layout-grid@^0.39.0":
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/@material/layout-grid/-/layout-grid-0.39.0.tgz#8e96645404cfee2655999bc591264c434897af3d"
+
+"@material/line-ripple@^0.38.0":
+  version "0.38.0"
+  resolved "https://registry.yarnpkg.com/@material/line-ripple/-/line-ripple-0.38.0.tgz#e70fec82bfd0b718efcbc72c52210e45bd31bcf9"
+  dependencies:
+    "@material/animation" "^0.34.0"
+    "@material/base" "^0.35.0"
+    "@material/theme" "^0.38.0"
+
+"@material/notched-outline@^0.38.0":
+  version "0.38.0"
+  resolved "https://registry.yarnpkg.com/@material/notched-outline/-/notched-outline-0.38.0.tgz#75ae05a79cdd6a3761d8ddf3afd763c1450c22c8"
+  dependencies:
+    "@material/animation" "^0.34.0"
+    "@material/base" "^0.35.0"
     "@material/theme" "^0.38.0"
 
 "@material/react-button@^0.4.2":
@@ -37,11 +75,77 @@
     prop-types "^15.6.1"
     react "^16.3.2"
 
+"@material/react-card@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@material/react-card/-/react-card-0.4.2.tgz#00513bd0df39c1447a8b72df1f9d43146f4f2cd1"
+  dependencies:
+    "@material/card" "^0.38.1"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.3.2"
+
+"@material/react-floating-label@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@material/react-floating-label/-/react-floating-label-0.4.1.tgz#a17f1eb74b53b860c385c1bc15378022d2628841"
+  dependencies:
+    "@material/floating-label" "^0.38.0"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.3.0"
+
+"@material/react-line-ripple@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@material/react-line-ripple/-/react-line-ripple-0.4.1.tgz#4e07014c980f45a4c7212cd04f835b5ef4823c93"
+  dependencies:
+    "@material/line-ripple" "^0.38.0"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.3.2"
+
+"@material/react-material-icon@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@material/react-material-icon/-/react-material-icon-0.4.2.tgz#a532c0739bed3c7fea9624fa9661659f9ef997db"
+  dependencies:
+    "@material/react-ripple" "^0.4.2"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.3.2"
+
+"@material/react-notched-outline@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@material/react-notched-outline/-/react-notched-outline-0.4.1.tgz#3da419cb89e68fea8ca30ff2dba901657e974c97"
+  dependencies:
+    "@material/notched-outline" "^0.38.0"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.3.2"
+
 "@material/react-ripple@^0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@material/react-ripple/-/react-ripple-0.4.2.tgz#1e57d42617433cc9f8955ac049367418a10410f0"
   dependencies:
     "@material/ripple" "^0.38.1"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.3.2"
+
+"@material/react-text-field@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@material/react-text-field/-/react-text-field-0.4.2.tgz#909bb34054cc9c35468fde222ea81ec07032ed3a"
+  dependencies:
+    "@material/react-floating-label" "^0.4.1"
+    "@material/react-line-ripple" "^0.4.1"
+    "@material/react-notched-outline" "^0.4.1"
+    "@material/textfield" "^0.38.1"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.3.2"
+
+"@material/react-top-app-bar@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@material/react-top-app-bar/-/react-top-app-bar-0.4.2.tgz#54254b1fab7860a9881d690fe55c03490ac7a1d0"
+  dependencies:
+    "@material/top-app-bar" "^0.38.1"
     classnames "^2.2.5"
     prop-types "^15.6.1"
     react "^16.3.2"
@@ -58,9 +162,39 @@
   version "0.36.0"
   resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.36.0.tgz#a81b587981dc6e09f51e26da8a7447f89358ccd5"
 
+"@material/textfield@^0.38.1":
+  version "0.38.1"
+  resolved "https://registry.yarnpkg.com/@material/textfield/-/textfield-0.38.1.tgz#f0dc2d7b534a51845a84f71fbd8199b6cc0b5130"
+  dependencies:
+    "@material/animation" "^0.34.0"
+    "@material/base" "^0.35.0"
+    "@material/floating-label" "^0.38.0"
+    "@material/line-ripple" "^0.38.0"
+    "@material/notched-outline" "^0.38.0"
+    "@material/ripple" "^0.38.1"
+    "@material/rtl" "^0.36.0"
+    "@material/theme" "^0.38.0"
+    "@material/typography" "^0.38.0"
+
 "@material/theme@^0.38.0":
   version "0.38.0"
   resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.38.0.tgz#c1a2247eba4af2ba47da4456921ab420869fda55"
+
+"@material/theme@^0.39.1":
+  version "0.39.1"
+  resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.39.1.tgz#5fb160222e2b213628b285af26ca65c6f4327fe5"
+
+"@material/top-app-bar@^0.38.1":
+  version "0.38.1"
+  resolved "https://registry.yarnpkg.com/@material/top-app-bar/-/top-app-bar-0.38.1.tgz#e3dd6fa59c9510c99d311840272f6b93fca62e08"
+  dependencies:
+    "@material/animation" "^0.34.0"
+    "@material/base" "^0.35.0"
+    "@material/elevation" "^0.38.0"
+    "@material/ripple" "^0.38.1"
+    "@material/rtl" "^0.36.0"
+    "@material/theme" "^0.38.0"
+    "@material/typography" "^0.38.0"
 
 "@material/typography@^0.38.0":
   version "0.38.0"
@@ -1563,7 +1697,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
 
@@ -5265,6 +5399,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+material-design-icons@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/material-design-icons/-/material-design-icons-3.0.1.tgz#9a71c48747218ebca51e51a66da682038cdcb7bf"
+
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
@@ -6857,7 +6995,7 @@ react-test-renderer@^16.0.0-0:
     prop-types "^15.6.0"
     react-is "^16.4.2"
 
-react@^16.3.2:
+react@^16.3.0, react@^16.3.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
   dependencies:

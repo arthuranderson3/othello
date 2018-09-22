@@ -1,6 +1,13 @@
+$mdc-theme-primary: #00695C;
+$mdc-theme-secondary: #D50000;
 
+@import '@material/react-top-app-bar/index.scss';
+@import '@material/react-material-icon/index.scss';
 @import "@material/react-button/index"; // the .scss extension is implied
 @import "./view/reactButtonOverrides.scss";
+@import "@material/react-text-field/index";
+@import '@material/react-card/index';
+@import '@material/layout-grid/mdc-layout-grid';
 
 /*
 * main
