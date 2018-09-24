@@ -1,10 +1,6 @@
 import bindAll from 'lodash.bindall';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material/react-button/dist';
-import './reactButtonOverrides.css';
-
-import TextField, { HelperText, Input } from '@material/react-text-field/dist';
 
 export default class GameStartForm extends Component {
   //export default function GameStartForm({ onStartGame = f => f }) {
@@ -47,25 +43,35 @@ export default class GameStartForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <TextField label="Game Name">
-          <Input value={this.gameName} onChange={e => (this.gameName = e.target.value)} />
-        </TextField>
-        <br />
-        <TextField label="Nick name">
-          <Input value={this.nickName} onChange={e => (this.nickName = e.target.value)} />
-        </TextField>
-        <br />
-        <TextField label="# Players" helperText={<HelperText>1 or 2 players</HelperText>}>
-          <Input
+        <form action="submit">
+          <label for="idGameName">Game Name</label>
+          <input
+            type="text"
+            id="idGameName"
+            value={this.gameName}
+            onChange={e => (this.gameName = e.target.value)}
+          />
+          <br />
+          <label for="idNickName">Nick name</label>
+          <input
+            type="text"
+            id="idNickName"
+            value={this.nickName}
+            onChange={e => (this.nickName = e.target.value)}
+          />
+          <br />
+          <label for="idNumPlayers"># Players</label>
+          <input
+            type="number"
             min="1"
             max="2"
             value={this.numPlayers}
             onChange={e => (this.numPlayers = e.target.value)}
           />
-        </TextField>
-        <Button raised onClick={e => this.submit(e)}>
-          Start Game
-        </Button>
+          <button type="submit" onClick={e => this.submit(e)}>
+            Start Game
+          </button>
+        </form>
       </React.Fragment>
     );
   }

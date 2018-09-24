@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import TopAppBar from '@material/react-top-app-bar';
-import MaterialIcon from '@material/react-material-icon';
 import bindAll from 'lodash.bindall';
 import GameBoard from './view/GameBoard';
 import makeMove from './controller/moveLogic/makeMove';
@@ -56,19 +54,7 @@ export default class OthelloApp extends Component {
     //const gbp = currentSnapshot( this.state );
     return (
       <React.Fragment>
-        <div className="mdc-layout-grid">
-          <TopAppBar
-            title="Othello"
-            navigationIcon={<MaterialIcon icon="menu" onClick={() => console.log('click')} />}
-            actionItems={[<MaterialIcon key="item" icon="bookmark" />]}
-          />
-        </div>
-        <div className="mdc-layout-grid">
-          <div className="mdc-layout-grid__cell-4">
-            <GameStartForm onStartGame={this.onStartGame} />
-          </div>
-          <div className="mdc-layout-grid__cell-8" />
-        </div>
+        <GameStartForm onStartGame={this.onStartGame} />
         {/* <div className="game">
           <GameBoard
             {...gbp}
