@@ -51,19 +51,25 @@ export default class OthelloApp extends Component {
   }
 
   render() {
-    //const gbp = currentSnapshot( this.state );
+    const gbp = currentSnapshot(this.state);
     return (
       <React.Fragment>
-        <GameStartForm onStartGame={this.onStartGame} />
-        {/* <div className="game">
-          <GameBoard
-            {...gbp}
-            onClick={this.onSquare}
-            onReset={this.onReset}
-            onUndo={this.onUndo}
-            onDebug={this.onDebugState}
-          />
-        </div> */}
+        <div className="container">
+          <div className="row">
+            <div className="col-3">
+              <GameStartForm onStartGame={this.onStartGame} />
+            </div>
+            <div className="game col-6">
+              <GameBoard
+                {...gbp}
+                onClick={this.onSquare}
+                onReset={this.onReset}
+                onUndo={this.onUndo}
+                onDebug={this.onDebugState}
+              />
+            </div>
+          </div>
+        </div>
       </React.Fragment>
     );
   }

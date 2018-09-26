@@ -44,22 +44,26 @@ export default class GameStartForm extends Component {
     return (
       <React.Fragment>
         <form action="submit">
-          <label for="idGameName">Game Name</label>
-          <input
-            type="text"
-            id="idGameName"
-            value={this.gameName}
-            onChange={e => (this.gameName = e.target.value)}
-          />
-          <br />
-          <label for="idNickName">Nick name</label>
-          <input
-            type="text"
-            id="idNickName"
-            value={this.nickName}
-            onChange={e => (this.nickName = e.target.value)}
-          />
-          <br />
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              id="idGameName"
+              value={this.gameName}
+              onChange={e => (this.gameName = e.target.value)}
+              placeholder="Game Name"
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              id="idNickName"
+              value={this.nickName}
+              onChange={e => (this.nickName = e.target.value)}
+              placeholder="Nickname"
+            />
+          </div>
           <label for="idNumPlayers"># Players</label>
           <input
             type="number"
