@@ -17,12 +17,13 @@ export default class GameBoard extends Component {
           squares={squares}
           row={row}
           validSquares={this.props.validSquares}
-          onClick={i => this.props.onClick(i)} />
+          onClick={i => this.props.onClick(i)}
+        />
       );
     });
     return (
       <div>
-        <div>
+        <div className="game-header">
           <h1>Othello</h1>
           <button type="button" onClick={() => this.props.onReset()}>
             Reset
@@ -35,7 +36,7 @@ export default class GameBoard extends Component {
           </button>
         </div>
         <div className="game-board">{board}</div>
-        <div>
+        <div className="game-footer">
           <GameStats {...this.props} />
         </div>
       </div>

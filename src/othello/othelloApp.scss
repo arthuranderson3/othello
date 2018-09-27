@@ -1,3 +1,11 @@
+$width: 78px;
+$square-width: $width;
+$square-height: $width;
+$square-font-size: 65px;
+$square-border: 4px solid black;
+$square-background-color: forestgreen;
+$gameboard-background-color: #444444;
+$gameboard-border: 4px solid 22222;
 
 /*
 * main
@@ -52,32 +60,31 @@ ul {
 }
 
 .game-board {
-  background: #444444;
-  border: 4px solid #222222;
+  background: $gameboard-background-color;
+  border: $gameboard-border;
   margin: auto;
   padding: 1px;
 }
 .game-footer {
   background: #888888;
   border: 4px solid #333333;
-  margin-top: 1px;
+  margin-bottom: 1px;
   padding: 1px;
 }
 
 .square {
-  background: forestgreen;
-  border: 1px solid darkslategray;
+  background: $square-background-color;
   float: left;
-  font-size: 36px;
-  font-weight: bold;
-  line-height: 40px;
-  height: 40px;
+  border: $square-border;
+  font-size: $square-font-size;
+  line-height: $square-height;
+  height: $square-height;
   margin-right: -1px;
   margin-top: -1px;
   padding: 2px;
   text-align: center;
-  width: 40px;
-  min-width: 40px;
+  width: $square-width;
+  min-width: $square-width;
 }
 
 .valid-square:hover {

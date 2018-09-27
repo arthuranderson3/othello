@@ -59,7 +59,7 @@ export default class OthelloApp extends Component {
             <div className="col-3">
               <GameStartForm onStartGame={this.onStartGame} />
             </div>
-            <div className="game col-6">
+            <div className="game col-9">
               <GameBoard
                 {...gbp}
                 onClick={this.onSquare}
