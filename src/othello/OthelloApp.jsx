@@ -7,6 +7,7 @@ import reset from './model/game/reset';
 import GameStartForm from './view/GameStartForm';
 import constructGame from './model/game/constructGame';
 import currentSnapshot from './model/game/currentSnapshot';
+import GameStats from './view/GameStats';
 
 import './othelloApp.css';
 
@@ -32,7 +33,9 @@ export default class OthelloApp extends Component {
   }
 
   onReset() {
-    this.setState(reset(this.state));
+    if (this.state.view) {
+      this.setState(reset(this.state));
+    }
   }
 
   onUndo() {
@@ -44,7 +47,7 @@ export default class OthelloApp extends Component {
   }
 
   onStartGame(gameName, nickName, numPlayers) {
-    console.info(JSON.stringify({ gameName, nickName, numPlayers }, null, 2));
+    // console.info(JSON.stringify({ gameName, nickName, numPlayers }, null, 2));
     let game = constructGame(gameName, nickName, numPlayers);
     console.info(JSON.stringify(game, null, 2));
     this.setState(game);
@@ -57,16 +60,27 @@ export default class OthelloApp extends Component {
         <div className="container">
           <div className="row">
             <div className="col-3">
-              <GameStartForm onStartGame={this.onStartGame} />
+              <div>
+                <GameStartForm onStartGame={this.onStartGame} />
+              </div>
+              <div>
+                <h1>Othello</h1>
+                <button type="button" onClick={() => this.onReset()}>
+                  Reset
+                </button>&nbsp;
+                <button type="button" onClick={() => this.onUndo()}>
+                  Undo
+                </button>
+                <button type="button" onClick={() => this.onDebug()}>
+                  Debug Log
+                </button>
+              </div>
+              <div>
+                <GameStats {...this.state.view} />
+              </div>
             </div>
             <div className="game col-9">
-              <GameBoard
-                {...gbp}
-                onClick={this.onSquare}
-                onReset={this.onReset}
-                onUndo={this.onUndo}
-                onDebug={this.onDebugState}
-              />
+              <GameBoard {...gbp} onClick={this.onSquare} />
             </div>
           </div>
         </div>

@@ -64,8 +64,9 @@ export default class GameStartForm extends Component {
               placeholder="Nickname"
             />
           </div>
-          <label for="idNumPlayers"># Players</label>
+          <label htmlFor="idNumPlayers"># Players</label>
           <input
+            id="idNumPlayers"
             type="number"
             min="1"
             max="2"
