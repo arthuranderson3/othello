@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { WHITE_CIRCLE, BLACK_CIRCLE } from './circles';
 

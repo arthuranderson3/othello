@@ -1,6 +1,6 @@
 import some from 'lodash.some';
 import map from 'lodash.map';
-import React, { Component } from 'react';
+import React from 'react';
 import Square from './Square';
 import toIdx from '../controller/boardTransform/toIdx';
 

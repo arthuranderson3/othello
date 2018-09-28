@@ -1,7 +1,7 @@
 import chunk from 'lodash.chunk';
 import map from 'lodash.map';
 import reduce from 'lodash.reduce';
-import React, { Component } from 'react';
+import React from 'react';
 import BoardRow from './BoardRow';
 import { toSquaresArray } from '../model/gameBoard';
 

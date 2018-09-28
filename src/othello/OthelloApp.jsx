@@ -71,7 +71,7 @@ export default class OthelloApp extends Component {
                 <button type="button" onClick={() => this.onUndo()}>
                   Undo
                 </button>
-                <button type="button" onClick={() => this.onDebug()}>
+                <button type="button" onClick={() => this.onDebugState()}>
                   Debug Log
                 </button>
               </div>
