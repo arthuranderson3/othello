@@ -1,6 +1,5 @@
 import chunk from 'lodash.chunk';
 import map from 'lodash.map';
-import reduce from 'lodash.reduce';
 import React from 'react';
 import BoardRow from './BoardRow';
 import { toSquaresArray } from '../model/gameBoard';
@@ -20,6 +19,6 @@ function createBoard(props) {
     );
   });
 }
-const GameBoard = props => <div className="game-board">{createBoard(props)}</div>;
+const GameBoard = props => <div className="game-board rounded">{createBoard(props)}</div>;
 
 export default GameBoard;

@@ -1,9 +1,9 @@
 import React from 'react';
-
+import classNames from 'classnames';
 import { WHITE_CIRCLE, BLACK_CIRCLE } from './circles';
 
 const Square = ({ value, validSquare, onClick, idx }) => {
-  let classes = 'square';
+  let classes = classNames('square', 'rounded');
   let game_piece = '';
   if (value) {
     game_piece = value === 'W' ? WHITE_CIRCLE : BLACK_CIRCLE;

@@ -1,20 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { WHITE_CIRCLE, BLACK_CIRCLE } from './circles';
 
-export function createScore({ score }) {
-  return { score };
+export function createScore({ white, black }) {
+  return { white, black };
 }
 
-const Score = ({ score }) => (
-  <div>
-    <h3>Score</h3>
-    <h4>
-      <span>{WHITE_CIRCLE}</span>:&nbsp;{score.white}&nbsp;
-      <span>{BLACK_CIRCLE}</span>:&nbsp;{score.black}
-    </h4>
-  </div>
+const Score = ({ white, black }) => (
+  <h6>
+    Score:&nbsp;
+    <span>{WHITE_CIRCLE}</span>&nbsp;{white}&nbsp;
+    <span>{BLACK_CIRCLE}</span>&nbsp;{black}
+  </h6>
 );
 
 export default Score;

@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Score, { createScore } from './Score';
-import Turn, { createTurn } from './Turn';
-import Player, { createPlayer } from './Player';
+import PlayerTurn, { createPlayerTurn } from './PlayerTurn';
 
-const GameStats = ({ score, currentTurn, currentPlayer }) => {
-  if (score) {
-    return (
-      <div>
-        <Score {...createScore({ score })} />
-        <Turn {...createTurn({ currentTurn })} />
-        <Player {...createPlayer({ currentPlayer })} />
-      </div>
-    );
-  }
-  return <div> waiting to start game ... </div>;
+const GameStats = ({ score, currentTurn, currentPlayer, lastTurnTime }) => {
+  return (
+    <div className="bg-white p-3 rounded">
+      <Score {...createScore(score)} />
+      <PlayerTurn {...createPlayerTurn({ currentPlayer, currentTurn })} />
+    </div>
+  );
 };
 
 export default GameStats;

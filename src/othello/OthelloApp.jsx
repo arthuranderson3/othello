@@ -8,13 +8,13 @@ import GameStartForm from './view/GameStartForm';
 import constructGame from './model/game/constructGame';
 import currentSnapshot from './model/game/currentSnapshot';
 import GameStats from './view/GameStats';
-
+import ActionPanel from './view/ActionPanel';
 import './othelloApp.css';
 
 export default class OthelloApp extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = constructGame();
 
     bindAll(this, ['onSquare', 'onReset', 'onUndo', 'onStartGame', 'onDebugState']);
   }
@@ -25,8 +25,7 @@ export default class OthelloApp extends Component {
   /////////////////////////////////////////////////
   onSquare(idx) {
     try {
-      const state = makeMove(this.state, idx);
-      this.setState(state);
+      this.setState(makeMove(this.state, idx));
     } catch (err) {
       console.error(err);
     }
@@ -54,37 +53,24 @@ export default class OthelloApp extends Component {
   }
 
   render() {
-    const gbp = currentSnapshot(this.state);
     return (
-      <React.Fragment>
-        <div className="container">
-          <div className="row">
-            <div className="col-3">
-              <div>
-                <GameStartForm onStartGame={this.onStartGame} />
-              </div>
-              <div>
-                <h1>Othello</h1>
-                <button type="button" onClick={() => this.onReset()}>
-                  Reset
-                </button>&nbsp;
-                <button type="button" onClick={() => this.onUndo()}>
-                  Undo
-                </button>
-                <button type="button" onClick={() => this.onDebugState()}>
-                  Debug Log
-                </button>
-              </div>
-              <div>
-                <GameStats {...this.state.view} />
-              </div>
-            </div>
-            <div className="game col-9">
-              <GameBoard {...gbp} onClick={this.onSquare} />
-            </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-3">
+            <ActionPanel
+              title="Othello"
+              onReset={this.onReset}
+              onUndo={this.onUndo}
+              onDebugState={this.onDebugState}
+            />
+            <GameStats {...this.state.view} />
+            <GameStartForm onStartGame={this.onStartGame} />
+          </div>
+          <div className="game col-9">
+            <GameBoard {...currentSnapshot(this.state)} onClick={this.onSquare} />
           </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

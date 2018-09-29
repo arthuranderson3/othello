@@ -1,6 +1,5 @@
 import bindAll from 'lodash.bindall';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 export default class GameStartForm extends Component {
   //export default function GameStartForm({ onStartGame = f => f }) {
@@ -43,40 +42,51 @@ export default class GameStartForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <form action="submit">
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="idGameName"
-              value={this.gameName}
-              onChange={e => (this.gameName = e.target.value)}
-              placeholder="Game Name"
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="idNickName"
-              value={this.nickName}
-              onChange={e => (this.nickName = e.target.value)}
-              placeholder="Nickname"
-            />
-          </div>
-          <label htmlFor="idNumPlayers"># Players</label>
-          <input
-            id="idNumPlayers"
-            type="number"
-            min="1"
-            max="2"
-            value={this.numPlayers}
-            onChange={e => (this.numPlayers = e.target.value)}
-          />
-          <button type="submit" onClick={e => this.submit(e)}>
-            Start Game
-          </button>
-        </form>
+        <div className="bg-light rounded p-3">
+          <form action="submit">
+            <div className="form-group">
+              <label className="col-form-label" htmlFor="idGameName">
+                Game Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="idGameName"
+                value={this.gameName}
+                onChange={e => (this.gameName = e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label className="col-form-label" htmlFor="idNickName">
+                Nick Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="idNickName"
+                value={this.nickName}
+                onChange={e => (this.nickName = e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label className="col-form-label" htmlFor="idNumPlayers">
+                # Players
+              </label>
+              <input
+                id="idNumPlayers"
+                type="number"
+                className="form-control"
+                min="1"
+                max="2"
+                value={this.numPlayers}
+                onChange={e => (this.numPlayers = e.target.value)}
+              />
+            </div>
+            <button type="submit" className="btn btn-success" onClick={e => this.submit(e)}>
+              Start Game
+            </button>
+          </form>
+        </div>
       </React.Fragment>
     );
   }
