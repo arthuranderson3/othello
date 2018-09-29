@@ -1,17 +1,14 @@
 import React from 'react';
+import ActionButton from './controls/ActionButton';
 
 const ActionPanel = ({ title, onReset, onUndo, onDebugState }) => (
   <div>
     <h1>{title}</h1>
-    <button type="button" className="btn btn-dark" onClick={() => onReset()}>
-      Reset
-    </button>&nbsp;
-    <button type="button" className="btn btn-secondary" onClick={() => onUndo()}>
-      Undo
-    </button>&nbsp;
-    <button type="button" className="btn btn-outline-danger" onClick={() => onDebugState()}>
-      Debug Log
-    </button>
+    <ActionButton btnStyle="dark" onClick={onReset} text="Reset" />
+    &nbsp;
+    <ActionButton btnStyle="secondary" onClick={onUndo} text="Undo" />
+    &nbsp;
+    <ActionButton btnStyle="outline-danger" onClick={onDebugState} text="Debug Log" />
   </div>
 );
 
