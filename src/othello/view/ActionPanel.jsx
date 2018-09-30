@@ -3,7 +3,7 @@ import ActionButton from './controls/ActionButton';
 
 const ActionPanel = ({ title, onReset, onUndo, onDebugState }) => (
   <div>
-    <h1>{title}</h1>
+    <h2>{title}</h2>
     <ActionButton btnStyle="dark" onClick={onReset} text="Reset" />
     &nbsp;
     <ActionButton btnStyle="secondary" onClick={onUndo} text="Undo" />

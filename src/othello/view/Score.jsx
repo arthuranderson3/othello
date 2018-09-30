@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { WHITE_CIRCLE, BLACK_CIRCLE } from './circles';
+import { WHITE_CIRCLE, BLACK_CIRCLE } from './GamePiece';
 
 export function createScore({ white, black }) {
   return { white, black };

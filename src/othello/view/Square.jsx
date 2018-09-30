@@ -1,22 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
-import { WHITE_CIRCLE, BLACK_CIRCLE } from './circles';
+import GamePiece from './GamePiece';
 
 const Square = ({ value, validSquare, onClick, idx }) => {
   let classes = classNames('square', 'rounded');
-  let game_piece = '';
-  if (value) {
-    game_piece = value === 'W' ? WHITE_CIRCLE : BLACK_CIRCLE;
+  if (validSquare) {
+    classes += ' valid-square';
+    return (
+      <div className={classes} onClick={() => onClick(idx)}>
+        {GamePiece(value)}
+      </div>
+    );
   }
-  if (validSquare) classes += ' valid-square';
-  if (onClick === undefined) {
-    return <div className={classes}>{game_piece} </div>;
-  }
-  return (
-    <div className={classes} onClick={() => onClick(idx)}>
-      {game_piece}
-    </div>
-  );
+  return <div className={classes}>{GamePiece(value)} </div>;
 };
 
 export default Square;

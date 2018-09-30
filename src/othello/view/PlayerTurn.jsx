@@ -1,5 +1,5 @@
 import React from 'react';
-import { WHITE_CIRCLE, BLACK_CIRCLE } from './circles';
+import GamePiece from './GamePiece';
 
 export function createPlayerTurn({ currentPlayer, currentTurn }) {
   return { currentPlayer, currentTurn };
@@ -7,7 +7,7 @@ export function createPlayerTurn({ currentPlayer, currentTurn }) {
 
 const PlayerTurn = ({ currentPlayer, currentTurn }) => (
   <h6>
-    Turn: {currentTurn} Player: {currentPlayer === 'W' ? WHITE_CIRCLE : BLACK_CIRCLE}
+    Turn: {currentTurn} Player: {GamePiece(currentPlayer)}
   </h6>
 );
 
