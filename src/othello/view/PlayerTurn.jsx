@@ -6,9 +6,11 @@ export function createPlayerTurn({ currentPlayer, currentTurn }) {
 }
 
 const PlayerTurn = ({ currentPlayer, currentTurn }) => (
-  <h6>
-    Turn: {currentTurn} Player: {GamePiece(currentPlayer)}
-  </h6>
+  <div>
+    <h6>
+      Turn: {currentTurn} Player: {GamePiece(currentPlayer)}
+    </h6>
+  </div>
 );
 
 export default PlayerTurn;
