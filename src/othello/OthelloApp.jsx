@@ -46,10 +46,7 @@ export default class OthelloApp extends Component {
   }
 
   onStartGame(gameName, nickName, numPlayers) {
-    // console.info(JSON.stringify({ gameName, nickName, numPlayers }, null, 2));
-    let game = constructGame(gameName, nickName, numPlayers);
-    console.info(JSON.stringify(game, null, 2));
-    this.setState(game);
+    this.setState(constructGame(gameName, nickName, numPlayers));
   }
 
   render() {
