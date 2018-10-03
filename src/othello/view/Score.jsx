@@ -7,11 +7,13 @@ export function createScore({ white, black }) {
 }
 
 const Score = ({ white, black }) => (
-  <h6>
-    Score:&nbsp;
-    <span>{WHITE_CIRCLE}</span>&nbsp;{white}&nbsp;
-    <span>{BLACK_CIRCLE}</span>&nbsp;{black}
-  </h6>
+  <React.Fragment>
+    <h4>Score:</h4>
+    <h5>
+      <span className="circleFont">{WHITE_CIRCLE}</span>&nbsp;{white}&nbsp;
+      <span className="circleFont">{BLACK_CIRCLE}</span>&nbsp;{black}
+    </h5>
+  </React.Fragment>
 );
 
 export default Score;

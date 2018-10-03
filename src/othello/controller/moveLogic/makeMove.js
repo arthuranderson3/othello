@@ -1,4 +1,3 @@
-import hasMove from './hasMove';
 import isValidMove from './isValidMove';
 import updateSquares from './updateSquares';
 import toOppositePlayer from './toOppositePlayer';

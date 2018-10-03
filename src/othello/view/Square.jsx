@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import GamePiece from './GamePiece';
 
 const Square = ({ value, validSquare, onClick, idx }) => {
-  let classes = classNames('square', 'rounded');
+  let classes = classNames('square');
   if (validSquare) {
     classes += ' valid-square';
     return (

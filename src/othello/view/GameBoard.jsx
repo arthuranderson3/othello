@@ -19,6 +19,6 @@ function createBoard(props) {
     );
   });
 }
-const GameBoard = props => <div className="game-board rounded">{createBoard(props)}</div>;
+const GameBoard = props => <div className="game-board shadow-lg">{createBoard(props)}</div>;
 
 export default GameBoard;

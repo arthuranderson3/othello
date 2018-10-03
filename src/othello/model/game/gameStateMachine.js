@@ -1,3 +1,7 @@
+//
+// INITIAL IDEAS - not implemented yet.
+// to manage 2 player remote game
+//
 const GameStateMachine = {
   START_GAME: 1,
   WHITE_PLAYER_TURN: 2,
