@@ -56,7 +56,7 @@ export default class OthelloApp extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-3">
+          <div className="col-3-md col-12-xs">
             <ActionPanel
               title="Othello"
               onReset={this.onReset}
@@ -66,7 +66,7 @@ export default class OthelloApp extends Component {
             <GameStats {...this.state.view} />
             <GameStartForm onStartGame={this.onStartGame} />
           </div>
-          <div className="game col-9">
+          <div className="game col-9-md col-12-xs">
             <GameBoard {...currentSnapshot(this.state)} onClick={this.onSquare} />
           </div>
         </div>
