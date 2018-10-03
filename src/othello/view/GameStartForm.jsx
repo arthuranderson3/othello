@@ -42,7 +42,7 @@ export default class GameStartForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="gameStartForm bg-light rounded p-2">
+        <div className="bg-light rounded p-2">
           <form action="submit">
             <div className="form-group">
               <label className="col-form-label" htmlFor="idGameName">
