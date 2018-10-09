@@ -69,8 +69,8 @@ describe('makeMove test suite', () => {
         priorState = undoMove(gameState);
         lastBoard = currentSnapshot(priorState);
         const state = makeMove(priorState, 40);
-        console.log(JSON.stringify(lastBoard, null, 2));
-        console.log(JSON.stringify(currentSnapshot(state), null, 2));
+        //console.log(JSON.stringify(lastBoard, null, 2));
+        //console.log(JSON.stringify(currentSnapshot(state), null, 2));
       } catch (e) {
         console.info('capture 3 debug board error thrown');
         throw e;

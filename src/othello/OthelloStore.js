@@ -5,4 +5,4 @@ let store = createStore(othelloReducer);
 
 store.subscribe(() => console.log(store.getState()));
 
-store.dispatch(createActionStartGame('createGameName', 'guru', 'yoda', 1));
+store.dispatch(createActionStartGame('createGameName', 'guru'));
