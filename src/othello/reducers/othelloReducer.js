@@ -36,6 +36,9 @@ import reset from '../model/game/reset';
 
 **/
 
+function debugJSON(obj) {
+  return JSON.stringify(obj, null, 2);
+}
 export default function othelloReducer(state, action) {
   switch (action.type) {
     case START_GAME: {
@@ -70,7 +73,10 @@ export default function othelloReducer(state, action) {
       return state;
     }
     default: {
-      console.error({ error: 'Unhandled action', state, action });
+      console.error(debugJSON({ error: 'Unhandled action', state, action }));
+      if (state === undefined) {
+        return null;
+      }
       return state;
     }
   }

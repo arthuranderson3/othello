@@ -6,7 +6,7 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <OthelloApp />
+        <OthelloApp store={this.props.store} />
       </React.Fragment>
     );
   }

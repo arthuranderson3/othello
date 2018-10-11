@@ -1,72 +1,54 @@
 import React, { Component } from 'react';
 import bindAll from 'lodash.bindall';
 import GameBoard from './view/GameBoard';
-import makeMove from './controller/moveLogic/makeMove';
-import undoMove from './model/game/undoMove';
-import reset from './model/game/reset';
-import GameStartForm from './view/GameStartForm';
-import constructGame from './model/game/constructGame';
 import currentSnapshot from './model/game/currentSnapshot';
-import GameStats from './view/GameStats';
+import GameStats, { createGameStats } from './view/GameStats';
 import ActionPanel from './view/ActionPanel';
+import createActionResetGame from './actions/createActionResetGame';
+import createActionUndoMove from './actions/createActionUndoMove';
+import createActionDebugState from './actions/createActionDebugState';
+import createActionMakeMove from './actions/createActionMakeMove';
+
 import './othelloApp.css';
 
 export default class OthelloApp extends Component {
   constructor(props) {
     super(props);
-    this.state = constructGame();
-
-    bindAll(this, ['onSquare', 'onReset', 'onUndo', 'onStartGame', 'onDebugState']);
+    bindAll(this, 'onReset', 'onUndo', 'onDebugState', 'onMakeMove');
   }
-
-  /////////////////////////////////////////////////
-  // Method click_Square
-  // delegates to checkMove function
-  /////////////////////////////////////////////////
-  onSquare(idx) {
-    try {
-      this.setState(makeMove(this.state, idx));
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
   onReset() {
-    if (this.state.view) {
-      this.setState(reset(this.state));
-    }
+    this.props.store.dispatch(createActionResetGame());
   }
-
   onUndo() {
-    this.setState(undoMove(this.state));
+    this.props.store.dispatch(createActionUndoMove());
   }
-
   onDebugState() {
-    console.info(JSON.stringify(this.state, null, 2));
+    this.props.store.dispatch(createActionDebugState());
   }
-
-  onStartGame(gameName, nickName, numPlayers) {
-    this.setState(constructGame(gameName, nickName, numPlayers));
+  onMakeMove(idx) {
+    this.props.store.dispatch(createActionMakeMove(idx));
   }
 
   render() {
+    const state = this.props.store.getState();
+    const { onReset, onUndo, onDebugState, onMakeMove } = this;
     return (
       <div className="container">
         <div className="row">
           <div className="col-6">
             <ActionPanel
               title="Othello"
-              onReset={this.onReset}
-              onUndo={this.onUndo}
-              onDebugState={this.onDebugState}
+              onReset={onReset}
+              onUndo={onUndo}
+              onDebugState={onDebugState}
             />
           </div>
           <div className="col-6">
-            <GameStats {...this.state.view} />
+            <GameStats {...createGameStats(state)} />
           </div>
         </div>
         <div className="row game">
-          <GameBoard {...currentSnapshot(this.state)} onClick={this.onSquare} />
+          <GameBoard {...currentSnapshot(state)} onClick={onMakeMove} />
         </div>
       </div>
     );

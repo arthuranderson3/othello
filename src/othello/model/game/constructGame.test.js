@@ -3,7 +3,7 @@ import constructGame from './constructGame';
 describe('constructGame suite', () => {
   describe('properties', () => {
     let game;
-    beforeAll( () => {
+    beforeAll(() => {
       game = constructGame();
     });
 
@@ -31,11 +31,14 @@ describe('constructGame suite', () => {
     it('game.view', () => {
       expect(game).toHaveProperty('view');
     });
+    it('game.view.score', () => {
+      expect(game.view).toHaveProperty('score');
+    });
   });
 
   describe('default values construction', () => {
     let game;
-    beforeAll( () => {
+    beforeAll(() => {
       game = constructGame();
     });
 
@@ -57,15 +60,14 @@ describe('constructGame suite', () => {
   });
   describe('w/params construction', () => {
     let game;
-    beforeAll( () => {
+    beforeAll(() => {
       game = constructGame('test_game_name', 'player_one_name');
     });
     it('game.name=test_game_name', () => {
-      expect( game.name ).toEqual('test_game_name');
+      expect(game.name).toEqual('test_game_name');
     });
     it('game.players[0].name=player_one_name', () => {
-      expect( game.players[0].name ).toEqual('player_one_name');
+      expect(game.players[0].name).toEqual('player_one_name');
     });
   });
-
 });
