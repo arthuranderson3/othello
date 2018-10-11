@@ -8,8 +8,12 @@ describe('copyGameBoard suite', () => {
     beforeAll(() => {
       pieces = copyGameBoard(constructGameBoard());
     });
-    it('pieces.id', () => expect(pieces).toHaveProperty('id'));
-    it('pieces.gameStatus', () => expect(pieces).toHaveProperty('gameStatus'));
+    it('pieces.id', () => {
+      expect(pieces).toHaveProperty('id');
+    });
+    it('pieces.gameStatus', () => {
+      expect(pieces).toHaveProperty('gameStatus');
+    });
     it('pieces.player', () => {
       expect(pieces).toHaveProperty('player');
     });
@@ -35,8 +39,8 @@ describe('copyGameBoard suite', () => {
     it('pieces.player=W', () => {
       expect(pieces.player).toEqual('W');
     });
-    it('pieces.gameStatus=WHITE_TURN', () => {
-      expect(pieces.gameStatus).toEqual('WHITE_TURN');
+    it('pieces.gameStatus=GAME_START', () => {
+      expect(pieces.gameStatus).toEqual('GAME_START');
     });
     it('pieces.index=undefined', () => {
       expect(pieces.index).toBeUndefined();

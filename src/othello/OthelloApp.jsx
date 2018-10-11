@@ -8,14 +8,16 @@ import createActionResetGame from './actions/createActionResetGame';
 import createActionUndoMove from './actions/createActionUndoMove';
 import createActionDebugState from './actions/createActionDebugState';
 import createActionMakeMove from './actions/createActionMakeMove';
+import createActionStartGame from './actions/createActionStartGame';
 import gameStati from './model/gameBoard/gameStati';
+import GameStartForm from './view/GameStartForm';
 
 import './othelloApp.css';
 
 export default class OthelloApp extends Component {
   constructor(props) {
     super(props);
-    bindAll(this, 'onReset', 'onUndo', 'onDebugState', 'onMakeMove');
+    bindAll(this, 'onReset', 'onUndo', 'onDebugState', 'onMakeMove', 'onStartGame');
   }
   onReset() {
     this.props.store.dispatch(createActionResetGame());
@@ -29,17 +31,21 @@ export default class OthelloApp extends Component {
   onMakeMove(idx) {
     this.props.store.dispatch(createActionMakeMove(idx));
   }
-  onStartGame() {
-    this.props.store.dispatch(createActionStartGame());
+  onStartGame(gameName, playerOne, playerTwo) {
+    this.props.store.dispatch(createActionStartGame(gameName, playerOne, playerTwo));
   }
   render() {
     const state = this.props.store.getState();
-    const { onReset, onUndo, onDebugState, onMakeMove } = this;
-    if (state.gameState === gameStati.GAME_START) {
+    const { onReset, onUndo, onDebugState, onMakeMove, onStartGame } = this;
+    const gameBoard = currentSnapshot(state);
+    if (gameBoard.gameStatus === gameStati.GAME_START) {
       return (
         <div className="container">
           <div className="row">
-            <GameStartForm onStartGame={this.onStartGame} />
+            <div className="offset-3 col-6">
+              <h4>Othello</h4>
+              <GameStartForm onStartGame={onStartGame} />
+            </div>
           </div>
         </div>
       );
@@ -47,20 +53,21 @@ export default class OthelloApp extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-6">
+          <div className="offset-3 col-3">
             <ActionPanel
               title="Othello"
+              gameName={state.gameName}
               onReset={onReset}
               onUndo={onUndo}
               onDebugState={onDebugState}
             />
           </div>
-          <div className="col-6">
+          <div className="col-3">
             <GameStats {...createGameStats(state)} />
           </div>
         </div>
         <div className="row game">
-          <GameBoard {...currentSnapshot(state)} onClick={onMakeMove} />
+          <GameBoard {...gameBoard} onClick={onMakeMove} />
         </div>
       </div>
     );

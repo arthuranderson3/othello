@@ -2,23 +2,25 @@ import moment from 'moment';
 import constructIdentity from '../identity/constructIdentity';
 import constructPlayer from '../player/constructPlayer';
 import constructRandy from '../player/constructRandy';
+import constructGollum from '../player/constructGollum';
+import copyPlayer from '../player/copyPlayer';
 import constructGameBoard from '../gameBoard/constructGameBoard';
 import copyGameBoardArray from '../gameBoard/copyGameBoardArray';
 import constructGameView from '../gameView/constructGameView';
+import gameStati from '../gameBoard/gameStati';
+
+const playerOneDefault = constructPlayer('white', 'W', 'human');
+const playerTwoDefault = constructRandy();
 
 export default function constructGame(
   gameName = 'anonymous',
-  playerName = 'white',
-  numPlayers = 1
+  playerOne = playerOneDefault,
+  playerTwo = playerTwoDefault,
+  gameStatus = gameStati.GAME_START
 ) {
   let players;
-  const num = parseInt(numPlayers, 10);
-  if (num === 1) {
-    players = [constructPlayer(playerName, 'W'), constructRandy('B')];
-  } else {
-    players = [constructPlayer(playerName, 'W')];
-  }
-  const snapshots = copyGameBoardArray([constructGameBoard()]);
+  players = [copyPlayer(playerOne), copyPlayer(playerTwo)];
+  const snapshots = copyGameBoardArray([constructGameBoard(gameStatus)]);
   return {
     ...constructIdentity(),
     name: gameName,

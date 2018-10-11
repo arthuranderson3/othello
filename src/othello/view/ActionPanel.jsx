@@ -1,12 +1,13 @@
 import React from 'react';
 import ActionButton from './controls/ActionButton';
 
-const ActionPanel = ({ title, onReset, onUndo, onDebugState }) => {
+const ActionPanel = ({ title, gameName, onReset, onUndo, onDebugState }) => {
   const devMode = process.env.NODE_ENV !== 'production';
   if (devMode) {
     return (
       <div>
         <h2>{title}</h2>
+        <h4>{gameName}</h4>
         <ActionButton btnStyle="dark" onClick={onReset} text="Reset" />
         &nbsp;
         <ActionButton btnStyle="secondary" onClick={onUndo} text="Undo" />
@@ -18,6 +19,7 @@ const ActionPanel = ({ title, onReset, onUndo, onDebugState }) => {
   return (
     <div>
       <h2>{title}</h2>
+      <h4>{gameName}</h4>
       <ActionButton btnStyle="dark" onClick={onReset} text="Reset" />
       &nbsp;
       <ActionButton btnStyle="secondary" onClick={onUndo} text="Undo" />

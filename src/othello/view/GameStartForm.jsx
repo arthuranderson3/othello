@@ -1,17 +1,24 @@
 import bindAll from 'lodash.bindall';
 import React, { Component } from 'react';
+import PlayerInput from './PlayerInput';
+import constructPlayer from '../model/player/constructPlayer';
+import constructRandy from '../model/player/constructRandy';
 
 export default class GameStartForm extends Component {
   //export default function GameStartForm({ onStartGame = f => f }) {
   constructor(props) {
     super(props);
-    this.state = { gameName: '', nickName: '', numPlayers: 1 };
+    this.state = {
+      gameName: '',
+      playerOne: constructPlayer('', 'W', 'human'),
+      playerTwo: constructRandy(),
+    };
     bindAll(this, ['submit']);
   }
 
   submit(e) {
     e.preventDefault();
-    this.props.onStartGame(this.gameName, this.nickName, this.numPlayers);
+    this.props.onStartGame(this.gameName, this.playerOne, this.playerTwo);
   }
 
   updateState(name, value) {
@@ -25,24 +32,23 @@ export default class GameStartForm extends Component {
     this.updateState('gameName', value);
   }
 
-  get nickName() {
-    return this.state.nickName;
+  get playerOne() {
+    return this.state.playerOne;
   }
-  set nickName(value) {
-    this.updateState('nickName', value);
+  set playerOne(value) {
+    this.updateState('playerOne', value);
   }
-  get numPlayers() {
-    return this.state.numPlayers;
+  get playerTwo() {
+    return this.state.playerTwo;
   }
-  set numPlayers(value) {
-    const val = parseInt(value, 10);
-    this.updateState('numPlayers', val);
+  set playerTwo(value) {
+    this.updateState('playerTwo', value);
   }
 
   render() {
     return (
       <React.Fragment>
-        <div className="bg-light rounded p-2">
+        <div className="bg-light rounded p-4">
           <form action="submit">
             <div className="form-group">
               <label className="col-form-label" htmlFor="idGameName">
@@ -56,32 +62,16 @@ export default class GameStartForm extends Component {
                 onChange={e => (this.gameName = e.target.value)}
               />
             </div>
-            <div className="form-group">
-              <label className="col-form-label" htmlFor="idNickName">
-                Nick Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="idNickName"
-                value={this.nickName}
-                onChange={e => (this.nickName = e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label className="col-form-label" htmlFor="idNumPlayers">
-                # Players
-              </label>
-              <input
-                id="idNumPlayers"
-                type="number"
-                className="form-control"
-                min="1"
-                max="2"
-                value={this.numPlayers}
-                onChange={e => (this.numPlayers = e.target.value)}
-              />
-            </div>
+            <PlayerInput
+              player={this.playerOne}
+              playerNumber="One"
+              updatePlayer={player => (this.playerOne = player)}
+            />
+            <PlayerInput
+              player={this.playerTwo}
+              playerNumber="Two"
+              updatePlayer={player => (this.playerTwo = player)}
+            />
             <button type="submit" className="btn btn-success" onClick={e => this.submit(e)}>
               Start Game
             </button>

@@ -1,4 +1,5 @@
 import constructGame from './constructGame';
+import constructPlayer from '../player/constructPlayer';
 
 describe('constructGame suite', () => {
   describe('properties', () => {
@@ -61,7 +62,7 @@ describe('constructGame suite', () => {
   describe('w/params construction', () => {
     let game;
     beforeAll(() => {
-      game = constructGame('test_game_name', 'player_one_name');
+      game = constructGame('test_game_name', constructPlayer('player_one_name'));
     });
     it('game.name=test_game_name', () => {
       expect(game.name).toEqual('test_game_name');

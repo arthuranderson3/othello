@@ -1,4 +1,5 @@
 import othelloReducer from './othelloReducer';
+import constructPlayer from '../model/player/constructPlayer';
 import createActionStartGame from '../actions/createActionStartGame';
 import createActionMakeMove from '../actions/createActionMakeMove';
 import createActionUndoMove from '../actions/createActionUndoMove';
@@ -6,29 +7,81 @@ import createActionResetGame from '../actions/createActionResetGame';
 import createActionDebugState from '../actions/createActionDebugState';
 
 describe('othelloReducer test suite', () => {
-  it('START_GAME success', () => {
-    const { name, players, snapshots, view } = othelloReducer(undefined, createActionStartGame());
-    expect(name).toEqual('anonymous');
-    expect(players.length).toEqual(2);
-    expect(snapshots.length).toEqual(1);
-    expect(view.score.white).toEqual(2);
-    expect(view.score.black).toEqual(2);
-    expect(view.currentTurn).toEqual(1);
-    expect(view.currentPlayer).toEqual('W');
+  let playerOne;
+  let playerTwo;
+  beforeAll(() => {
+    playerOne = constructPlayer('gabe', 'W', 'human');
+    playerTwo = constructPlayer('justin', 'B', 'human');
   });
-  it('MAKE_MOVE success', () => {
-    const startState = othelloReducer(undefined, createActionStartGame());
-    const actionMove = createActionMakeMove(29);
-    const nextState = othelloReducer(startState, actionMove);
-    //console.log( JSON.stringify(nextState, null, 2) );
-    expect(nextState.snapshots.length).toEqual(2);
-    expect(nextState.view.score.white).toEqual(4);
-    expect(nextState.view.score.black).toEqual(1);
-    expect(nextState.view.currentTurn).toEqual(2);
-    expect(nextState.view.currentPlayer).toEqual('B');
+  describe('START_GAME success', () => {
+    let gameStartState;
+    beforeAll(() => {
+      gameStartState = othelloReducer(
+        undefined,
+        createActionStartGame('anonymous', playerOne, playerTwo)
+      );
+    });
+    it('name', () => {
+      const { name } = gameStartState;
+      expect(name).toEqual('anonymous');
+    });
+    it('players', () => {
+      const { players } = gameStartState;
+      expect(players.length).toEqual(2);
+    });
+    it('snapshots', () => {
+      const { snapshots } = gameStartState;
+      expect(snapshots.length).toEqual(1);
+    });
+    it('view.score.white', () => {
+      const { view } = gameStartState;
+      expect(view.score.white).toEqual(2);
+    });
+    it('view.score.black', () => {
+      const { view } = gameStartState;
+      expect(view.score.black).toEqual(2);
+    });
+    it('view.currentTurn', () => {
+      const { view } = gameStartState;
+      expect(view.currentTurn).toEqual(1);
+    });
+    it('view.currentTurn', () => {
+      const { view } = gameStartState;
+      expect(view.currentPlayer).toEqual('W');
+    });
+  });
+  describe('MAKE_MOVE success', () => {
+    let nextState;
+    beforeAll(() => {
+      const startState = othelloReducer(
+        undefined,
+        createActionStartGame('anonymous', playerOne, playerTwo)
+      );
+      const actionMove = createActionMakeMove(29);
+      nextState = othelloReducer(startState, actionMove);
+    });
+    it('nextState.spapshots.length=2', () => {
+      expect(nextState.snapshots.length).toEqual(2);
+    });
+    it('nextState.view.score.white=4', () => {
+      expect(nextState.view.score.white).toEqual(4);
+    });
+    it('nextState.view.score.black=1', () => {
+      expect(nextState.view.score.black).toEqual(1);
+    });
+
+    it('nextState.view.currentTurn=2', () => {
+      expect(nextState.view.currentTurn).toEqual(2);
+    });
+    it('nextState.view.currentPlayer=B', () => {
+      expect(nextState.view.currentPlayer).toEqual('B');
+    });
   });
   it('UNDO_MOVE success', () => {
-    const startState = othelloReducer(undefined, createActionStartGame());
+    const startState = othelloReducer(
+      undefined,
+      createActionStartGame('anonymous', playerOne, playerTwo)
+    );
     const actionMove = createActionMakeMove(29);
     const nextState = othelloReducer(startState, actionMove);
     const actionUndo = createActionUndoMove();
@@ -36,7 +89,10 @@ describe('othelloReducer test suite', () => {
     expect(origState).toEqual(startState);
   });
   it('RESET_GAME success', () => {
-    const startState = othelloReducer(undefined, createActionStartGame());
+    const startState = othelloReducer(
+      undefined,
+      createActionStartGame('anonymous', playerOne, playerTwo)
+    );
     const actionMove = createActionMakeMove(29);
     const nextState = othelloReducer(startState, actionMove);
     const actionReset = createActionResetGame();
@@ -50,7 +106,10 @@ describe('othelloReducer test suite', () => {
     expect(origState.view.currentPlayer).toEqual('W');
   });
   it('DEBUG_STATE success', () => {
-    const startState = othelloReducer(undefined, createActionStartGame());
+    const startState = othelloReducer(
+      undefined,
+      createActionStartGame('anonymous', playerOne, playerTwo)
+    );
     const actionDebugState = createActionDebugState();
     const nextState = othelloReducer(startState, actionDebugState);
     expect(nextState).toEqual(startState);

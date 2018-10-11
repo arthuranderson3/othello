@@ -4,6 +4,7 @@ import { UNDO_MOVE } from '../actions/othelloActionConstants';
 import { RESET_GAME } from '../actions/othelloActionConstants';
 import { DEBUG_STATE } from '../actions/othelloActionConstants';
 
+import gameStati from '../model/gameBoard/gameStati';
 import constructGame from '../model/game/constructGame';
 import makeMove from '../controller/moveLogic/makeMove';
 import undoMove from '../model/game/undoMove';
@@ -43,7 +44,9 @@ export default function othelloReducer(state, action) {
   switch (action.type) {
     case START_GAME: {
       try {
-        return constructGame(action.payload.gameName, action.payload.playerName);
+        //console.info( action.payload );
+        const { gameName, playerOne, playerTwo } = action.payload;
+        return constructGame(gameName, playerOne, playerTwo, gameStati.WHITE_TURN);
       } catch (err) {
         console.error(err);
         return state;
