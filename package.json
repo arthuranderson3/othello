@@ -4,10 +4,6 @@
   "private": true,
   "keywords": "othello reactjs redux",
   "homepage": "https://arthuranderson3.github.io/othello",
-  "bugs": {
-    "url" : "https://github.com/arthuranderson3/othello/issues"
-    , "email" : "othello@arthuranderson3.github.io"
-  },
   "lint-staged": {
     "src/**/*.{js,jsx,json,scss}": [
       "node_modules/.bin/prettier --write",
