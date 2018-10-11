@@ -3,8 +3,8 @@ import constructGameBoard from '../gameBoard/constructGameBoard';
 
 describe('constructGameView test suite', () => {
   let view;
-  beforeAll( () => {
-    const game = constructGameView( [constructGameBoard()] );
+  beforeAll(() => {
+    const game = constructGameView([constructGameBoard()]);
     view = game.view;
   });
   it('view.currentPlayer', () => {
@@ -18,5 +18,8 @@ describe('constructGameView test suite', () => {
   });
   it('view.score', () => {
     expect(view).toHaveProperty('score');
+  });
+  it('view.gameStatus', () => {
+    expect(view).toHaveProperty('gameStatus');
   });
 });

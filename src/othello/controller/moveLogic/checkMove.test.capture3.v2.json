@@ -6,14 +6,12 @@
     {
       "color": "W",
       "id": "71eb6b20-55d0-4275-9e29-01a34b3070b7",
-      "name": "",
-      "tz": "America/Louisville"
+      "name": ""
     },
     {
       "color": "B",
       "id": "588d2843-7f5e-46a2-9aa2-44c582a28b8f",
-      "name": "black",
-      "tz": "Etc/GMT-0"
+      "name": "black"
     }
   ],
   "snapshots": [
@@ -25,10 +23,16 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 1,
       "index": 29,
-      "validSquares": [20, 29, 34, 43]
+      "validSquares": [
+        20,
+        29,
+        34,
+        43
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -39,10 +43,15 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 2,
       "index": 21,
-      "validSquares": [19, 21, 37]
+      "validSquares": [
+        19,
+        21,
+        37
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -54,10 +63,16 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 3,
       "index": 20,
-      "validSquares": [13, 20, 34, 43]
+      "validSquares": [
+        13,
+        20,
+        34,
+        43
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -70,10 +85,14 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 4,
       "index": 19,
-      "validSquares": [19, 37]
+      "validSquares": [
+        19,
+        37
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -87,10 +106,21 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 5,
       "index": 11,
-      "validSquares": [10, 11, 12, 13, 14, 18, 26, 34, 42]
+      "validSquares": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        18,
+        26,
+        34,
+        42
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -105,10 +135,17 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 6,
       "index": 3,
-      "validSquares": [3, 13, 30, 37, 45]
+      "validSquares": [
+        3,
+        13,
+        30,
+        37,
+        45
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -124,10 +161,21 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 7,
       "index": 2,
-      "validSquares": [2, 10, 13, 14, 18, 22, 26, 34, 42]
+      "validSquares": [
+        2,
+        10,
+        13,
+        14,
+        18,
+        22,
+        26,
+        34,
+        42
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -144,10 +192,17 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 8,
       "index": 1,
-      "validSquares": [1, 13, 30, 37, 45]
+      "validSquares": [
+        1,
+        13,
+        30,
+        37,
+        45
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -165,10 +220,21 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 9,
       "index": 13,
-      "validSquares": [10, 13, 14, 18, 22, 26, 34, 42, 43]
+      "validSquares": [
+        10,
+        13,
+        14,
+        18,
+        22,
+        26,
+        34,
+        42,
+        43
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -187,10 +253,19 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 10,
       "index": 6,
-      "validSquares": [6, 14, 22, 30, 37, 38, 45]
+      "validSquares": [
+        6,
+        14,
+        22,
+        30,
+        37,
+        38,
+        45
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -210,10 +285,20 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 11,
       "index": 12,
-      "validSquares": [5, 10, 12, 18, 26, 34, 42, 43]
+      "validSquares": [
+        5,
+        10,
+        12,
+        18,
+        26,
+        34,
+        42,
+        43
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -234,10 +319,20 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 12,
       "index": 5,
-      "validSquares": [5, 10, 14, 22, 30, 37, 38, 45]
+      "validSquares": [
+        5,
+        10,
+        14,
+        22,
+        30,
+        37,
+        38,
+        45
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -259,10 +354,20 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 13,
       "index": 4,
-      "validSquares": [4, 10, 14, 18, 26, 34, 42, 43]
+      "validSquares": [
+        4,
+        10,
+        14,
+        18,
+        26,
+        34,
+        42,
+        43
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -285,10 +390,19 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 14,
       "index": 10,
-      "validSquares": [10, 14, 22, 30, 37, 38, 45]
+      "validSquares": [
+        10,
+        14,
+        22,
+        30,
+        37,
+        38,
+        45
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -312,10 +426,19 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 15,
       "index": 7,
-      "validSquares": [0, 7, 18, 22, 26, 34, 42]
+      "validSquares": [
+        0,
+        7,
+        18,
+        22,
+        26,
+        34,
+        42
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -340,10 +463,19 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 16,
       "index": 22,
-      "validSquares": [14, 22, 30, 37, 38, 44, 45]
+      "validSquares": [
+        14,
+        22,
+        30,
+        37,
+        38,
+        44,
+        45
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -369,10 +501,20 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 17,
       "index": 0,
-      "validSquares": [0, 14, 15, 18, 26, 31, 34, 42]
+      "validSquares": [
+        0,
+        14,
+        15,
+        18,
+        26,
+        31,
+        34,
+        42
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -399,10 +541,18 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 18,
       "index": 30,
-      "validSquares": [30, 37, 38, 43, 44, 45]
+      "validSquares": [
+        30,
+        37,
+        38,
+        43,
+        44,
+        45
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -430,10 +580,22 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 19,
       "index": 31,
-      "validSquares": [15, 17, 18, 26, 31, 34, 37, 38, 39, 43]
+      "validSquares": [
+        15,
+        17,
+        18,
+        26,
+        31,
+        34,
+        37,
+        38,
+        39,
+        43
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -462,10 +624,19 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 20,
       "index": 23,
-      "validSquares": [14, 15, 23, 37, 43, 44, 45]
+      "validSquares": [
+        14,
+        15,
+        23,
+        37,
+        43,
+        44,
+        45
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -495,10 +666,22 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 21,
       "index": 15,
-      "validSquares": [9, 15, 17, 18, 26, 34, 37, 38, 39, 43]
+      "validSquares": [
+        9,
+        15,
+        17,
+        18,
+        26,
+        34,
+        37,
+        38,
+        39,
+        43
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -529,10 +712,17 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 22,
       "index": 14,
-      "validSquares": [14, 37, 38, 44, 45]
+      "validSquares": [
+        14,
+        37,
+        38,
+        44,
+        45
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -564,10 +754,22 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 23,
       "index": 9,
-      "validSquares": [9, 17, 18, 26, 34, 37, 38, 39, 42, 43]
+      "validSquares": [
+        9,
+        17,
+        18,
+        26,
+        34,
+        37,
+        38,
+        39,
+        42,
+        43
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -600,10 +802,17 @@
         "35": "B",
         "36": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 24,
       "index": 37,
-      "validSquares": [37, 38, 43, 44, 45]
+      "validSquares": [
+        37,
+        38,
+        43,
+        44,
+        45
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -637,10 +846,22 @@
         "36": "B",
         "37": "B"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 25,
       "index": 38,
-      "validSquares": [18, 26, 34, 38, 39, 42, 43, 44, 45, 46]
+      "validSquares": [
+        18,
+        26,
+        34,
+        38,
+        39,
+        42,
+        43,
+        44,
+        45,
+        46
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -675,10 +896,20 @@
         "37": "B",
         "38": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 26,
       "index": 18,
-      "validSquares": [18, 26, 34, 42, 43, 44, 45, 46]
+      "validSquares": [
+        18,
+        26,
+        34,
+        42,
+        43,
+        44,
+        45,
+        46
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -714,10 +945,14 @@
         "37": "B",
         "38": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 27,
       "index": 17,
-      "validSquares": [17, 39]
+      "validSquares": [
+        17,
+        39
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -754,10 +989,22 @@
         "37": "B",
         "38": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 28,
       "index": 16,
-      "validSquares": [16, 24, 25, 26, 34, 42, 43, 44, 45, 46]
+      "validSquares": [
+        16,
+        24,
+        25,
+        26,
+        34,
+        42,
+        43,
+        44,
+        45,
+        46
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -795,10 +1042,13 @@
         "37": "B",
         "38": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 29,
       "index": 39,
-      "validSquares": [39]
+      "validSquares": [
+        39
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -837,10 +1087,20 @@
         "38": "B",
         "39": "B"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 30,
       "index": 26,
-      "validSquares": [26, 34, 42, 43, 44, 45, 46, 47]
+      "validSquares": [
+        26,
+        34,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -880,10 +1140,18 @@
         "38": "B",
         "39": "B"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 31,
       "index": 47,
-      "validSquares": [42, 43, 44, 45, 46, 47]
+      "validSquares": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -924,10 +1192,13 @@
         "39": "W",
         "47": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 32,
       "index": 8,
-      "validSquares": [8]
+      "validSquares": [
+        8
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -969,10 +1240,21 @@
         "39": "W",
         "47": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 33,
       "index": 24,
-      "validSquares": [24, 25, 33, 34, 42, 43, 44, 45, 46]
+      "validSquares": [
+        24,
+        25,
+        33,
+        34,
+        42,
+        43,
+        44,
+        45,
+        46
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -1015,10 +1297,13 @@
         "39": "W",
         "47": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 34,
       "index": 32,
-      "validSquares": [32]
+      "validSquares": [
+        32
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -1062,10 +1347,21 @@
         "39": "W",
         "47": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 35,
       "index": 25,
-      "validSquares": [25, 33, 34, 40, 42, 43, 44, 45, 46]
+      "validSquares": [
+        25,
+        33,
+        34,
+        40,
+        42,
+        43,
+        44,
+        45,
+        46
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -1110,10 +1406,19 @@
         "39": "W",
         "47": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 36,
       "index": 34,
-      "validSquares": [34, 40, 42, 43, 44, 45, 46]
+      "validSquares": [
+        34,
+        40,
+        42,
+        43,
+        44,
+        45,
+        46
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -1159,10 +1464,14 @@
         "39": "W",
         "47": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 37,
       "index": 43,
-      "validSquares": [43, 44]
+      "validSquares": [
+        43,
+        44
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -1209,10 +1518,18 @@
         "43": "B",
         "47": "W"
       },
+      "gameStatus": "WHITE_TURN",
       "player": "W",
       "turn": 38,
       "index": 40,
-      "validSquares": [33, 40, 41, 42, 50, 51]
+      "validSquares": [
+        33,
+        40,
+        41,
+        42,
+        50,
+        51
+      ]
     },
     {
       "id": "03466efa-980a-4588-bc94-a0da845952fc",
@@ -1260,6 +1577,7 @@
         "43": "B",
         "47": "W"
       },
+      "gameStatus": "BLACK_TURN",
       "player": "B",
       "turn": 39,
       "index": 40,
@@ -1273,6 +1591,6 @@
     },
     "currentTurn": 39,
     "currentPlayer": "B",
-    "lastTurnTime": "2018-09-28T22:31:57Z"
+    "lastTurnTime": "2018-10-11T20:01:33Z"
   }
 }

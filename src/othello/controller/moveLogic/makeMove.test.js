@@ -26,12 +26,15 @@ describe('makeMove test suite', () => {
   describe('capture2 - debug board', () => {
     let debugBoard;
     beforeAll(() => {
-      const file = fs.readFileSync(path.join(__dirname, 'checkMove.test.capture2.json'));
+      const file = fs.readFileSync(path.join(__dirname, 'checkMove.test.capture2.v2.json'));
       const gameState = copyGame(JSON.parse(file));
       debugBoard = currentSnapshot(gameState);
     });
     it('debugBoard.player=B', () => {
       expect(debugBoard.player).toEqual('B');
+    });
+    it('debugBoard.gameStatus=BLACK_TURN', () => {
+      expect(debugBoard.gameStatus).toEqual('BLACK_TURN');
     });
     it('debugBoard.validSquares', () => {
       expect(debugBoard.validSquares).toEqual([0]);
@@ -41,7 +44,7 @@ describe('makeMove test suite', () => {
   describe('capture2 - debug board move index 0', () => {
     let lastBoard;
     beforeAll(() => {
-      const file = fs.readFileSync(path.join(__dirname, 'checkMove.test.capture2.json'));
+      const file = fs.readFileSync(path.join(__dirname, 'checkMove.test.capture2.v2.json'));
       const gameState = copyGame(JSON.parse(file));
       try {
         const state = makeMove(gameState, 0);
@@ -63,7 +66,7 @@ describe('makeMove test suite', () => {
     let lastBoard;
     let priorState;
     beforeAll(() => {
-      const file = fs.readFileSync(path.join(__dirname, 'checkMove.test.capture3.json'));
+      const file = fs.readFileSync(path.join(__dirname, 'checkMove.test.capture3.v2.json'));
       const gameState = copyGame(JSON.parse(file));
       try {
         priorState = undoMove(gameState);
