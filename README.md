@@ -1,6 +1,7 @@
 # Othello
 > Tis in ourselves that we are thus or thus. Our bodies are our gardens to the which our wills are gardeners.
-> **William Shakespeare, Othello**
+>
+>**William Shakespeare, Othello**
 
 This project was created with create-react-app and inspired by my passion for board games, especially othello.
 
