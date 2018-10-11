@@ -5,7 +5,7 @@
 
 This project was created with create-react-app and inspired by my passion for board games, especially othello.
 
-You can play the game [here](https://arthuranderson3@github.io/othello)
+You can play the game [here](https://arthuranderson3.github.io/othello/)
 
 ## Game options
 * Play against the computer
