@@ -73,7 +73,9 @@ export default function othelloReducer(state, action) {
       return state;
     }
     default: {
-      console.error(debugJSON({ error: 'Unhandled action', state, action }));
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(debugJSON({ error: 'Unhandled action', state, action }));
+      }
       if (state === undefined) {
         return null;
       }

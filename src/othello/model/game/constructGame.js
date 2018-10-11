@@ -4,6 +4,7 @@ import constructPlayer from '../player/constructPlayer';
 import constructGameBoard from '../gameBoard/constructGameBoard';
 import copyGameBoardArray from '../gameBoard/copyGameBoardArray';
 import constructGameView from '../gameView/constructGameView';
+import gameStati from './gameStati';
 
 export default function constructGame(
   gameName = 'anonymous',
@@ -22,6 +23,7 @@ export default function constructGame(
     ...constructIdentity(),
     name: gameName,
     startTime: moment.utc().format(),
+    gameStatus: gameStati.WHITE_TURN,
     players,
     snapshots,
     ...constructGameView(snapshots),
