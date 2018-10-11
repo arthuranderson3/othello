@@ -4,7 +4,7 @@ import copyPlayer from './copyPlayer';
 describe('copyPlayer suite', () => {
   describe('copyPlayer properties', () => {
     let player;
-    beforeAll( () => {
+    beforeAll(() => {
       player = copyPlayer(constructPlayer());
     });
     it('player.id', () => {
@@ -16,15 +16,15 @@ describe('copyPlayer suite', () => {
     it('player.color', () => {
       expect(player).toHaveProperty('color');
     });
-    it('player.tz', () => {
-      expect(player).toHaveProperty('tz');
-    })
+    it('player.type', () => {
+      expect(player).toHaveProperty('type');
+    });
   });
 
   describe('copyPlayer named', () => {
     let player;
-    beforeAll( () => {
-      player = copyPlayer(constructPlayer('Bob', 'W', 'Etc/UTC-0'));
+    beforeAll(() => {
+      player = copyPlayer(constructPlayer('Bob', 'W', 'computer'));
     });
     it('player.name=Bob', () => {
       expect(player.name).toEqual('Bob');
@@ -32,8 +32,8 @@ describe('copyPlayer suite', () => {
     it('player.color=W', () => {
       expect(player.color).toEqual('W');
     });
-    it('player.tz=Etc/UTC-0', () => {
-      expect(player.tz).toEqual('Etc/UTC-0');
+    it('player.type=computer', () => {
+      expect(player.type).toEqual('computer');
     });
   });
 });

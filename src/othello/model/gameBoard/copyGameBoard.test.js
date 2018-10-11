@@ -5,12 +5,11 @@ import DEFAULT_SQUARES from './DEFAULT_SQUARES';
 describe('copyGameBoard suite', () => {
   describe('default initial board properties', () => {
     let pieces;
-    beforeAll( () => {
+    beforeAll(() => {
       pieces = copyGameBoard(constructGameBoard());
     });
-    it('pieces.id', () => {
-      expect(pieces).toHaveProperty('id');
-    });
+    it('pieces.id', () => expect(pieces).toHaveProperty('id'));
+    it('pieces.gameStatus', () => expect(pieces).toHaveProperty('gameStatus'));
     it('pieces.player', () => {
       expect(pieces).toHaveProperty('player');
     });
@@ -30,11 +29,14 @@ describe('copyGameBoard suite', () => {
 
   describe('default initial board values', () => {
     let pieces;
-    beforeAll( () => {
+    beforeAll(() => {
       pieces = copyGameBoard(constructGameBoard());
     });
     it('pieces.player=W', () => {
       expect(pieces.player).toEqual('W');
+    });
+    it('pieces.gameStatus=WHITE_TURN', () => {
+      expect(pieces.gameStatus).toEqual('WHITE_TURN');
     });
     it('pieces.index=undefined', () => {
       expect(pieces.index).toBeUndefined();
@@ -46,7 +48,7 @@ describe('copyGameBoard suite', () => {
       expect(pieces.turn).toEqual(1);
     });
     it('pieces.validSquares = [20,29,34,43]', () => {
-      expect(pieces.validSquares).toEqual([20,29,34,43]);
+      expect(pieces.validSquares).toEqual([20, 29, 34, 43]);
     });
   });
 });

@@ -5,7 +5,7 @@ import recordSnapshot from '../../model/game/recordSnapshot';
 import toSquaresArray from '../../model/gameBoard/toSquaresArray';
 import gatherValidMoves from './gatherValidMoves';
 import currentSnapshot from '../../model/game/currentSnapshot';
-import gameStati from '../../model/game/gameStati';
+import gameStati from '../../model/gameBoard/gameStati';
 
 export default function makeMove(state, index) {
   let currentState = state;
@@ -38,8 +38,9 @@ export default function makeMove(state, index) {
     newGameBoard.player = next.player;
     newGameBoard.turn = currentState.snapshots.length + 1;
     newGameBoard.validSquares = validSq.slice();
+    newGameBoard.gameStatus = status;
 
-    currentState = recordSnapshot(currentState, newGameBoard, status);
+    currentState = recordSnapshot(currentState, newGameBoard);
     return currentState;
   }
   throw new Error(`not a valid move ${index}`);

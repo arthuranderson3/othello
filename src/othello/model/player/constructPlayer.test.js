@@ -3,7 +3,7 @@ import constructPlayer from './constructPlayer';
 describe('constructPlayer suite', () => {
   describe('player properties', () => {
     let player;
-    beforeAll( () => {
+    beforeAll(() => {
       player = constructPlayer('Bob');
     });
     it('player.id', () => {
@@ -15,13 +15,13 @@ describe('constructPlayer suite', () => {
     it('player.color', () => {
       expect(player).toHaveProperty('color');
     });
-    it('player.tz', () => {
-      expect(player).toHaveProperty('tz');
+    it('player.type', () => {
+      expect(player).toHaveProperty('type');
     });
   });
   describe('default player', () => {
     let player;
-    beforeAll( () => {
+    beforeAll(() => {
       player = constructPlayer();
     });
     it('player.name=anonymous', () => {
@@ -30,9 +30,8 @@ describe('constructPlayer suite', () => {
     it('player.color=W', () => {
       expect(player.color).toEqual('W');
     });
-    it('player.tz=America/Louisville', () => {
-      expect(player.tz).toEqual('America/Louisville');
-    })
-
-  })
+    it('player.type=human', () => {
+      expect(player.type).toEqual('human');
+    });
+  });
 });

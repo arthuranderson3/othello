@@ -69,11 +69,13 @@ export default function othelloReducer(state, action) {
       return reset(state);
     }
     case DEBUG_STATE: {
-      console.info(JSON.stringify(state, null, 2));
+      if (process.env.NODE_ENV !== 'test') {
+        console.info(JSON.stringify(state, null, 2));
+      }
       return state;
     }
     default: {
-      if (process.env.NODE_ENV !== 'production') {
+      if (process.env.NODE_ENV === 'development') {
         console.error(debugJSON({ error: 'Unhandled action', state, action }));
       }
       if (state === undefined) {

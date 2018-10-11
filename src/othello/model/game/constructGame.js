@@ -1,10 +1,10 @@
 import moment from 'moment';
 import constructIdentity from '../identity/constructIdentity';
 import constructPlayer from '../player/constructPlayer';
+import constructRandy from '../player/constructRandy';
 import constructGameBoard from '../gameBoard/constructGameBoard';
 import copyGameBoardArray from '../gameBoard/copyGameBoardArray';
 import constructGameView from '../gameView/constructGameView';
-import gameStati from './gameStati';
 
 export default function constructGame(
   gameName = 'anonymous',
@@ -14,7 +14,7 @@ export default function constructGame(
   let players;
   const num = parseInt(numPlayers, 10);
   if (num === 1) {
-    players = [constructPlayer(playerName, 'W'), constructPlayer('black', 'B', 'Etc/GMT-0')];
+    players = [constructPlayer(playerName, 'W'), constructRandy('B')];
   } else {
     players = [constructPlayer(playerName, 'W')];
   }
@@ -23,7 +23,6 @@ export default function constructGame(
     ...constructIdentity(),
     name: gameName,
     startTime: moment.utc().format(),
-    gameStatus: gameStati.WHITE_TURN,
     players,
     snapshots,
     ...constructGameView(snapshots),

@@ -11,4 +11,4 @@ You can play the game [here](https://arthuranderson3.github.io/othello/)
 * Play against the computer
 * Computer versus computer
 
-Have some fun and play against two computer opponents, Randy or Gollum. Try and guess how their choices are made :smiley:.
+Have some fun and play against Randy or Gollum. Try and guess how their choices are made :smiley:.

@@ -8,6 +8,7 @@ import createActionResetGame from './actions/createActionResetGame';
 import createActionUndoMove from './actions/createActionUndoMove';
 import createActionDebugState from './actions/createActionDebugState';
 import createActionMakeMove from './actions/createActionMakeMove';
+import gameStati from './model/gameBoard/gameStati';
 
 import './othelloApp.css';
 
@@ -28,10 +29,21 @@ export default class OthelloApp extends Component {
   onMakeMove(idx) {
     this.props.store.dispatch(createActionMakeMove(idx));
   }
-
+  onStartGame() {
+    this.props.store.dispatch(createActionStartGame());
+  }
   render() {
     const state = this.props.store.getState();
     const { onReset, onUndo, onDebugState, onMakeMove } = this;
+    if (state.gameState === gameStati.GAME_START) {
+      return (
+        <div className="container">
+          <div className="row">
+            <GameStartForm onStartGame={this.onStartGame} />
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="container">
         <div className="row">

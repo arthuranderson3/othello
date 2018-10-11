@@ -51,8 +51,8 @@ describe('constructGame suite', () => {
     it('game.players[0].color=W', () => {
       expect(game.players[0].color).toEqual('W');
     });
-    it('game.players[1].name=black', () => {
-      expect(game.players[1].name).toEqual('black');
+    it('game.players[1].name=Randy', () => {
+      expect(game.players[1].name).toEqual('Randy');
     });
     it('game.players[1].color=B', () => {
       expect(game.players[1].color).toEqual('B');

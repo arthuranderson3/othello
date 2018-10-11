@@ -1,10 +1,10 @@
 import copyIdentity from '../identity/copyIdentity';
 
-export default function copyPlayer( { color, id, name, tz } ) {
+export default function copyPlayer({ color, id, name, type }) {
   return {
     color,
     ...copyIdentity({ id }),
     name,
-    tz
+    type,
   };
 }
