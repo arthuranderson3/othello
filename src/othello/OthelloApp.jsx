@@ -59,13 +59,16 @@ export default class OthelloApp extends Component {
   randomMove() {
     const state = this.props.store.getState();
     const snapshot = currentSnapshot(state);
-    const idx = randomInt(0, snapshot.validSquares.length - 1);
-    this.onMakeMove(snapshot.validSquares[idx]);
+    if (snapshot.validSquares.length > 0) {
+      const idx = randomInt(0, snapshot.validSquares.length - 1);
+      this.onMakeMove(snapshot.validSquares[idx]);
+    }
   }
 
   onComputerMove() {
     const state = this.props.store.getState();
-    if (state.view.currentPlayer.type === 'computer') {
+    const snapshot = currentSnapshot(state);
+    if (snapshot.status !== gameStati.GAME_OVER && state.view.currentPlayer.type === 'computer') {
       // console.info(JSON.stringify(state.view, null, 2));
       // console.info('setting up random move');
       setTimeout(this.randomMove, state.view.currentPlayer.delay * 1000);
