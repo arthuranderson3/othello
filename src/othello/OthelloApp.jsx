@@ -9,6 +9,7 @@ import createActionUndoMove from './actions/createActionUndoMove';
 import createActionDebugState from './actions/createActionDebugState';
 import createActionMakeMove from './actions/createActionMakeMove';
 import createActionStartGame from './actions/createActionStartGame';
+import createActionOptions from './actions/createActionOptions';
 import gameStati from './model/gameBoard/gameStati';
 import GameStartForm from './view/GameStartForm';
 import randomInt from './utility/randomInt';
@@ -51,8 +52,8 @@ export default class OthelloApp extends Component {
   }
 
   onOptions() {
-    // const state = this.props.store.getState();
-    // this.onStartGame( state.name, state.players[0], state.players[1] );
+    const state = this.props.store.getState();
+    this.props.store.dispatch(createActionOptions());
   }
 
   randomMove() {
@@ -65,8 +66,8 @@ export default class OthelloApp extends Component {
   onComputerMove() {
     const state = this.props.store.getState();
     if (state.view.currentPlayer.type === 'computer') {
-      console.info(JSON.stringify(state.view, null, 2));
-      console.info('setting up random move');
+      // console.info(JSON.stringify(state.view, null, 2));
+      // console.info('setting up random move');
       setTimeout(this.randomMove, state.view.currentPlayer.delay * 1000);
     }
   }

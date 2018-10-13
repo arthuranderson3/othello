@@ -1,9 +1,11 @@
-import { START_GAME } from '../actions/othelloActionConstants';
-import { MAKE_MOVE } from '../actions/othelloActionConstants';
-import { UNDO_MOVE } from '../actions/othelloActionConstants';
-import { RESET_GAME } from '../actions/othelloActionConstants';
-import { DEBUG_STATE } from '../actions/othelloActionConstants';
-
+import {
+  START_GAME,
+  MAKE_MOVE,
+  UNDO_MOVE,
+  RESET_GAME,
+  DEBUG_STATE,
+  OPTIONS,
+} from '../actions/othelloActionConstants';
 import gameStati from '../model/gameBoard/gameStati';
 import constructGame from '../model/game/constructGame';
 import makeMove from '../controller/moveLogic/makeMove';
@@ -76,6 +78,9 @@ export default function othelloReducer(state, action) {
         console.info(JSON.stringify(state, null, 2));
       }
       return state;
+    }
+    case OPTIONS: {
+      return reset(state);
     }
     default: {
       if (process.env.NODE_ENV === 'development') {
