@@ -57,7 +57,6 @@ export default class OthelloApp extends Component {
     this.props.store.dispatch(createActionOptions());
   }
   onReportIssue() {
-    console.log(process.env.REACT_APP_REPORT_ISSUE_URL);
     const issueRef = process.env.REACT_APP_REPORT_ISSUE_URL;
     window.location.assign(issueRef);
   }
