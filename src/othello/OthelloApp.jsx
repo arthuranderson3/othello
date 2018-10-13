@@ -11,13 +11,25 @@ import createActionMakeMove from './actions/createActionMakeMove';
 import createActionStartGame from './actions/createActionStartGame';
 import gameStati from './model/gameBoard/gameStati';
 import GameStartForm from './view/GameStartForm';
+import randomInt from './utility/randomInt';
 
 import './othelloApp.css';
 
 export default class OthelloApp extends Component {
   constructor(props) {
     super(props);
-    bindAll(this, 'onReset', 'onUndo', 'onDebugState', 'onMakeMove', 'onStartGame');
+    bindAll(
+      this,
+      'onReset',
+      'onUndo',
+      'onDebugState',
+      'onMakeMove',
+      'onStartGame',
+      'onOptions',
+      'onComputerMove',
+      'randomMove',
+      'componentWillUpdate'
+    );
   }
   onReset() {
     this.props.store.dispatch(createActionResetGame());
@@ -34,16 +46,42 @@ export default class OthelloApp extends Component {
   onStartGame(gameName, playerOne, playerTwo) {
     this.props.store.dispatch(createActionStartGame(gameName, playerOne, playerTwo));
   }
+  componentWillUpdate() {
+    this.onComputerMove();
+  }
+
+  onOptions() {
+    // const state = this.props.store.getState();
+    // this.onStartGame( state.name, state.players[0], state.players[1] );
+  }
+
+  randomMove() {
+    const state = this.props.store.getState();
+    const snapshot = currentSnapshot(state);
+    const idx = randomInt(0, snapshot.validSquares.length - 1);
+    this.onMakeMove(snapshot.validSquares[idx]);
+  }
+
+  onComputerMove() {
+    const state = this.props.store.getState();
+    if (state.view.currentPlayer.type === 'computer') {
+      console.info(JSON.stringify(state.view, null, 2));
+      console.info('setting up random move');
+      setTimeout(this.randomMove, state.view.currentPlayer.delay * 1000);
+    }
+  }
+
   render() {
     const state = this.props.store.getState();
-    const { onReset, onUndo, onDebugState, onMakeMove, onStartGame } = this;
-    const gameBoard = currentSnapshot(state);
-    if (gameBoard.gameStatus === gameStati.GAME_START) {
+    const snapshot = currentSnapshot(state);
+    const { onReset, onUndo, onDebugState, onMakeMove, onStartGame, onOptions } = this;
+    const gameStats = createGameStats(state);
+    if (snapshot.gameStatus === gameStati.GAME_START) {
       return (
         <div className="container">
           <div className="row">
             <div className="offset-3 col-6">
-              <h4>Othello</h4>
+              <h2>Othello</h2>
               <GameStartForm onStartGame={onStartGame} />
             </div>
           </div>
@@ -56,18 +94,19 @@ export default class OthelloApp extends Component {
           <div className="offset-3 col-3">
             <ActionPanel
               title="Othello"
-              gameName={state.gameName}
+              subtitle={state.name}
               onReset={onReset}
               onUndo={onUndo}
               onDebugState={onDebugState}
+              onOptions={onOptions}
             />
           </div>
           <div className="col-3">
-            <GameStats {...createGameStats(state)} />
+            <GameStats {...gameStats} />
           </div>
         </div>
         <div className="row game">
-          <GameBoard {...gameBoard} onClick={onMakeMove} />
+          <GameBoard snapshot={snapshot} view={gameStats.view} onClick={onMakeMove} />
         </div>
       </div>
     );

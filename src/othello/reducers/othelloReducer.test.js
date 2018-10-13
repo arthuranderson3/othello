@@ -47,7 +47,7 @@ describe('othelloReducer test suite', () => {
     });
     it('view.currentTurn', () => {
       const { view } = gameStartState;
-      expect(view.currentPlayer).toEqual('W');
+      expect(view.currentPlayer).toEqual(playerOne);
     });
   });
   describe('MAKE_MOVE success', () => {
@@ -74,7 +74,7 @@ describe('othelloReducer test suite', () => {
       expect(nextState.view.currentTurn).toEqual(2);
     });
     it('nextState.view.currentPlayer=B', () => {
-      expect(nextState.view.currentPlayer).toEqual('B');
+      expect(nextState.view.currentPlayer).toEqual(playerTwo);
     });
   });
   it('UNDO_MOVE success', () => {
@@ -103,7 +103,7 @@ describe('othelloReducer test suite', () => {
     expect(origState.view.score.white).toEqual(2);
     expect(origState.view.score.black).toEqual(2);
     expect(origState.view.currentTurn).toEqual(1);
-    expect(origState.view.currentPlayer).toEqual('W');
+    expect(origState.view.currentPlayer).toEqual(playerOne);
   });
   it('DEBUG_STATE success', () => {
     const startState = othelloReducer(

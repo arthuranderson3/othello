@@ -19,12 +19,15 @@ describe('copyPlayer suite', () => {
     it('player.type', () => {
       expect(player).toHaveProperty('type');
     });
+    it('player.delay', () => {
+      expect(player).toHaveProperty('delay');
+    });
   });
 
   describe('copyPlayer named', () => {
     let player;
     beforeAll(() => {
-      player = copyPlayer(constructPlayer('Bob', 'W', 'computer'));
+      player = copyPlayer(constructPlayer('Bob', 'W', 'computer', 4));
     });
     it('player.name=Bob', () => {
       expect(player.name).toEqual('Bob');
@@ -34,6 +37,9 @@ describe('copyPlayer suite', () => {
     });
     it('player.type=computer', () => {
       expect(player.type).toEqual('computer');
+    });
+    it('player.delay=4', () => {
+      expect(player.delay).toEqual(4);
     });
   });
 });

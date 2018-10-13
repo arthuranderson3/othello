@@ -1,5 +1,5 @@
-import constructComputerPlayer from './constructComputerPlayer';
+import constructPlayer from './constructPlayer';
 
-export default function constructRandy(color = 'B') {
-  return constructComputerPlayer('Gollum', color);
+export default function constructGollum(color = 'B', delay = 1) {
+  return constructPlayer('Gollum', color, 'computer', delay);
 }

@@ -1,5 +1,3 @@
-import gameStati from './gameStati';
-
 export default function copyGameBoard({
   id,
   squaresObj,

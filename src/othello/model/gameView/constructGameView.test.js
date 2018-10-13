@@ -1,10 +1,14 @@
 import constructGameView from './constructGameView';
 import constructGameBoard from '../gameBoard/constructGameBoard';
+import constructPlayer from '../player/constructPlayer';
 
 describe('constructGameView test suite', () => {
   let view;
   beforeAll(() => {
-    const game = constructGameView([constructGameBoard()]);
+    const game = constructGameView({
+      players: [constructPlayer('aa', 'W'), constructPlayer('gg', 'B', 'computer', 3)],
+      snapshots: [constructGameBoard()],
+    });
     view = game.view;
   });
   it('view.currentPlayer', () => {

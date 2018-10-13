@@ -1,24 +1,27 @@
 import chunk from 'lodash.chunk';
-import map from 'lodash.map';
 import React from 'react';
 import BoardRow from './BoardRow';
 import { toSquaresArray } from '../model/gameBoard';
 
-function createBoard(props) {
-  const sq = toSquaresArray(props);
+function createBoard({ snapshot, view, onClick }) {
+  // console.log({snapshot, view});
+  const sq = toSquaresArray(snapshot);
   const rowSquares = chunk(sq.squaresArr, 8);
-  return map(rowSquares, (squares, row) => {
+  return rowSquares.map((squares, row) => {
     return (
       <BoardRow
         key={row}
         squares={squares}
         row={row}
-        validSquares={props.validSquares}
-        onClick={i => props.onClick(i)}
+        playerType={view.currentPlayer.type}
+        validSquares={snapshot.validSquares}
+        onClick={i => onClick(i)}
       />
     );
   });
 }
-const GameBoard = props => <div className="game-board shadow-lg">{createBoard(props)}</div>;
+const GameBoard = ({ snapshot, view, onClick }) => (
+  <div className="game-board shadow-lg">{createBoard({ snapshot, view, onClick })}</div>
+);
 
 export default GameBoard;

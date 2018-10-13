@@ -1,146 +1,86 @@
 import React, { Component } from 'react';
-import GamePiece, { WHITE_CIRCLE, BLACK_CIRCLE } from './GamePiece';
-import constructPlayer from '../model/player/constructPlayer';
+import GamePieceSelection from './controls/GamePieceSelection';
+import LabeledSelection, { createOptions } from './controls/LabeledSelection';
+import NumberInput from './controls/NumberInput';
+import PlayerNumber from './controls/PlayerNumber';
+import PlayerTypeSelection from './controls/PlayerTypeSelection';
 import TextInput from './controls/TextInput';
 
 export default class PlayerInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = constructPlayer(props.player.name, props.player.color, props.player.type);
-  }
-  updateState(name, value) {
-    this.setState({ [name]: value });
-    this.props.updatePlayer(this.state);
+  updatePlayer(name, value) {
+    let player = { ...this.props.player, ...{ [name]: value } };
+    this.props.updatePlayer(player);
   }
 
   get name() {
-    return this.state.name;
+    return this.props.player.name;
   }
   set name(value) {
-    this.updateState('name', value);
+    this.updatePlayer('name', value);
   }
 
   get color() {
-    return this.state.color;
+    return this.props.player.color;
   }
   set color(value) {
     if (value === 'W' || value === 'B') {
-      this.updateState('color', value);
+      this.updatePlayer('color', value);
     }
   }
 
   get type() {
-    return this.state.type;
+    return this.props.player.type;
   }
   set type(value) {
     if (value === 'human' || value === 'computer') {
-      this.updateState('type', value);
+      this.updatePlayer('type', value);
     }
   }
 
+  get delay() {
+    return this.props.player.delay;
+  }
+  set delay(value) {
+    const num = parseInt(value, 10);
+    if (!isNaN(num)) {
+      this.updatePlayer('delay', value);
+    }
+  }
   render() {
+    const { playerNumber } = this.props;
     if (this.type === 'computer') {
       return (
         <React.Fragment>
-          <div className="form-group">
-            <h4> Player {this.props.playerNumber}</h4>
-          </div>
-          <div className="form-group">
-            <label className="col-form-label" htmlFor="idType">
-              Type
-            </label>
-            <select
-              id="idType"
-              className="form-control"
-              value={this.type}
-              onChange={e => (this.type = e.target.value)}
-            >
-              <option value="human">Human</option>
-              <option value="computer">Computer</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label className="col-form-label" htmlFor="idName">
-              Type
-            </label>
-            <select
-              id="idName"
-              className="form-control"
-              value={this.name}
-              onChange={e => (this.name = e.target.value)}
-            >
-              <option value="Randy">Randy</option>
-              <option value="Gollum">Gollum</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label className="col-form-label" htmlFor="idColor">
-              Color
-            </label>
-            <select
-              id="idColor"
-              className="form-control"
-              value={this.color}
-              onChange={e => (this.color = e.target.value)}
-            >
-              <option value="W">
-                White&nbsp;
-                {WHITE_CIRCLE}
-              </option>
-              <option value="B">
-                Black&nbsp;
-                {BLACK_CIRCLE}
-              </option>
-            </select>
-          </div>
+          <PlayerNumber number={playerNumber} />
+          <PlayerTypeSelection value={this.type} onChange={value => (this.type = value)} />
+          <LabeledSelection
+            label="Name"
+            value={this.name}
+            onChange={value => (this.name = value)}
+            options={createOptions(['Randy', 'Gollum'])}
+          />
+          <NumberInput
+            label="Delay"
+            value={this.delay}
+            numberChange={num => (this.delay = num)}
+            placeholder="delay (seconds)"
+          />
+
+          <GamePieceSelection value={this.color} onChange={value => (this.color = value)} />
         </React.Fragment>
       );
     }
     return (
       <React.Fragment>
-        <div className="form-group">
-          <h4>Player {this.props.playerNumber}</h4>
-          <div className="form-group">
-            <label className="col-form-label" htmlFor="idType">
-              Type
-            </label>
-            <select
-              id="idType"
-              className="form-control"
-              value={this.type}
-              onChange={e => (this.type = e.target.value)}
-            >
-              <option value="human">Human</option>
-              <option value="computer">Computer</option>
-            </select>
-          </div>
-          <TextInput
-            label="Name"
-            value={this.name}
-            textChange={text => (this.name = text)}
-            placeholder="player name"
-          />
-        </div>
-        <div className="form-group">
-          <label className="col-form-label" htmlFor="idColor">
-            Color
-          </label>
-          <select
-            id="idColor"
-            className="form-control"
-            value={this.color}
-            onChange={e => (this.color = e.target.value)}
-          >
-            <option value="W">
-              White&nbsp;
-              {WHITE_CIRCLE}
-            </option>
-            <option value="B">
-              Black&nbsp;
-              {BLACK_CIRCLE}
-            </option>
-          </select>
-        </div>
+        <PlayerNumber number={playerNumber} />
+        <PlayerTypeSelection value={this.type} onChange={value => (this.type = value)} />
+        <TextInput
+          label="Name"
+          value={this.name}
+          textChange={text => (this.name = text)}
+          placeholder="player name"
+        />
+        <GamePieceSelection value={this.color} onChange={value => (this.color = value)} />
       </React.Fragment>
     );
   }

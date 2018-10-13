@@ -11,6 +11,7 @@ import gameStati from '../gameBoard/gameStati';
 
 const playerOneDefault = constructPlayer('white', 'W', 'human');
 const playerTwoDefault = constructRandy();
+const playerGollum = constructGollum();
 
 export default function constructGame(
   gameName = 'anonymous',
@@ -21,12 +22,13 @@ export default function constructGame(
   let players;
   players = [copyPlayer(playerOne), copyPlayer(playerTwo)];
   const snapshots = copyGameBoardArray([constructGameBoard(gameStatus)]);
+  const view = constructGameView({ name: gameName, players, snapshots });
   return {
     ...constructIdentity(),
     name: gameName,
     startTime: moment.utc().format(),
     players,
     snapshots,
-    ...constructGameView(snapshots),
+    ...view,
   };
 }

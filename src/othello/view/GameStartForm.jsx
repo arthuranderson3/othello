@@ -5,7 +5,6 @@ import constructPlayer from '../model/player/constructPlayer';
 import constructRandy from '../model/player/constructRandy';
 
 export default class GameStartForm extends Component {
-  //export default function GameStartForm({ onStartGame = f => f }) {
   constructor(props) {
     super(props);
     this.state = {
