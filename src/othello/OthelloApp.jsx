@@ -29,7 +29,8 @@ export default class OthelloApp extends Component {
       'onOptions',
       'onComputerMove',
       'randomMove',
-      'componentWillUpdate'
+      'componentWillUpdate',
+      'onReportIssue'
     );
   }
   onReset() {
@@ -55,6 +56,11 @@ export default class OthelloApp extends Component {
     const state = this.props.store.getState();
     this.props.store.dispatch(createActionOptions());
   }
+  onReportIssue() {
+    console.log(process.env.REACT_APP_REPORT_ISSUE_URL);
+    const issueRef = process.env.REACT_APP_REPORT_ISSUE_URL;
+    window.location.assign(issueRef);
+  }
 
   randomMove() {
     const state = this.props.store.getState();
@@ -78,7 +84,15 @@ export default class OthelloApp extends Component {
   render() {
     const state = this.props.store.getState();
     const snapshot = currentSnapshot(state);
-    const { onReset, onUndo, onDebugState, onMakeMove, onStartGame, onOptions } = this;
+    const {
+      onReset,
+      onUndo,
+      onDebugState,
+      onMakeMove,
+      onStartGame,
+      onOptions,
+      onReportIssue,
+    } = this;
     const gameStats = createGameStats(state);
     if (snapshot.gameStatus === gameStati.GAME_START) {
       return (
@@ -103,6 +117,7 @@ export default class OthelloApp extends Component {
               onUndo={onUndo}
               onDebugState={onDebugState}
               onOptions={onOptions}
+              onReportIssue={onReportIssue}
             />
           </div>
           <div className="col-3">
