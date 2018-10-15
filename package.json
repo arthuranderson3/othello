@@ -1,12 +1,12 @@
 {
   "name": "othello",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "keywords": "othello reactjs redux",
   "homepage": "https://arthuranderson3.github.io/othello/",
   "author": "Arthur Anderson <arthur.anderson3@gmail.com> (https://arthuranderson3.github.io)",
   "bugs": {
-    "url" : "https://github.com/arthuranderson3/othello/issues"
+    "url": "https://github.com/arthuranderson3/othello/issues"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,scss}": [
