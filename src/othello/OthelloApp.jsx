@@ -12,6 +12,7 @@ import createActionStartGame from './actions/createActionStartGame';
 import createActionOptions from './actions/createActionOptions';
 import gameStati from './model/gameBoard/gameStati';
 import GameStartForm from './view/GameStartForm';
+import Version from './view/Version';
 import randomInt from './utility/randomInt';
 
 import './othelloApp.css';
@@ -29,8 +30,7 @@ export default class OthelloApp extends Component {
       'onOptions',
       'onComputerMove',
       'randomMove',
-      'componentWillUpdate',
-      'onReportIssue'
+      'componentWillUpdate'
     );
   }
   onReset() {
@@ -56,10 +56,6 @@ export default class OthelloApp extends Component {
     const state = this.props.store.getState();
     this.props.store.dispatch(createActionOptions());
   }
-  onReportIssue() {
-    const issueRef = process.env.REACT_APP_REPORT_ISSUE_URL;
-    window.location.assign(issueRef);
-  }
 
   randomMove() {
     const state = this.props.store.getState();
@@ -83,6 +79,8 @@ export default class OthelloApp extends Component {
   render() {
     const state = this.props.store.getState();
     const snapshot = currentSnapshot(state);
+    const humanPlayer = state.view.currentPlayer.type === 'human';
+
     const {
       onReset,
       onUndo,
@@ -105,6 +103,7 @@ export default class OthelloApp extends Component {
         </div>
       );
     }
+    const disabled = humanPlayer ? undefined : true;
     return (
       <div className="container">
         <div className="row">
@@ -116,7 +115,7 @@ export default class OthelloApp extends Component {
               onUndo={onUndo}
               onDebugState={onDebugState}
               onOptions={onOptions}
-              onReportIssue={onReportIssue}
+              disabled={disabled}
             />
           </div>
           <div className="col-3">
@@ -125,6 +124,9 @@ export default class OthelloApp extends Component {
         </div>
         <div className="row game">
           <GameBoard snapshot={snapshot} view={gameStats.view} onClick={onMakeMove} />
+        </div>
+        <div className="row">
+          <Version ver={process.env.REACT_APP_OTHELLO_VERSION} />
         </div>
       </div>
     );

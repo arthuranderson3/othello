@@ -21,6 +21,10 @@ describe('makeMove test suite', () => {
     it('state.snapshots.length=2', () => {
       expect(state.snapshots.length).toEqual(2);
     });
+    it('snapshot.validSquares=[19,21,37]', () => {
+      const snap = currentSnapshot(state);
+      expect(snap.validSquares).toEqual([19, 21, 37]);
+    });
   });
 
   describe('capture2 - debug board', () => {
@@ -71,7 +75,7 @@ describe('makeMove test suite', () => {
       try {
         priorState = undoMove(gameState);
         lastBoard = currentSnapshot(priorState);
-        const state = makeMove(priorState, 40);
+        const state = makeMove(priorState, 43);
         //console.log(JSON.stringify(lastBoard, null, 2));
         //console.log(JSON.stringify(currentSnapshot(state), null, 2));
       } catch (e) {
@@ -80,11 +84,11 @@ describe('makeMove test suite', () => {
       }
     });
 
-    it('lastBoard.player=W', () => {
-      expect(lastBoard.player).toEqual('W');
+    it('lastBoard.player=B', () => {
+      expect(lastBoard.player).toEqual('B');
     });
-    it('lastBoard.validSquares=[33,40,41,42,50,51]', () => {
-      expect(lastBoard.validSquares).toEqual([33, 40, 41, 42, 50, 51]);
+    it('lastBoard.validSquares=[43,44]', () => {
+      expect(lastBoard.validSquares).toEqual([43, 44]);
     });
   });
 });

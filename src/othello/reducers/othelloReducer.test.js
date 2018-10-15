@@ -84,8 +84,10 @@ describe('othelloReducer test suite', () => {
     );
     const actionMove = createActionMakeMove(29);
     const nextState = othelloReducer(startState, actionMove);
+    const actionMove2 = createActionMakeMove(19);
+    const nextNextState = othelloReducer(nextState, actionMove2);
     const actionUndo = createActionUndoMove();
-    const origState = othelloReducer(nextState, actionUndo);
+    const origState = othelloReducer(nextNextState, actionUndo);
     expect(origState).toEqual(startState);
   });
   it('RESET_GAME success', () => {

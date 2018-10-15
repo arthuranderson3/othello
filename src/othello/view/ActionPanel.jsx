@@ -1,16 +1,9 @@
 import React from 'react';
 import ActionButton from './controls/ActionButton';
 
-const ActionPanel = ({
-  title,
-  subtitle,
-  onReset,
-  onUndo,
-  onDebugState,
-  onOptions,
-  onReportIssue,
-}) => {
-  console.info(process.env);
+const ActionPanel = ({ title, subtitle, onReset, onUndo, onDebugState, onOptions, disabled }) => {
+  // const classes = disabled ? 'btn btn-secondary disabled' : 'btn btn-secondary';
+  const classes = 'btn btn-secondary';
   const devMode = process.env.NODE_ENV !== 'production';
   const reportIssue = process.env.REACT_APP_REPORT_ISSUE_URL;
   if (devMode) {
@@ -18,11 +11,11 @@ const ActionPanel = ({
       <div>
         <h2>{title}</h2>
         <h4>{subtitle}</h4>
-        <ActionButton btnStyle="dark" onClick={onReset} text="Reset" />
+        <ActionButton btnStyle="dark" onClick={onReset} text="Reset" disabled={disabled} />
         &nbsp;
-        <ActionButton btnStyle="secondary" onClick={onUndo} text="Undo" />
+        <ActionButton btnStyle="secondary" onClick={onUndo} text="Undo" disabled={disabled} />
         &nbsp;
-        <a href={reportIssue} className="btn btn-secondary">
+        <a href={reportIssue} className={classes}>
           Report Issue
         </a>
         &nbsp;
@@ -34,13 +27,13 @@ const ActionPanel = ({
     <div>
       <h2>{title}</h2>
       <h4>{subtitle}</h4>
-      <ActionButton btnStyle="dark" onClick={onReset} text="Reset" />
+      <ActionButton btnStyle="dark" onClick={onReset} text="Reset" disabled={disabled} />
       &nbsp;
-      <ActionButton btnStyle="secondary" onClick={onUndo} text="Undo" />
+      <ActionButton btnStyle="secondary" onClick={onUndo} text="Undo" disabled={disabled} />
       &nbsp;
       {/* <ActionButton btnStyle="secondary" onClick={onOptions} text="Options" />
       &nbsp; */}
-      <a href={reportIssue} className="btn btn-secondary">
+      <a href={reportIssue} className={classes}>
         Report Issue
       </a>
       &nbsp;
