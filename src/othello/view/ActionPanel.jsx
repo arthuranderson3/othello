@@ -11,7 +11,7 @@ const ActionPanel = ({ title, subtitle, onReset, onUndo, onDebugState, onOptions
       <div>
         <h2>{title}</h2>
         <h4>{subtitle}</h4>
-        <ActionButton btnStyle="dark" onClick={onReset} text="Reset" />
+        <ActionButton btnStyle="dark" onClick={onReset} text="Reset" disabled={disabled} />
         &nbsp;
         <ActionButton btnStyle="secondary" onClick={onUndo} text="Undo" disabled={disabled} />
         &nbsp;

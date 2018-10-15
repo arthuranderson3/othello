@@ -49,7 +49,14 @@ export default class OthelloApp extends Component {
     this.props.store.dispatch(createActionStartGame(gameName, playerOne, playerTwo));
   }
   componentWillUpdate() {
-    this.onComputerMove();
+    const state = this.props.store.getState();
+    const snapshot = currentSnapshot(state);
+    if (
+      snapshot.gameStatus === gameStati.WHITE_TURN ||
+      snapshot.gameStatus === gameStati.BLACK_TURN
+    ) {
+      this.onComputerMove();
+    }
   }
 
   onOptions() {
@@ -67,14 +74,8 @@ export default class OthelloApp extends Component {
 
   onComputerMove() {
     const state = this.props.store.getState();
-    const snapshot = currentSnapshot(state);
-    if (
-      snapshot.gameStatus === gameStati.WHITE_TURN ||
-      snapshot.gameStatus === gameStati.BLACK_TURN
-    ) {
-      if (state.view.currentPlayer.type === 'computer') {
-        setTimeout(this.randomMove, state.view.currentPlayer.delay * 1000);
-      }
+    if (state.view.currentPlayer.type === 'computer') {
+      setTimeout(this.randomMove, state.view.currentPlayer.delay * 1000);
     }
   }
 
@@ -97,7 +98,7 @@ export default class OthelloApp extends Component {
         </div>
       );
     }
-    const disabled = humanPlayer ? undefined : true;
+    const disabled = snapshot.gameStatus === gameStati.GAME_OVER || humanPlayer ? undefined : true;
     return (
       <div className="container">
         <div className="row">
