@@ -10,7 +10,9 @@ const ActionPanel = ({
   onOptions,
   onReportIssue,
 }) => {
+  console.info(process.env);
   const devMode = process.env.NODE_ENV !== 'production';
+  const reportIssue = process.env.REACT_APP_REPORT_ISSUE_URL;
   if (devMode) {
     return (
       <div>
@@ -20,7 +22,9 @@ const ActionPanel = ({
         &nbsp;
         <ActionButton btnStyle="secondary" onClick={onUndo} text="Undo" />
         &nbsp;
-        <ActionButton btnStyle="secondary" onClick={onReportIssue} text="Report Issue" />
+        <a href={reportIssue} className="btn btn-secondary">
+          Report Issue
+        </a>
         &nbsp;
         <ActionButton btnStyle="outline-danger" onClick={onDebugState} text="Debug Log" />
       </div>
@@ -36,7 +40,9 @@ const ActionPanel = ({
       &nbsp;
       {/* <ActionButton btnStyle="secondary" onClick={onOptions} text="Options" />
       &nbsp; */}
-      <ActionButton btnStyle="secondary" onClick={onReportIssue} text="Report Issue" />
+      <a href={reportIssue} className="btn btn-secondary">
+        Report Issue
+      </a>
       &nbsp;
     </div>
   );
