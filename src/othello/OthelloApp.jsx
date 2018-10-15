@@ -53,7 +53,6 @@ export default class OthelloApp extends Component {
   }
 
   onOptions() {
-    const state = this.props.store.getState();
     this.props.store.dispatch(createActionOptions());
   }
 
@@ -69,7 +68,10 @@ export default class OthelloApp extends Component {
   onComputerMove() {
     const state = this.props.store.getState();
     const snapshot = currentSnapshot(state);
-    if (snapshot.status !== gameStati.GAME_START && snapshot.status !== gameStati.GAME_OVER) {
+    if (
+      snapshot.gameStatus === gameStati.WHITE_TURN ||
+      snapshot.gameStatus === gameStati.BLACK_TURN
+    ) {
       if (state.view.currentPlayer.type === 'computer') {
         setTimeout(this.randomMove, state.view.currentPlayer.delay * 1000);
       }
@@ -81,15 +83,7 @@ export default class OthelloApp extends Component {
     const snapshot = currentSnapshot(state);
     const humanPlayer = state.view.currentPlayer.type === 'human';
 
-    const {
-      onReset,
-      onUndo,
-      onDebugState,
-      onMakeMove,
-      onStartGame,
-      onOptions,
-      onReportIssue,
-    } = this;
+    const { onReset, onUndo, onDebugState, onMakeMove, onStartGame, onOptions } = this;
     const gameStats = createGameStats(state);
     if (snapshot.gameStatus === gameStati.GAME_START) {
       return (

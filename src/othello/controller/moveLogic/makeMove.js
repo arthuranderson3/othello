@@ -21,7 +21,6 @@ export default function makeMove(state, index) {
     //
     let next = toOppositePlayer(newGameBoard);
     let validSq = gatherValidMoves(toSquaresArray(newGameBoard), next.player);
-    status = status === gameStati.WHITE_TURN ? gameStati.BLACK_TURN : gameStati.WHITE_TURN;
     //
     // if the next player does not have a move
     // revert back to currentplayer to see if they have a move.
@@ -29,8 +28,8 @@ export default function makeMove(state, index) {
     if (validSq.length === 0) {
       next = toOppositePlayer(next);
       validSq = gatherValidMoves(toSquaresArray(newGameBoard), next.player);
-      status = status === gameStati.WHITE_TURN ? gameStati.BLACK_TURN : gameStati.WHITE_TURN;
     }
+    status = next.player.color === 'W' ? gameStati.WHITE_TURN : gameStati.BLACK_TURN;
     if (validSq.length === 0) {
       // end game - neither player has a move
       status = gameStati.GAME_OVER;
