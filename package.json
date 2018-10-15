@@ -6,7 +6,7 @@
   "homepage": "https://arthuranderson3.github.io/othello/",
   "author": "Arthur Anderson <arthur.anderson3@gmail.com> (https://arthuranderson3.github.io)",
   "bugs": {
-    "url" : "https://github.com/owner/project/issues"
+    "url" : "https://github.com/arthuranderson3/othello/issues"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,scss}": [
