@@ -1,11 +1,8 @@
 {
   "main.css": "static/css/main.bb291580.css",
   "main.css.map": "static/css/main.bb291580.css.map",
-  "main.js": "static/js/main.3a398f78.js",
-  "main.js.map": "static/js/main.3a398f78.js.map",
-  "static/media/gollumVictory.gif": "static/media/gollumVictory.85e60101.gif",
-  "static/media/humanVictory.gif": "static/media/humanVictory.f5cd9afc.gif",
-  "static/media/randyRandomDance.gif": "static/media/randyRandomDance.8b3062dd.gif",
+  "main.js": "static/js/main.d351279b.js",
+  "main.js.map": "static/js/main.d351279b.js.map",
   "static/media/roboto-latin-100.woff": "static/media/roboto-latin-100.e9dbbe8a.woff",
   "static/media/roboto-latin-100.woff2": "static/media/roboto-latin-100.987b8457.woff2",
   "static/media/roboto-latin-100italic.woff": "static/media/roboto-latin-100italic.d704bb3d.woff",
@@ -29,6 +26,5 @@
   "static/media/roboto-latin-900.woff": "static/media/roboto-latin-900.8c2ade50.woff",
   "static/media/roboto-latin-900.woff2": "static/media/roboto-latin-900.19b7a0ad.woff2",
   "static/media/roboto-latin-900italic.woff": "static/media/roboto-latin-900italic.bc833e72.woff",
-  "static/media/roboto-latin-900italic.woff2": "static/media/roboto-latin-900italic.7b770d6c.woff2",
-  "static/media/smellOfVictory.gif": "static/media/smellOfVictory.df93bb0d.gif"
+  "static/media/roboto-latin-900italic.woff2": "static/media/roboto-latin-900italic.7b770d6c.woff2"
 }
