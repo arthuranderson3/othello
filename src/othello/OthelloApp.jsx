@@ -13,7 +13,7 @@ import createActionOptions from './actions/createActionOptions';
 import gameStati from './model/gameBoard/gameStati';
 import GameStartForm from './view/GameStartForm';
 import Version from './view/Version';
-import randomInt from './utility/randomInt';
+import playerMakeMove from './model/player/playerMakeMove';
 
 import './othelloApp.css';
 
@@ -28,8 +28,6 @@ export default class OthelloApp extends Component {
       'onMakeMove',
       'onStartGame',
       'onOptions',
-      'onComputerMove',
-      'randomMove',
       'componentWillUpdate'
     );
   }
@@ -50,33 +48,18 @@ export default class OthelloApp extends Component {
   }
   componentWillUpdate() {
     const state = this.props.store.getState();
+    console.log(JSON.stringify(state, null, 2));
     const snapshot = currentSnapshot(state);
     if (
       snapshot.gameStatus === gameStati.WHITE_TURN ||
       snapshot.gameStatus === gameStati.BLACK_TURN
     ) {
-      this.onComputerMove();
+      playerMakeMove(state, this.onMakeMove);
     }
   }
 
   onOptions() {
     this.props.store.dispatch(createActionOptions());
-  }
-
-  randomMove() {
-    const state = this.props.store.getState();
-    const snapshot = currentSnapshot(state);
-    if (snapshot.validSquares.length > 0) {
-      const idx = randomInt(0, snapshot.validSquares.length - 1);
-      this.onMakeMove(snapshot.validSquares[idx]);
-    }
-  }
-
-  onComputerMove() {
-    const state = this.props.store.getState();
-    if (state.view.currentPlayer.type === 'computer') {
-      setTimeout(this.randomMove, state.view.currentPlayer.delay * 1000);
-    }
   }
 
   render() {
