@@ -1,6 +1,6 @@
 {
   "name": "othello",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "private": true,
   "keywords": "othello reactjs redux",
   "homepage": "https://arthuranderson3.github.io/othello/",
