@@ -5,22 +5,21 @@ import randyVictory from './randyRandomDance.gif';
 import smellOfVictory from './smellOfVictory.gif';
 import find from 'lodash/find';
 
-const Victory = ({ winner, victoryImg }) => (
+const Victory = ({ winner, victoryImg, imgAltText }) => (
   <React.Fragment>
     <h6>
       {winner.name} Wins!
       <br />
     </h6>
-    <img src={victoryImg} class="img-thumbnail" />
+    <img src={victoryImg} class="img-thumbnail" alt={imgAltText} />
   </React.Fragment>
 );
 
 export function createVictory({ players, view }) {
-  console.info(JSON.stringify({ players, view }, null, 2));
-
   const { score } = view;
   let winner = { name: 'TIE GAME' };
   let victoryImg = undefined;
+  let imgAltText = 'victory';
   if (score.white > score.black) {
     winner = find(players, player => player.color === 'W');
   } else {
@@ -45,7 +44,7 @@ export function createVictory({ players, view }) {
       }
     }
   }
-  return { winner, victoryImg };
+  return { winner, victoryImg, imgAltText };
 }
 
 export default Victory;

@@ -66,7 +66,7 @@ export default class OthelloApp extends Component {
     const state = this.props.store.getState();
     const snapshot = currentSnapshot(state);
     const humanPlayer = state.view.currentPlayer.type === 'human';
-
+    const version = process.env.REACT_APP_OTHELLO_VERSION;
     const { onReset, onUndo, onDebugState, onMakeMove, onStartGame, onOptions } = this;
     const gameStats = createGameStats(state);
     if (snapshot.gameStatus === gameStati.GAME_START) {
@@ -104,7 +104,7 @@ export default class OthelloApp extends Component {
           <GameBoard snapshot={snapshot} view={gameStats.view} onClick={onMakeMove} />
         </div>
         <div className="row">
-          <Version ver={process.env.REACT_APP_OTHELLO_VERSION} />
+          <Version ver={version} />
         </div>
       </div>
     );
