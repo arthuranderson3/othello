@@ -2,7 +2,7 @@
   "name": "othello",
   "version": "0.4.5",
   "private": true,
-  "keywords": "othello reactjs redux",
+  "keywords": "othello, reversi",
   "homepage": "https://arthuranderson3.github.io/othello/",
   "author": "Arthur Anderson <arthur.anderson3@gmail.com> (https://arthuranderson3.github.io)",
   "bugs": {
