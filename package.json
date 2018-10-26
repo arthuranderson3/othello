@@ -63,5 +63,11 @@
     "node-sass": "^4.9.4",
     "prettier": "^1.9.2",
     "react-addons-test-utils": "^15.6.2"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
