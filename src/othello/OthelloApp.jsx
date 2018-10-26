@@ -15,7 +15,7 @@ import GameStartForm from './view/GameStartForm';
 import Version from './view/Version';
 import playerMakeMove from './model/player/playerMakeMove';
 
-import './othelloApp.css';
+import './othelloApp.scss';
 
 export default class OthelloApp extends Component {
   constructor(props) {
